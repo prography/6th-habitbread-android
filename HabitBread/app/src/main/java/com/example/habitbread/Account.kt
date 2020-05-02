@@ -15,5 +15,4 @@ class Account : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
-
 }
