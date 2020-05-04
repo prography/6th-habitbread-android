@@ -21,10 +21,6 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(MyHabits())
         main_bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
-                R.id.myHabits -> {
-                    replaceFragment(MyHabits())
-                    return@setOnNavigationItemSelectedListener true
-                }
                 R.id.ranking -> {
                     replaceFragment(Ranking())
                     return@setOnNavigationItemSelectedListener true
@@ -34,7 +30,8 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 else -> {
-                    return@setOnNavigationItemSelectedListener false
+
+                    return@setOnNavigationItemSelectedListener true
                 }
             }
         }
