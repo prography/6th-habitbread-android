@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 else -> {
-
+                    replaceFragment(MyHabits())
                     return@setOnNavigationItemSelectedListener true
                 }
             }
