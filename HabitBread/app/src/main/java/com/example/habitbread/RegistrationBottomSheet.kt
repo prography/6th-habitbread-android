@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_my_habits.*
 
 class RegistrationBottomSheet : BottomSheetDialogFragment() {
     override fun onCreateView(
