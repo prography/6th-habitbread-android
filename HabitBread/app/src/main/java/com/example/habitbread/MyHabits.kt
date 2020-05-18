@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_my_habits.*
 
 class MyHabits : Fragment() {
 
@@ -14,5 +15,13 @@ class MyHabits : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_habits, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        button_add.setOnClickListener {
+            val registrationBottomSheet = RegistrationBottomSheet()
+            registrationBottomSheet.show(childFragmentManager, "showBottomSheet")
+        }
     }
 }
