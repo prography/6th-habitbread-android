@@ -1,12 +1,14 @@
-package com.example.habitbread
+package com.example.habitbread.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.habitbread.Fragment.Account
+import com.example.habitbread.Fragment.MyHabits
+import com.example.habitbread.R
+import com.example.habitbread.Fragment.Ranking
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_my_habits.*
 
 class MainActivity : AppCompatActivity() {
 
