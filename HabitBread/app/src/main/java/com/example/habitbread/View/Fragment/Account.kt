@@ -1,4 +1,4 @@
-package com.example.habitbread.Fragment
+package com.example.habitbread.View.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,13 +1,13 @@
-package com.example.habitbread.Activity
+package com.example.habitbread.View.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.habitbread.Fragment.Account
-import com.example.habitbread.Fragment.MyHabits
+import com.example.habitbread.View.Fragment.MyHabits
 import com.example.habitbread.R
-import com.example.habitbread.Fragment.Ranking
+import com.example.habitbread.View.Fragment.Ranking
+import com.example.habitbread.View.Fragment.Account
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
