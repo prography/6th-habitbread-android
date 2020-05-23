@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/button_habit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:shapeAppearance="@style/HabitListTheme"
+        android:backgroundTint="#F5F3ED"
+        app:strokeColor="#BDB8AA"
+        app:strokeWidth="4dp"
+        android:elevation="8dp"/>
+
+    <TextView
+        android:id="@+id/textView_habitName"
+        app:layout_constraintBottom_toTopOf="@+id/textView_period"
+        app:layout_constraintStart_toStartOf="@+id/button_habit"
+        app:layout_constraintEnd_toEndOf="@id/button_habit"
+        app:layout_constraintTop_toTopOf="@+id/button_habit"
+        app:layout_constraintHorizontal_bias="0.2"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="운동하기!"
+        android:textSize="25sp"
+        android:textColor="#4A4646"
+        android:elevation="8dp"/>
+
+    <TextView
+        android:id="@+id/textView_period"
+        app:layout_constraintTop_toBottomOf="@+id/textView_habitName"
+        app:layout_constraintStart_toStartOf="@+id/textView_habitName"
+        app:layout_constraintBottom_toBottomOf="@+id/button_habit"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2019.07.01 ~ "
+        android:textSize="20sp"
+        android:textColor="#4A4646"
+        android:elevation="8dp"/>
+
+    <TextView
+        android:id="@+id/textView_percentage"
+        app:layout_constraintTop_toTopOf="@id/button_habit"
+        app:layout_constraintBottom_toBottomOf="@id/button_habit"
+        app:layout_constraintEnd_toEndOf="@id/button_habit"
+        app:layout_constraintStart_toStartOf="@id/button_habit"
+        app:layout_constraintHorizontal_bias="0.9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="87%"
+        android:textSize="30sp"
+        android:textColor="#A49B9B"
+        android:elevation="8dp"/>
+
+    <View
+        android:id="@+id/view_divider"
+        app:layout_constraintTop_toBottomOf="@+id/button_habit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Habit List theme -->
+    <style name="HabitListTheme" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <!-- Customize your theme here. -->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
+
 </resources>
