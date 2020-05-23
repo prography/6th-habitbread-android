@@ -1,7 +1,7 @@
 package com.example.habitbread.di
 
 import com.example.habitbread.api.HabitAPI
-import com.example.habitbread.repository.SampleRepository
+import com.example.habitbread.repository.HabitRepository
 import com.example.habitbread.ui.HabitViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val apiModule = module {
-    val baseUrl = "localhost:3000" // todo : to change default domain url
+    val baseUrl = "http://49.50.165.80:3000/"
 
     single {
         Retrofit.Builder()
@@ -34,16 +34,12 @@ val apiModule = module {
     }
 }
 
-val repositoryModule = module {
-    single { SampleRepository(get()) }
-}
-
 val viewModelModule = module {
     viewModel { HabitViewModel(get()) }
+    single { HabitRepository(get()) }
 }
 
 var diModule = listOf(
     apiModule,
-    repositoryModule,
     viewModelModule
 )

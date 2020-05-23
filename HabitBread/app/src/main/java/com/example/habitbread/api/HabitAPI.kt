@@ -1,33 +1,35 @@
 package com.example.habitbread.api
 
-import com.example.habitbread.data.RetrofitResponse
+import com.example.habitbread.data.Habit
+import com.example.habitbread.data.HabitResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface HabitAPI {
     @GET("/users/:userId/habits")
     fun getHabits(
-
-    ): Call<RetrofitResponse>
+        callback: Callback<HabitResponse>
+    ): Call<HabitResponse>
     @POST("/users/:userId/habits")
     fun createHabit(
-
-    ): Call<RetrofitResponse>
+        callback: Callback<Habit>
+    ): Call<HabitResponse>
     @GET("/users/:userId/habits/%s")
     fun getHabit(
-
-    ): Call<RetrofitResponse>
+        callback: Callback<Habit>
+    ): Call<Habit>
     @PUT("/users/:userId/habits/:habitId")
     fun editHabit(
 
-    ): Call<RetrofitResponse>
+    ): Call<HabitResponse>
     @DELETE("/users/:userId/habits/:habitId")
     fun deleteHabit(
 
-    ):Call<RetrofitResponse>
+    ):Call<HabitResponse>
 
     @GET("/ranking")
     fun getRankings (
 
-    ): Call<RetrofitResponse>
+    ): Call<HabitResponse>
 }
