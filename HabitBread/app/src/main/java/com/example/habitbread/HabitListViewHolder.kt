@@ -3,7 +3,6 @@ package com.example.habitbread
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
 class HabitListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val tv_habitName: TextView = itemView.findViewById(R.id.textView_habitName)
