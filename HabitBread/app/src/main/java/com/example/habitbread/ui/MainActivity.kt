@@ -1,21 +1,23 @@
-package com.example.habitbread.View.Activity
+package com.example.habitbread.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.habitbread.View.Fragment.MyHabits
 import com.example.habitbread.R
-import com.example.habitbread.View.Fragment.Ranking
-import com.example.habitbread.View.Fragment.Account
+import com.example.habitbread.base.BaseActivity
+import com.example.habitbread.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
+    private val viewModel: HabitViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        dataBinding.viewModel = viewModel;
         initBottomNavigation()
     }
 

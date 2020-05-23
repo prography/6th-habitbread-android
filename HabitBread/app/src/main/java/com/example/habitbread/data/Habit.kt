@@ -1,4 +1,4 @@
-package com.example.habitbread.Model
+package com.example.habitbread.data
 
 import java.util.*
 
