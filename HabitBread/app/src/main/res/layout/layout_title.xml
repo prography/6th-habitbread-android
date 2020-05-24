@@ -7,23 +7,15 @@
     <TextView
         android:id="@+id/textView_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/appTitle"
-        android:textSize="24sp"/>
-
-    <ImageView
-        android:id="@+id/imageView_bakery"
-        app:layout_constraintTop_toTopOf="@+id/textView_title"
-        app:layout_constraintBottom_toBottomOf="@id/textView_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_bakery" />
+        android:text="빵 리스트"
+        android:textSize="30sp"
+        android:textColor="#000000"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

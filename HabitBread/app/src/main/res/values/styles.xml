@@ -12,7 +12,7 @@
     <style name="HabitListTheme" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <!-- Customize your theme here. -->
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">30dp</item>
+        <item name="cornerSize">20dp</item>
     </style>
 
 </resources>

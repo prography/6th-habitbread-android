@@ -34,7 +34,6 @@ class MyHabits : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
-
         button_add.setOnClickListener {
             val registrationBottomSheet = RegistrationBottomSheet()
             registrationBottomSheet.show(childFragmentManager, "showBottomSheet")
@@ -74,5 +73,4 @@ class MyHabits : Fragment() {
         )
         recyclerView_adapter.notifyDataSetChanged()
     }
-
 }

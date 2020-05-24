@@ -13,6 +13,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         layout="@layout/layout_title" />
 
+    <ImageView
+        android:id="@+id/imageView_bakery"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_bakery"/>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView_habitList"
         app:layout_constraintTop_toBottomOf="@+id/layout_title"
@@ -25,20 +34,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/textView_announcement"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView_habitlist"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="40dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="당신의 미래는 깜깜하군요..!"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_habitlist"
@@ -65,11 +72,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
