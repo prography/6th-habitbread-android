@@ -8,6 +8,7 @@ import com.example.habitbread.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class RegistrationBottomSheet : BottomSheetDialogFragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
