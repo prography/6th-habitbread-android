@@ -1,4 +1,4 @@
-package com.example.habitbread.ui
+package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

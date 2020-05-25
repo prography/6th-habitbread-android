@@ -3,14 +3,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.habitbread.ui.HabitViewModel" />
+            type="com.example.habitbread.ui.viewModel.HabitViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.habitbread.ui.MainActivity">
+    tools:context="com.example.habitbread.ui.Activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/main_frameLayout"

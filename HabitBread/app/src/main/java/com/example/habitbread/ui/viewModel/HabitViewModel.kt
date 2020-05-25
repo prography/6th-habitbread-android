@@ -1,4 +1,4 @@
-package com.example.habitbread.ui
+package com.example.habitbread.ui.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

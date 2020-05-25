@@ -2,10 +2,9 @@ package com.example.habitbread.di
 
 import com.example.habitbread.api.HabitAPI
 import com.example.habitbread.repository.HabitRepository
-import com.example.habitbread.ui.HabitViewModel
+import com.example.habitbread.ui.viewModel.HabitViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.androidx.experimental.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit

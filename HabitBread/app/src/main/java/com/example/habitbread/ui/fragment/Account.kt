@@ -1,4 +1,4 @@
-package com.example.habitbread.ui
+package com.example.habitbread.ui.fragment
 
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseFragment

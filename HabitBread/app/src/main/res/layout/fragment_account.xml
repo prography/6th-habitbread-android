@@ -4,14 +4,14 @@
     <data>
         <variable
             name="accountView"
-            type="com.example.habitbread.ui.Account" />
+            type="com.example.habitbread.ui.fragment.Account" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.Account">
+        tools:context=".ui.fragment.Account">
 
 
         <!-- TODO: Update blank fragment layout -->

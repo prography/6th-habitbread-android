@@ -1,4 +1,4 @@
-package com.example.habitbread.ui
+package com.example.habitbread.ui.Activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,10 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseActivity
 import com.example.habitbread.databinding.ActivityMainBinding
+import com.example.habitbread.ui.fragment.Account
+import com.example.habitbread.ui.viewModel.HabitViewModel
+import com.example.habitbread.ui.fragment.MyHabits
+import com.example.habitbread.ui.fragment.Ranking
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

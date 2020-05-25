@@ -1,4 +1,4 @@
-package com.example.habitbread.ui
+package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.habitbread.HabitListAdapter
-import com.example.habitbread.HabitListData
+import com.example.habitbread.ui.adapter.HabitListAdapter
+import com.example.habitbread.data.HabitListData
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseFragment
 import com.example.habitbread.databinding.FragmentMyHabitsBinding
@@ -39,7 +39,8 @@ class MyHabits : BaseFragment<FragmentMyHabitsBinding>(R.layout.fragment_my_habi
     }
 
     private fun initRecyclerView() {
-        recyclerview_adapter = HabitListAdapter(context)
+        recyclerview_adapter =
+            HabitListAdapter(context)
         recyclerview_habitList.adapter = recyclerview_adapter
         recyclerview_habitList.layoutManager = LinearLayoutManager(context)
         recyclerview_adapter.data = initialList
