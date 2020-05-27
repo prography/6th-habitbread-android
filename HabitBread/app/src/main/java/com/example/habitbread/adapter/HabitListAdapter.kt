@@ -1,4 +1,4 @@
-package com.example.habitbread.ui.adapter
+package com.example.habitbread.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

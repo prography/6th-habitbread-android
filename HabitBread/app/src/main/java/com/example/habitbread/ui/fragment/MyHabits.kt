@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.habitbread.ui.adapter.HabitListAdapter
+import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.data.HabitListData
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseFragment
