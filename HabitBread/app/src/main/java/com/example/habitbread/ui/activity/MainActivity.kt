@@ -1,4 +1,4 @@
-package com.example.habitbread.ui.Activity
+package com.example.habitbread.ui.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
