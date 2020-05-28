@@ -1,4 +1,4 @@
-package com.example.habitbread
+package com.example.habitbread.data
 
 data class HabitListData (
     val habitName: String,
