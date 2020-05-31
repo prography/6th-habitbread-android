@@ -32,15 +32,13 @@ class MyHabits : BaseFragment<FragmentMyHabitsBinding>(R.layout.fragment_my_habi
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         button_add.setOnClickListener {
-            val registrationBottomSheet =
-                RegistrationBottomSheet()
+            val registrationBottomSheet = RegistrationBottomSheet()
             registrationBottomSheet.show(childFragmentManager, "showBottomSheet")
         }
     }
 
     private fun initRecyclerView() {
-        recyclerview_adapter =
-            HabitListAdapter(context)
+        recyclerview_adapter = HabitListAdapter(context)
         recyclerview_habitList.adapter = recyclerview_adapter
         recyclerview_habitList.layoutManager = LinearLayoutManager(context)
         recyclerview_adapter.data = initialList

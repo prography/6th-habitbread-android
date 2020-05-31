@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorHabitList">#F5F3ED</color>
+    <drawable name="categoryCheckedTrue">#80553615</drawable>
+    <drawable name="categoryCheckedFalse">#E2E2E2</drawable>
 </resources>
