@@ -11,7 +11,9 @@ import com.example.habitbread.data.HabitListData
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseFragment
 import com.example.habitbread.databinding.FragmentMyHabitsBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.fragment_my_habits.*
+import kotlinx.android.synthetic.main.fragment_registraion.*
 
 class MyHabits : BaseFragment<FragmentMyHabitsBinding>(R.layout.fragment_my_habits) {
 
