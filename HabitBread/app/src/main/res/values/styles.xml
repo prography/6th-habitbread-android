@@ -6,13 +6,14 @@
         <item name="colorPrimary">#553615</item>
         <item name="colorPrimaryDark">#FF553615</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundTint">#F5F4F1</item>
     </style>
 
     <!-- Habit List theme -->
     <style name="HabitListTheme" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <!-- Customize your theme here. -->
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">20dp</item>
+        <item name="cornerSize">10dp</item>
     </style>
 
 </resources>

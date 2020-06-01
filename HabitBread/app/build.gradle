@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -37,9 +37,11 @@ android {
 repositories {
     mavenCentral()
     google()
+    maven { url 'https://jitpack.io' }
 }
 
-dependencies {   implementation fileTree(dir: 'libs', include: ['*.jar'])
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //kotlin dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -83,4 +85,7 @@ dependencies {   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //android recyclerview dependencies
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //calendar library dependencies
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 }

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.DetailActivity">
+
+    <TextView
+        android:id="@+id/textView_detail_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView_bakery"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work out!"
+        android:textSize="35sp"
+        android:textColor="#000000"/>
+
+    <ImageView
+        android:id="@+id/imageView_bakery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_bakery"/>
+
+    <Button
+        android:id="@+id/button_commit"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:shapeAppearance="@style/HabitListTheme"
+        app:strokeWidth="0dp"
+        android:backgroundTint="#4C7A65"
+        android:text="오늘의 빵 굽기"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:paddingVertical="20dp"/>
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView_habit_detail"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_constraintTop_toBottomOf="@+id/button_commit"
+        app:layout_constraintBottom_toTopOf="@+id/view_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:mcv_tileHeight="match_parent"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#99754F44"
+        app:mcv_selectionMode="multiple"/>
+
+    <View
+        android:id="@+id/view_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:background="#F9F5EA"/>
+
+    <TextView
+        android:id="@+id/textView_commit_count"
+        app:layout_constraintTop_toBottomOf="@+id/view_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="커밋 횟수"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView_average_title"
+        app:layout_constraintTop_toBottomOf="@+id/view_bar"
+        app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="평균"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView_ranking"
+        app:layout_constraintTop_toBottomOf="@+id/view_bar"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="랭킹"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView_average_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_average_title"
+        app:layout_constraintStart_toStartOf="@+id/textView_average_title"
+        app:layout_constraintEnd_toEndOf="@+id/textView_average_title"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView_commit_count_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_commit_count"
+        app:layout_constraintStart_toStartOf="@+id/textView_commit_count"
+        app:layout_constraintEnd_toEndOf="@+id/textView_commit_count"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView_ranking_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ranking"
+        app:layout_constraintStart_toStartOf="@+id/textView_ranking"
+        app:layout_constraintEnd_toEndOf="@+id/textView_ranking"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        android:textSize="20sp"/>
+    
+    <View
+        android:id="@+id/view_vertical_bar_left"
+        app:layout_constraintTop_toBottomOf="@+id/textView_average_title"
+        app:layout_constraintBottom_toTopOf="@+id/textView_average_value"
+        app:layout_constraintStart_toEndOf="@+id/textView_average_title"
+        app:layout_constraintEnd_toStartOf="@+id/textView_commit_count"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="#F9F5EA"/>
+
+    <View
+        android:id="@+id/view_vertical_bar_right"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ranking"
+        app:layout_constraintBottom_toTopOf="@+id/textView_ranking_value"
+        app:layout_constraintStart_toEndOf="@+id/textView_commit_count"
+        app:layout_constraintEnd_toStartOf="@+id/textView_ranking"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="#F9F5EA"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
