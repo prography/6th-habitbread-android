@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -83,4 +84,7 @@ dependencies {   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //android recyclerview dependencies
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics:17.4.2'
 }
