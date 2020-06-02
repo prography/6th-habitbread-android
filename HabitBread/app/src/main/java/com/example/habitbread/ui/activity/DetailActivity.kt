@@ -23,13 +23,13 @@ class DetailActivity : AppCompatActivity() {
     private fun setCalendarView(){
         materialCalendarView = calendarView_habit_detail
 
-        // TODO : selectedDayList에 서버에서 얻어온 날짜를 넣어야함
+        // TODO : 네트워크 통신 구현 시 selectedDayList에 서버에서 얻어온 날짜를 넣어야함
         val selectedDayList: List<CalendarDay> = listOf(CalendarDay.from(2020, 6 , 5) ,CalendarDay.from(2020, 6 , 4), CalendarDay.from(2020, 7 , 25))
         materialCalendarView.addDecorators(DecoratorDays(selectedDayList))
     }
 
     inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator{
-        // TODO : drawable 체크는 테스트임! 정사각형으로 바꾸기
+        // TODO : drawable 체크는 테스트임! 디자인 정해지면 정사각형으로 바꾸기
         val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.icon_calendar_test )
         val list = dayList
 
