@@ -67,7 +67,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
             // This is a new Token(Instance ID)
             val token = task.result?.token
-            Log.d("chohee", token.toString())
+            Log.d("FCM_Token", token.toString())
         })
     }
 }
