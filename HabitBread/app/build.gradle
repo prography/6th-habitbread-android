@@ -87,4 +87,5 @@ dependencies {   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //firebase dependencies
     implementation 'com.google.firebase:firebase-analytics:17.4.2'
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
 }
