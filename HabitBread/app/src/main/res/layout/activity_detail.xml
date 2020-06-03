@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/textView_detail_title"
+        app:layout_constraintTop_toBottomOf="@id/imageView_bakery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_bakery"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imageView_bakery"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,8 +38,8 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:shapeAppearance="@style/HabitListTheme"
         app:strokeWidth="0dp"
-        android:backgroundTint="#4C7A65"
-        android:text="오늘의 빵 굽기"
+        android:backgroundTint="@color/appGreenColor"
+        android:text="@string/commitButtonText"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="#ffffff"
@@ -63,14 +63,14 @@
 
     <View
         android:id="@+id/view_bar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.75"
         android:layout_width="0dp"
         android:layout_height="10dp"
-        android:background="#F9F5EA"/>
+        android:background="@color/barYellowColor"/>
 
     <TextView
         android:id="@+id/textView_commit_count"
@@ -80,7 +80,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="커밋 횟수"
+        android:text="@string/commitCountTitle"
         android:textSize="20sp"/>
 
     <TextView
@@ -91,7 +91,7 @@
         android:layout_marginStart="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="평균"
+        android:text="@string/averageTitle"
         android:textSize="20sp"/>
 
     <TextView
@@ -102,7 +102,7 @@
         android:layout_marginEnd="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="랭킹"
+        android:text="@string/rankingTitle"
         android:textSize="20sp"/>
 
     <TextView
@@ -157,10 +157,4 @@
         android:layout_width="2dp"
         android:layout_height="0dp"
         android:background="#F9F5EA"/>
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

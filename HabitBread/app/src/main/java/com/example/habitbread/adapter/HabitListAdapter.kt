@@ -46,6 +46,5 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
                 context?.startActivity(intent)
             }
         }
-
     }
 }
