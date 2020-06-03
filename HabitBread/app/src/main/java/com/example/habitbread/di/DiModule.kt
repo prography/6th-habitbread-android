@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val apiModule = module {
-    val baseUrl = "http://49.50.165.80:3000/"
+    val baseUrl = "https://habitbread.tk"
 
     single {
         Retrofit.Builder()
@@ -34,8 +34,8 @@ val apiModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { HabitViewModel(get()) }
-    single { HabitRepository(get()) }
+    //viewModel { HabitViewModel(get()) }
+    //single { HabitRepository(get()) }
 }
 
 var diModule = listOf(

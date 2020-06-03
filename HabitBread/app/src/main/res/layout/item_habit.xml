@@ -24,9 +24,8 @@
 
     <TextView
         android:id="@+id/textView_habitName"
-        app:layout_constraintBottom_toTopOf="@+id/textView_period"
-        app:layout_constraintStart_toStartOf="@+id/button_habit"
         app:layout_constraintTop_toTopOf="@+id/button_habit"
+        app:layout_constraintStart_toStartOf="@+id/button_habit"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
@@ -34,20 +33,6 @@
         android:layout_height="wrap_content"
         android:text="운동하기!"
         android:textSize="25sp"
-        android:textColor="#4A4646"
-        android:elevation="3dp"/>
-
-    <TextView
-        android:id="@+id/textView_period"
-        app:layout_constraintTop_toBottomOf="@+id/textView_habitName"
-        app:layout_constraintStart_toStartOf="@+id/textView_habitName"
-        app:layout_constraintBottom_toBottomOf="@+id/button_habit"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2019.07.01 ~ "
-        android:textSize="20sp"
         android:textColor="#4A4646"
         android:elevation="3dp"/>
 

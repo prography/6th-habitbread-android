@@ -1,16 +1,14 @@
 package com.example.habitbread.ui.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.habitbread.base.BaseViewModel
+import com.example.habitbread.data.HabitResponse
 import com.example.habitbread.repository.HabitRepository
 
-class HabitViewModel constructor(habitRepository: HabitRepository): BaseViewModel(){
-    private val _text = MutableLiveData<String>()
-    val text: LiveData<String>
-        get() = _text
+class HabitViewModel : BaseViewModel(){
+    private val accessToken = "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTU5MTE3MjkxN30.i00yOSVFiHPQ2wa474R46uEVj6cdse29m_S9grl1EvRvCwyY5X7YNWOs_6TlLzL8"
+    private val habitListData: List<HabitResponse> = HabitRepository.getAllHabits(accessToken)
 
-    init {
-        _text.value = "Hello World"
+    fun getHabitListData(): List<HabitResponse>{
+        return habitListData
     }
 }

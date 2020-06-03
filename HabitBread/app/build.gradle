@@ -32,6 +32,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    kotlinOptions{
+        jvmTarget = "1.8"
+    }
 }
 
 repositories {
@@ -88,4 +92,7 @@ dependencies {
 
     //calendar library dependencies
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
+
+    //fragment dependencies
+    implementation "androidx.fragment:fragment-ktx:1.2.4"
 }
