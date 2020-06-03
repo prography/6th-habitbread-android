@@ -4,4 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="appTitle">습관빵</string>
+    <string name="averageTitle">평균</string>
+    <string name="commitCountTitle">커밋 횟수</string>
+    <string name="rankingTitle">랭킹</string>
+    <string name="commitButtonText">오늘의 빵 굽기</string>
 </resources>
