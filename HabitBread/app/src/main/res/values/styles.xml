@@ -15,7 +15,7 @@
         <item name="cornerSize">20dp</item>
     </style>
 
-    <!-- Habit List theme -->
+    <!-- Bottom Sheet Dialog theme -->
     <style name="bottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <!-- Customize your theme here. -->
         <item name="cornerFamily">rounded</item>
@@ -25,4 +25,15 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+    <!-- Alarm WeekDay theme -->
+    <style name="AlarmWeekDayTheme" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <!-- Customize your theme here. -->
+        <item name="android:shape">oval</item>
+    </style>
+
+    <!-- Category Chip Text theme -->
+    <style name="CategoryChipTextTheme" parent="TextAppearance.MaterialComponents.Chip">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
