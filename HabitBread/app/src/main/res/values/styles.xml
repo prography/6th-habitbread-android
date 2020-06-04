@@ -36,4 +36,10 @@
         <!-- Customize your theme here. -->
         <item name="android:textSize">20sp</item>
     </style>
+
+    <!-- Category Chip theme -->
+    <style name="CategoryChipTheme" parent="Widget.MaterialComponents.Chip.Choice">
+        <!-- Customize your theme here. -->
+        <item name="chipBackgroundColor">@color/selector_chip</item>
+    </style>
 </resources>

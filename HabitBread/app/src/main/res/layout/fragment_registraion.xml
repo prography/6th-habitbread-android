@@ -94,19 +94,18 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_health"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:checkable="true"
                     android:text="건강"
                     android:textAlignment="center"
                     android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipBackgroundColor="@color/selector_chip"
                     app:chipCornerRadius="15dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_study"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:background="@color/selector_chip"
@@ -114,12 +113,11 @@
                     android:text="공부"
                     android:textAlignment="center"
                     android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipBackgroundColor="@color/selector_chip"
                     app:chipCornerRadius="15dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_exercise"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:background="@color/selector_chip"
@@ -127,12 +125,11 @@
                     android:text="운동"
                     android:textAlignment="center"
                     android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipBackgroundColor="@color/selector_chip"
                     app:chipCornerRadius="15dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_daily"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:background="@color/selector_chip"
@@ -140,12 +137,11 @@
                     android:text="일상"
                     android:textAlignment="center"
                     android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipBackgroundColor="@color/selector_chip"
                     app:chipCornerRadius="15dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_hobby"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:background="@color/selector_chip"
@@ -153,12 +149,11 @@
                     android:text="취미"
                     android:textAlignment="center"
                     android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipBackgroundColor="@color/selector_chip"
                     app:chipCornerRadius="15dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_etc"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
                     android:background="@color/selector_chip"
@@ -166,7 +161,6 @@
                     android:text="기타"
                     android:textAlignment="center"
                     android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipBackgroundColor="@color/selector_chip"
                     app:chipCornerRadius="15dp" />
             </com.google.android.material.chip.ChipGroup>
 
