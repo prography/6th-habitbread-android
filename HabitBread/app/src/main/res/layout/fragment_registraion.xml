@@ -79,6 +79,8 @@
         android:textColor="#000000"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_category"
+            android:layout_marginTop="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/textView_category"
@@ -100,105 +102,161 @@
                     android:checkable="true"
                     android:text="건강"
                     android:textAlignment="center"
-                    android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipCornerRadius="15dp" />
+                    android:textAppearance="@style/CategoryChipTextTheme" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_study"
                     style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:background="@color/selector_chip"
                     android:checkable="true"
                     android:text="공부"
                     android:textAlignment="center"
-                    android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipCornerRadius="15dp" />
+                    android:textAppearance="@style/CategoryChipTextTheme" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_exercise"
                     style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:background="@color/selector_chip"
                     android:checkable="true"
                     android:text="운동"
                     android:textAlignment="center"
-                    android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipCornerRadius="15dp" />
+                    android:textAppearance="@style/CategoryChipTextTheme" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_daily"
                     style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:background="@color/selector_chip"
                     android:checkable="true"
                     android:text="일상"
                     android:textAlignment="center"
-                    android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipCornerRadius="15dp" />
+                    android:textAppearance="@style/CategoryChipTextTheme" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_hobby"
                     style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:background="@color/selector_chip"
                     android:checkable="true"
                     android:text="취미"
                     android:textAlignment="center"
-                    android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipCornerRadius="15dp" />
+                    android:textAppearance="@style/CategoryChipTextTheme" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_etc"
                     style="@style/CategoryChipTheme"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:background="@color/selector_chip"
                     android:checkable="true"
                     android:text="기타"
                     android:textAlignment="center"
-                    android:textAppearance="@style/CategoryChipTextTheme"
-                    app:chipCornerRadius="15dp" />
+                    android:textAppearance="@style/CategoryChipTextTheme" />
             </com.google.android.material.chip.ChipGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/textView_alarm"
+        app:layout_constraintStart_toStartOf="@+id/textView_title"
+        app:layout_constraintTop_toBottomOf="@+id/container_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="알람"
+        android:textSize="30sp"
+        android:textColor="#000000"/>
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_alarm"
+        app:layout_constraintTop_toTopOf="@+id/textView_alarm"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_alarm"
+        app:layout_constraintStart_toEndOf="@+id/textView_alarm"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:checked="false"/>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView_category"-->
-<!--        app:layout_constraintStart_toEndOf="@id/imageView_close"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/imageView_done"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView_category"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content">-->
-<!--    </androidx.recyclerview.widget.RecyclerView>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView_alarm"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/textView_title"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/recyclerView_category"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:text="알람"-->
-<!--        android:textSize="30sp"-->
-<!--        android:textColor="#000000"/>-->
-
-<!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
-<!--        android:id="@+id/switch_alarm"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/textView_alarm"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textView_alarm"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textView_alarm"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:checked="false"/>-->
-
+    <HorizontalScrollView
+        app:layout_constraintTop_toBottomOf="@+id/textView_alarm"
+        app:layout_constraintStart_toEndOf="@id/imageView_close"
+        app:layout_constraintEnd_toStartOf="@id/imageView_done"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:chipSpacingHorizontal="0dp"
+            app:singleSelection="false"
+            app:singleLine="true">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_mon"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="월"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tue"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="화"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_wed"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="수"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_thu"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="목"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fri"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="금"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sat"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="토"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sun"
+                style="@style/AlarmChipTheme"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:checkable="true"
+                android:text="일"
+                android:textAlignment="center"
+                android:textAppearance="@style/AlarmChipTextTheme" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/recyclerView_alarm"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/textView_alarm"-->
