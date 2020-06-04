@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.habitbread.R
+import com.example.habitbread.api.FirebaseAPI
 import com.example.habitbread.base.BaseActivity
 import com.example.habitbread.databinding.ActivityMainBinding
 import com.example.habitbread.ui.fragment.Account
@@ -13,6 +14,7 @@ import com.example.habitbread.ui.fragment.MyHabits
 import com.example.habitbread.ui.fragment.Ranking
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onResume() {
         super.onResume()
         getFCMCurrentToken()
+        FirebaseMessaging.getInstance().isAutoInitEnabled = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +69,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
 
             // This is a new Token(Instance ID)
-            val token = task.result?.token
-            Log.d("FCM_Token", token.toString())
+            val token = task.result?.token.toString()
+            Log.d("FCM_Token", token)
         })
     }
 }
