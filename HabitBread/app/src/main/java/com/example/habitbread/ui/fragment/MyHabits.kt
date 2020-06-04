@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.R
+import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import kotlinx.android.synthetic.main.fragment_my_habits.*
 
@@ -17,7 +18,7 @@ class MyHabits : Fragment() {
     private lateinit var recyclerview_habitList: RecyclerView
     private lateinit var recyclerview_adapter: HabitListAdapter
 
-    private val habitViewModel: HabitViewModel = HabitViewModel()
+    private val habitViewModel: HabitViewModel = HabitViewModel.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,11 +40,25 @@ class MyHabits : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getHabitData()
+    }
+
+    private fun getHabitData() {
+        habitViewModel.init(object : UpdateFinishHandler {
+            override fun onUpdated() {
+                val list = habitViewModel.getHabitListData();
+                recyclerview_adapter.data = list;
+                recyclerview_adapter.notifyDataSetChanged();
+            }
+        })
+    }
+
     private fun initRecyclerView() {
         recyclerview_adapter = HabitListAdapter(context)
         recyclerview_habitList.adapter = recyclerview_adapter
         recyclerview_habitList.layoutManager = LinearLayoutManager(context)
-        recyclerview_adapter.data = habitViewModel.getHabitListData()
         recyclerview_adapter.notifyDataSetChanged()
     }
 }

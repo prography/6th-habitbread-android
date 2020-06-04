@@ -1,6 +1,7 @@
 package com.example.habitbread.repository
 
 import android.util.Log
+import com.example.habitbread.`interface`.HabitListHandler
 import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.data.HabitResponse
 import retrofit2.Call
@@ -13,7 +14,7 @@ class HabitRepository {
     private val habitBreadAPI = ServerImpl.APIService
     var allHabitListData : List<HabitResponse> = listOf()
 
-    fun getAllHabits(): List<HabitResponse>{
+    fun getAllHabits(handler : HabitListHandler){
         val call: Call<List<HabitResponse>> = habitBreadAPI.getAllHabitLists()
         call.enqueue(
             object : Callback<List<HabitResponse>>{
@@ -25,10 +26,9 @@ class HabitRepository {
                     response: Response<List<HabitResponse>>
                 ) {
                     allHabitListData = response.body()!!
+                    handler.onResult(allHabitListData);
                 }
             }
         )
-        // 요 자식이 문제...!
-        return allHabitListData
     }
 }
