@@ -1,6 +1,5 @@
 package com.example.habitbread.ui.fragment
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,6 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
     private lateinit var rvAlarmWeekDay: RecyclerView
     private lateinit var adapterAlarmWeekDay: AlarmWeekAdapter
 
-
     override fun getTheme(): Int {
         return R.style.bottomSheetDialogTheme
     }
@@ -29,7 +27,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_registraion, container, false)
-//        rvAlarmWeekDay = view.findViewById(R.id.recyclerView_alarm)
+        //rvAlarmWeekDay = view.findViewById(R.id.recyclerView_alarm)
         return view
     }
 
@@ -42,15 +40,14 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-//    private fun initRecyclerView(){
-//
-//        // alarm weekday recyclerView
-//        adapterAlarmWeekDay = AlarmWeekAdapter(context)
-//        rvAlarmWeekDay.adapter = adapterAlarmWeekDay
-//        rvAlarmWeekDay.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//        adapterAlarmWeekDay.data = initWeekDayData
-//        adapterAlarmWeekDay.notifyDataSetChanged()
-//    }
+    /*private fun initRecyclerView(){
+        // alarm weekday recyclerView
+        adapterAlarmWeekDay = AlarmWeekAdapter(context)
+        rvAlarmWeekDay.adapter = adapterAlarmWeekDay
+        rvAlarmWeekDay.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        adapterAlarmWeekDay.data = initWeekDayData
+        adapterAlarmWeekDay.notifyDataSetChanged()
+    }*/
 
     fun handlingCategoryChips(){
         chipGroup_category.setOnCheckedChangeListener { group, checkedId ->
@@ -59,7 +56,6 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
                 Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
             }
         }
-
         chipGroup_alarm.setOnCheckedChangeListener { group, checkedId ->
             val chip: Chip? = view?.findViewById(checkedId)
             chip?.let {
