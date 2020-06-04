@@ -4,7 +4,7 @@ import com.example.habitbread.data.HabitResponse
 import retrofit2.Call
 import retrofit2.http.*
 
-interface HabitAPI {
+interface HabitBreadAPI {
     @GET("/habits")
-    fun getAllHabitLists(@Header("Authorization") accessToken: String): Call<List<HabitResponse>>
+    fun getAllHabitLists(): Call<List<HabitResponse>>
 }

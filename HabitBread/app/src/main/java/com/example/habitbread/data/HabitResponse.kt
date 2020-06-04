@@ -8,5 +8,5 @@ data class HabitResponse(
     @SerializedName("title")
     val habitName: String,
     @SerializedName("percent")
-    val percentage: String
+    val percentage: Int
 )

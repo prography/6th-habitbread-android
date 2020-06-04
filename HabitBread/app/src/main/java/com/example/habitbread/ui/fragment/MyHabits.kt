@@ -1,22 +1,14 @@
 package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.R
-import com.example.habitbread.base.BaseFragment
-import com.example.habitbread.data.HabitResponse
-import com.example.habitbread.databinding.FragmentMyHabitsBinding
-import com.example.habitbread.repository.HabitRepository
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import kotlinx.android.synthetic.main.fragment_my_habits.*
 
@@ -51,14 +43,6 @@ class MyHabits : Fragment() {
         recyclerview_adapter = HabitListAdapter(context)
         recyclerview_habitList.adapter = recyclerview_adapter
         recyclerview_habitList.layoutManager = LinearLayoutManager(context)
-//        recyclerview_adapter.data = listOf(
-//            HabitResponse(
-//                habitId = 1,
-//                habitName = "김초희",
-//                percentage = "34"
-//            )
-//        )
-        Log.d("chohee", habitViewModel.getHabitListData().toString() )
         recyclerview_adapter.data = habitViewModel.getHabitListData()
         recyclerview_adapter.notifyDataSetChanged()
     }

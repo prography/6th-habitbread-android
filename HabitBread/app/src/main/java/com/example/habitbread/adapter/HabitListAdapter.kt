@@ -36,7 +36,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
 
         fun bind(data: HabitResponse){
             tv_habitName.text = data.habitName
-            tv_percentage.text = data.percentage + "%"
+            tv_percentage.text = data.percentage.toString() + "%"
 
             itemView.button_habit.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
