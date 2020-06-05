@@ -49,9 +49,9 @@ class MyHabits : Fragment() {
     fun getHabitData() {
         habitViewModel.init(object : UpdateFinishHandler {
             override fun onUpdated() {
-                val list = habitViewModel.getHabitListData();
+                val list = habitViewModel.getHabitListData()
                 recyclerview_adapter.data = list
-                recyclerview_adapter.notifyDataSetChanged();
+                recyclerview_adapter.notifyDataSetChanged()
             }
         })
     }

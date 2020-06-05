@@ -15,9 +15,9 @@ class HabitViewModel private constructor(): BaseViewModel(){
         fun getInstance() : HabitViewModel = instance
     }
 
-    fun getHabitListData() : List<HabitResponse> {
-        init(updateHandler);
-        return habitListData!!;
+    fun getHabitListData() : List<HabitResponse>? {
+        init(updateHandler)
+        return habitListData
     }
     
     fun postNewHabit(data : NewHabit){
@@ -26,8 +26,8 @@ class HabitViewModel private constructor(): BaseViewModel(){
 
     fun init(handler: UpdateFinishHandler) {
         HabitRepository().getAllHabits(object : HabitListHandler {
-            override fun onResult(handlerList: List<HabitResponse>) {
-                habitListData = handlerList;
+            override fun onResult(handlerList: List<HabitResponse>?) {
+                habitListData = handlerList
                 handler.onUpdated()
             }
         })
