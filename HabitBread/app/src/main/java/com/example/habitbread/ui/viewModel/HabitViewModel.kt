@@ -4,6 +4,7 @@ import com.example.habitbread.`interface`.HabitListHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.base.BaseViewModel
 import com.example.habitbread.data.HabitResponse
+import com.example.habitbread.data.NewHabit
 import com.example.habitbread.repository.HabitRepository
 
 class HabitViewModel private constructor(): BaseViewModel(){
@@ -14,15 +15,19 @@ class HabitViewModel private constructor(): BaseViewModel(){
         fun getInstance() : HabitViewModel = instance
     }
 
-    fun getHabitListData() : List<HabitResponse> {
-        init(updateHandler);
-        return habitListData!!;
+    fun getHabitListData() : List<HabitResponse>? {
+        init(updateHandler)
+        return habitListData
+    }
+    
+    fun postNewHabit(data : NewHabit){
+        HabitRepository().postNewHabit(data)
     }
 
     fun init(handler: UpdateFinishHandler) {
         HabitRepository().getAllHabits(object : HabitListHandler {
-            override fun onResult(handlerList: List<HabitResponse>) {
-                habitListData = handlerList;
+            override fun onResult(handlerList: List<HabitResponse>?) {
+                habitListData = handlerList
                 handler.onUpdated()
             }
         })

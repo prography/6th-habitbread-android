@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_habit.view.*
 
 class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<HabitListAdapter.HabitListViewHolder>() {
 
-    var data : List<HabitResponse> = listOf()
+    var data : List<HabitResponse>? = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitListViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_habit, parent, false)
@@ -23,11 +23,12 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        if(data === null) return 0
+        else return data!!.size
     }
 
     override fun onBindViewHolder(holder: HabitListViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data!![position])
     }
 
     inner class HabitListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
