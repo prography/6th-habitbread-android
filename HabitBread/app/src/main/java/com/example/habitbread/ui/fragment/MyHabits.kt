@@ -37,19 +37,21 @@ class MyHabits : Fragment() {
             val registrationBottomSheet = RegistrationBottomSheet()
             registrationBottomSheet.show(childFragmentManager, "showBottomSheet")
         }
+        onClickRefresh()
     }
 
     override fun onResume() {
         super.onResume()
+        initRecyclerView()
         getHabitData()
     }
 
-    private fun getHabitData() {
+    fun getHabitData() {
         habitViewModel.init(object : UpdateFinishHandler {
             override fun onUpdated() {
-                val list = habitViewModel.getHabitListData();
-                recyclerview_adapter.data = list;
-                recyclerview_adapter.notifyDataSetChanged();
+                val list = habitViewModel.getHabitListData()
+                recyclerview_adapter.data = list
+                recyclerview_adapter.notifyDataSetChanged()
             }
         })
     }
@@ -59,5 +61,11 @@ class MyHabits : Fragment() {
         recyclerview_habitList.adapter = recyclerview_adapter
         recyclerview_habitList.layoutManager = LinearLayoutManager(context)
         recyclerview_adapter.notifyDataSetChanged()
+    }
+
+    fun onClickRefresh(){
+        imageView_refresh.setOnClickListener {
+            getHabitData()
+        }
     }
 }

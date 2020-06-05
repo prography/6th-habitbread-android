@@ -1,7 +1,7 @@
 package com.example.habitbread.ui.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.example.habitbread.`interface`.RankListHandler
+import com.example.habitbread.`interface`.RankHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.data.Ranking
 import com.example.habitbread.repository.HabitRepository
@@ -29,7 +29,7 @@ class RankingViewModel : ViewModel() {
     }
 
     fun init(handler: UpdateFinishHandler) {
-        HabitRepository().getAllRanks(object : RankListHandler {
+        HabitRepository().getAllRanks(object : RankHandler {
             override fun onResult(myRank: Ranking, totalCount: Int, allRanks: List<Ranking>) {
                 rank = myRank;
                 rankListData = allRanks;
