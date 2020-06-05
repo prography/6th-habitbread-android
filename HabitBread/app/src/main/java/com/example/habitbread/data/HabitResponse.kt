@@ -1,9 +1,12 @@
 package com.example.habitbread.data
 
-data class HabitResponse(
-    val habits: List<Habit>
-)
+import com.google.gson.annotations.SerializedName
 
-data class HabitSingleResponse(
-    val habit: Habit
+data class HabitResponse(
+    @SerializedName("habitId")
+    val habitId: Int,
+    @SerializedName("title")
+    val habitName: String,
+    @SerializedName("percent")
+    val percentage: Int
 )

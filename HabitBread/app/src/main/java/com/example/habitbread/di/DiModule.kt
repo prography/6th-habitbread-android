@@ -1,17 +1,14 @@
 package com.example.habitbread.di
 
-import com.example.habitbread.api.HabitAPI
-import com.example.habitbread.repository.HabitRepository
-import com.example.habitbread.ui.viewModel.HabitViewModel
+import com.example.habitbread.api.HabitBreadAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val apiModule = module {
-    val baseUrl = "http://49.50.165.80:3000/"
+    val baseUrl = "https://habitbread.tk"
 
     single {
         Retrofit.Builder()
@@ -19,7 +16,7 @@ val apiModule = module {
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(HabitAPI::class.java)
+            .create(HabitBreadAPI::class.java)
     }
 
     single {
@@ -34,8 +31,8 @@ val apiModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { HabitViewModel(get()) }
-    single { HabitRepository(get()) }
+    //viewModel { HabitViewModel(get()) }
+    //single { HabitRepository(get()) }
 }
 
 var diModule = listOf(
