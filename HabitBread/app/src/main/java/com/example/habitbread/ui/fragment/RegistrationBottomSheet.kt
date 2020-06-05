@@ -50,6 +50,9 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         //initRecyclerView()
         handlingCategoryChips()
         onClickCancle()
+        imageView_close.setOnClickListener {
+            dismiss()
+        }
         onClickDone()
     }
 
@@ -70,16 +73,26 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chipGroup_alarm.setOnCheckedChangeListener { group, checkedId ->
-            Log.d("chohee", "들어옴")
-//            chip?.let {
-//                Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
-//            }
+            val chip: Chip? = view?.findViewById(checkedId)
+            chip?.let {
+                Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
+                //convertDayToInt(chip.text.toString())
+            }
         }
     }
-    
-    private val initWeekDayData = listOf(
-        "월", "화", "수", "목", "금", "토", "일"
-    )
+
+//    fun convertDayToInt(day: String){
+//        if(day == "월"){
+//            getWeekDay = '1' + getWeekDay.substring(1)
+//            Log.d("chohee", getWeekDay)
+//        }else if(day == "화"){
+//
+//        }
+//    }
+
+//    private val initWeekDayData = listOf(
+//        "월", "화", "수", "목", "금", "토", "일"
+//    )
 
     fun onClickDone(){
         imageView_done.setOnClickListener {
