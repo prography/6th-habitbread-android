@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.example.habitbread.R
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import kotlinx.android.synthetic.main.fragment_my_habits.*
+import java.time.LocalDate
 
 class MyHabits : Fragment() {
 
@@ -47,9 +49,9 @@ class MyHabits : Fragment() {
     private fun getHabitData() {
         habitViewModel.init(object : UpdateFinishHandler {
             override fun onUpdated() {
-                val list = habitViewModel.getHabitListData();
-                recyclerview_adapter.data = list;
-                recyclerview_adapter.notifyDataSetChanged();
+                val list = habitViewModel.getHabitListData()
+                recyclerview_adapter.data = list
+                recyclerview_adapter.notifyDataSetChanged()
             }
         })
     }

@@ -27,6 +27,15 @@
         android:layout_height="wrap_content"
         android:src="@drawable/icon_bakery"/>
 
+    <ImageView
+        android:id="@+id/imageView_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_back_arrow"/>
+
     <Button
         android:id="@+id/button_commit"
         app:layout_constraintTop_toBottomOf="@+id/textView_detail_title"
@@ -67,94 +76,65 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintVertical_bias="0.8"
         android:layout_width="0dp"
         android:layout_height="10dp"
         android:background="@color/barYellowColor"/>
 
     <TextView
-        android:id="@+id/textView_commit_count"
-        app:layout_constraintTop_toBottomOf="@+id/view_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/commitCountTitle"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/textView_average_title"
+        android:id="@+id/textView_continue_count"
         app:layout_constraintTop_toBottomOf="@+id/view_bar"
         app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/averageTitle"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/textView_ranking"
-        app:layout_constraintTop_toBottomOf="@+id/view_bar"
         app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rankingTitle"
+        app:layout_constraintHorizontal_bias="0.2"
+        android:text="@string/continueCountTitle"
         android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/textView_average_value"
-        app:layout_constraintTop_toBottomOf="@+id/textView_average_title"
-        app:layout_constraintStart_toStartOf="@+id/textView_average_title"
-        app:layout_constraintEnd_toEndOf="@+id/textView_average_title"
+        android:id="@+id/textView_total_count"
+        app:layout_constraintTop_toBottomOf="@+id/view_bar"
+        app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.8"
+        android:text="@string/totalCountTitle"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView_continue_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_continue_count"
+        app:layout_constraintStart_toStartOf="@+id/textView_continue_count"
+        app:layout_constraintEnd_toEndOf="@+id/textView_continue_count"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="25"
         android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/textView_commit_count_value"
-        app:layout_constraintTop_toBottomOf="@+id/textView_commit_count"
-        app:layout_constraintStart_toStartOf="@+id/textView_commit_count"
-        app:layout_constraintEnd_toEndOf="@+id/textView_commit_count"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="25"
-        android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/textView_ranking_value"
-        app:layout_constraintTop_toBottomOf="@+id/textView_ranking"
-        app:layout_constraintStart_toStartOf="@+id/textView_ranking"
-        app:layout_constraintEnd_toEndOf="@+id/textView_ranking"
+        android:id="@+id/textView_total_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_total_count"
+        app:layout_constraintStart_toStartOf="@+id/textView_total_count"
+        app:layout_constraintEnd_toEndOf="@+id/textView_total_count"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="25"
         android:textSize="20sp"/>
-    
-    <View
-        android:id="@+id/view_vertical_bar_left"
-        app:layout_constraintTop_toBottomOf="@+id/textView_average_title"
-        app:layout_constraintBottom_toTopOf="@+id/textView_average_value"
-        app:layout_constraintStart_toEndOf="@+id/textView_average_title"
-        app:layout_constraintEnd_toStartOf="@+id/textView_commit_count"
-        android:layout_width="2dp"
-        android:layout_height="0dp"
-        android:background="#F9F5EA"/>
 
     <View
-        android:id="@+id/view_vertical_bar_right"
-        app:layout_constraintTop_toBottomOf="@+id/textView_ranking"
-        app:layout_constraintBottom_toTopOf="@+id/textView_ranking_value"
-        app:layout_constraintStart_toEndOf="@+id/textView_commit_count"
-        app:layout_constraintEnd_toStartOf="@+id/textView_ranking"
-        android:layout_width="2dp"
+        android:id="@+id/view_vertical_bar"
+        app:layout_constraintTop_toBottomOf="@+id/textView_continue_count"
+        app:layout_constraintBottom_toTopOf="@+id/textView_continue_value"
+        app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
+        android:layout_width="3dp"
         android:layout_height="0dp"
         android:background="@color/barYellowColor"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

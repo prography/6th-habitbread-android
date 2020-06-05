@@ -25,7 +25,7 @@ object ServerImpl {
 
 class AccessTokenInterceptor2: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTU5MTE5NTI3MH0.Z2OJGgH1nf1LfQXpFG62rXegn3V66u7sVeKLunC7maGwrWEGtmJQvGPqJUz2EL04"
+        val token = "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTU5MTM3NzQ0MX0.Dbo0pPBh33Yzfl8nT0BHMFPDEhRLte4NTxmssP_dXeoxPje0-WXYEFqXXj-DNtPf"
         val builder = chain.request().newBuilder().addHeader("Authorization", "Bearer " + token).build()
         return chain.proceed(builder)
     }

@@ -1,23 +1,38 @@
 package com.example.habitbread.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.habitbread.R
+import com.example.habitbread.`interface`.UpdateFinishHandler
+import com.example.habitbread.ui.viewModel.DetailViewModel
+import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.activity_detail.*
+import java.time.LocalDate
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var materialCalendarView: MaterialCalendarView
 
+    private val detailViewModel: DetailViewModel = DetailViewModel.getInstance()
+
+    val habitId = intent.getIntExtra("habitId", -1)
+    val todayDate: String = LocalDate.now().toString()
+    val year = todayDate.substring(0, 4).toInt()
+    val month = todayDate.substring(5,7).toInt()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setCalendarView()
+        setDetailInfo()
+        onClickBackArrow()
     }
 
     private fun setCalendarView(){
@@ -28,9 +43,20 @@ class DetailActivity : AppCompatActivity() {
         materialCalendarView.addDecorators(DecoratorDays(selectedDayList))
     }
 
+    private fun setDetailInfo(){
+        detailViewModel.init(object : UpdateFinishHandler {
+            override fun onUpdated() {
+                val detailData = detailViewModel.requestDetailData(habitId, year, month)
+                // 여기에 setText 넣으면 됨
+//                recyclerview_adapter.data = detailData
+//                recyclerview_adapter.notifyDataSetChanged()
+            }
+        }, habitId, year, month)
+    }
+
     inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator{
         // TODO : drawable 체크는 테스트임! 디자인 정해지면 정사각형으로 바꾸기
-        val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.icon_calendar_test )
+        val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.icon_calendar_check)
         val list = dayList
 
         override fun shouldDecorate(day: CalendarDay?): Boolean {
@@ -39,6 +65,12 @@ class DetailActivity : AppCompatActivity() {
 
         override fun decorate(view: DayViewFacade?) {
             view?.setSelectionDrawable(drawable!!)
+        }
+    }
+
+    fun onClickBackArrow(){
+        imageView_back.setOnClickListener {
+            finish()
         }
     }
 }

@@ -12,7 +12,7 @@ class HabitRepository {
 
     val TAG :String? = "HabitBread"
     private val habitBreadAPI = ServerImpl.APIService
-    var allHabitListData : List<HabitResponse> = listOf()
+    var allHabitListData : List<HabitResponse>? = listOf()
 
     fun getAllHabits(handler : HabitListHandler){
         val call: Call<List<HabitResponse>> = habitBreadAPI.getAllHabitLists()
@@ -25,8 +25,9 @@ class HabitRepository {
                     call: Call<List<HabitResponse>>,
                     response: Response<List<HabitResponse>>
                 ) {
-                    allHabitListData = response.body()!!
-                    handler.onResult(allHabitListData);
+                    Log.d(TAG, response.raw().toString())
+                    allHabitListData = response.body()
+                    handler.onResult(allHabitListData)
                 }
             }
         )
