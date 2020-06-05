@@ -8,5 +8,7 @@
     <color name="checkedFalse">#E2E2E2</color>
     <drawable name="checkedTrue">#80553615</drawable>
     <drawable name="checkedFalse">#E2E2E2</drawable>
+    <color name="appGreenColor">#4C7A65</color>
+    <color name="barYellowColor">#F9F5EA</color>
 </resources>
 

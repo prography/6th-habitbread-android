@@ -3,6 +3,7 @@ package com.example.habitbread.ui.activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseActivity
 import com.example.habitbread.databinding.ActivityMainBinding
@@ -15,12 +16,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private val viewModel: HabitViewModel by viewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        dataBinding.viewModel = viewModel;
         initBottomNavigation()
     }
 
