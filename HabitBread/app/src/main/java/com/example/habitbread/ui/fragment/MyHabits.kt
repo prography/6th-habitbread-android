@@ -34,8 +34,7 @@ class MyHabits : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         button_add.setOnClickListener {
-            val registrationBottomSheet =
-                RegistrationBottomSheet()
+            val registrationBottomSheet = RegistrationBottomSheet()
             registrationBottomSheet.show(childFragmentManager, "showBottomSheet")
         }
     }
