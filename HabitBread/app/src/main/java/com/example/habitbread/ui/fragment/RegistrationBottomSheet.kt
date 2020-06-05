@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,8 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var rvAlarmWeekDay: RecyclerView
     private lateinit var adapterAlarmWeekDay: AlarmWeekAdapter
+    var getCategory: String = ""
+    var getWeekDay: String = "0000000"
 
     override fun getTheme(): Int {
         return R.style.bottomSheetDialogTheme
@@ -38,6 +41,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         imageView_close.setOnClickListener {
             dismiss()
         }
+        onClickDone()
     }
 
     /*private fun initRecyclerView(){
@@ -54,17 +58,37 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             val chip: Chip? = view?.findViewById(checkedId)
             chip?.let {
                 Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
+                getCategory = chip.text.toString()
             }
         }
+        Log.d("chohee", "들어옴")
         chipGroup_alarm.setOnCheckedChangeListener { group, checkedId ->
             val chip: Chip? = view?.findViewById(checkedId)
+            Log.d("chohee", chip?.text.toString())
             chip?.let {
                 Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
+                //convertDayToInt(chip.text.toString())
             }
         }
     }
-    
+
+    fun convertDayToInt(day: String){
+        if(day == "월"){
+            getWeekDay = '1' + getWeekDay.substring(1)
+            Log.d("chohee", getWeekDay)
+        }else if(day == "화"){
+
+        }
+    }
+
     private val initWeekDayData = listOf(
         "월", "화", "수", "목", "금", "토", "일"
     )
+
+    fun onClickDone(){
+        imageView_done.setOnClickListener {
+            var getTitle = editText_title.text
+
+        }
+    }
 }
