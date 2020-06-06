@@ -22,36 +22,44 @@ class DetailActivity : AppCompatActivity() {
 
     private val detailViewModel: DetailViewModel = DetailViewModel.getInstance()
 
-    val habitId = intent.getIntExtra("habitId", -1)
-    val todayDate: String = LocalDate.now().toString()
-    val year = todayDate.substring(0, 4).toInt()
-    val month = todayDate.substring(5,7).toInt()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        setCalendarView()
+        //setCalendarView()
         setDetailInfo()
         onClickBackArrow()
+        //Log.d("choheehabitId", habitId.toString())
     }
 
     private fun setCalendarView(){
         materialCalendarView = calendarView_habit_detail
-
         // TODO : 네트워크 통신 구현 시 selectedDayList에 서버에서 얻어온 날짜를 넣어야함
         val selectedDayList: List<CalendarDay> = listOf(CalendarDay.from(2020, 6 , 5) ,CalendarDay.from(2020, 6 , 4), CalendarDay.from(2020, 7 , 25))
         materialCalendarView.addDecorators(DecoratorDays(selectedDayList))
     }
 
     private fun setDetailInfo(){
+        val habitId: Int = intent.getIntExtra("habitId", -1)
+        val todayDate: String = LocalDate.now().toString()
+        val year = todayDate.substring(0, 4).toInt()
+        val month = todayDate.substring(5,7).toInt()
+
         detailViewModel.init(object : UpdateFinishHandler {
             override fun onUpdated() {
                 val detailData = detailViewModel.requestDetailData(habitId, year, month)
-                // 여기에 setText 넣으면 됨
-//                recyclerview_adapter.data = detailData
-//                recyclerview_adapter.notifyDataSetChanged()
+                textView_detail_title.text = detailData.habit.title
+                textView_continue_value.text = detailData.habit.continuousCount.toString()
+                textView_total_value.text = detailData.commitFullCount.toString()
+                // TODO : 여기 달력에 커밋된 날짜 setting 해야함
+                Log.d("chohee", detailData.habit.commitHistory.toString())
+                val commitHistoryList = listOf(detailData.habit.commitHistory)
+//                var createdAtList = mutableListOf<String>()
+//                for(i in 0..(commitHistoryList.size-1)){
+//                    createdAtList.add(commitHistoryList.get(i).createdAt)
+//                }
             }
         }, habitId, year, month)
+        setCalendarView()
     }
 
     inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator{

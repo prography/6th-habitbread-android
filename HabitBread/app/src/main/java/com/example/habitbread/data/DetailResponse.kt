@@ -22,5 +22,7 @@ data class HabitDetailInfo(
 
 data class HabitCommitHistory(
     @SerializedName("createdAt")
-    val createdAt: String
+    val createdAt: String,
+    @SerializedName("habitId")
+    val habitId: Int
 )

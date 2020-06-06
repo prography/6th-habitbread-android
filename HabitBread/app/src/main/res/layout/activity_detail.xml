@@ -62,13 +62,13 @@
         app:layout_constraintBottom_toTopOf="@+id/view_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:mcv_tileHeight="match_parent"
+        app:mcv_tileSize="match_parent"
         app:mcv_showOtherDates="all"
         app:mcv_selectionColor="#99754F44"
-        app:mcv_selectionMode="multiple"/>
+        app:mcv_selectionMode="none"/>
 
     <View
         android:id="@+id/view_bar"
