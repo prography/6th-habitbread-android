@@ -6,6 +6,7 @@
     <color name="colorHabitList">#F5F3ED</color>
     <color name="checkedTrue">#80553615</color>
     <color name="checkedFalse">#E2E2E2</color>
+    <color name="checkedTrueTransparency">#66553615</color>
     <drawable name="checkedTrue">#80553615</drawable>
     <drawable name="checkedFalse">#E2E2E2</drawable>
     <color name="appGreenColor">#4C7A65</color>

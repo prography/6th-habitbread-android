@@ -8,7 +8,7 @@ import com.example.habitbread.data.NewHabit
 import com.example.habitbread.repository.HabitRepository
 
 class HabitViewModel private constructor(): BaseViewModel(){
-    private var habitListData: List<HabitResponse>? = null;
+    private var habitListData: List<HabitResponse>? = null
 
     companion object {
         private val instance = HabitViewModel();
