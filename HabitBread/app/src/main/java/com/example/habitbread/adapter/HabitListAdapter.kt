@@ -27,7 +27,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
     override fun getItemCount(): Int {
         if(data === null) return 0
         else return data!!.size
-}
+    }
 
     override fun onBindViewHolder(holder: HabitListViewHolder, position: Int) {
         holder.bind(data!![position])

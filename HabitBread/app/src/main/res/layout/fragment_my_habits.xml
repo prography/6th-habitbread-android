@@ -15,13 +15,13 @@
         layout="@layout/layout_title" />
 
     <ImageView
-        android:id="@+id/imageView_bakery"
+        android:id="@+id/imageView_refresh"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_bakery"/>
+        android:src="@drawable/icon_refresh"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView_habitList"
