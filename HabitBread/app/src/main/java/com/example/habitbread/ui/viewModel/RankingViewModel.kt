@@ -3,7 +3,6 @@ package com.example.habitbread.ui.viewModel
 import androidx.lifecycle.ViewModel
 import com.example.habitbread.`interface`.RankHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
-import com.example.habitbread.data.Ranking
 import com.example.habitbread.repository.HabitRepository
 
 class RankingViewModel : ViewModel() {
