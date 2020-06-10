@@ -1,5 +1,6 @@
 package com.example.habitbread.ui.viewModel
 
+import com.example.habitbread.`interface`.CreationHandler
 import com.example.habitbread.`interface`.DetailHandler
 import com.example.habitbread.`interface`.HabitListHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
@@ -15,6 +16,14 @@ class DetailViewModel private constructor(): BaseViewModel(){
     companion object {
         private val instance = DetailViewModel();
         fun getInstance() : DetailViewModel = instance
+    }
+
+    fun commitHabit(habitId: Int, handler: CreationHandler) {
+        DetailRepository().commitHabit(handler = object : CreationHandler{
+            override fun onCreated(isSuccessful: Boolean) {
+                handler.onCreated(isSuccessful);
+            }
+        }, habitId = habitId)
     }
 
     fun requestDetailData(habitId: Int, year: Int, month: Int): DetailResponse{

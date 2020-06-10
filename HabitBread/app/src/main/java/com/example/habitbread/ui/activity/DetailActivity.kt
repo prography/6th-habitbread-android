@@ -1,14 +1,15 @@
 package com.example.habitbread.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.habitbread.R
+import com.example.habitbread.`interface`.CreationHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
+import com.example.habitbread.repository.DetailRepository
 import com.example.habitbread.ui.viewModel.DetailViewModel
-import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
@@ -19,7 +20,7 @@ import java.time.LocalDate
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var materialCalendarView: MaterialCalendarView
-
+    private var habitId: Int = 0;
     private val detailViewModel: DetailViewModel = DetailViewModel.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,21 +29,43 @@ class DetailActivity : AppCompatActivity() {
         //setCalendarView()
         setDetailInfo()
         onClickBackArrow()
-        //Log.d("choheehabitId", habitId.toString())
+        //Log.d("choheehabitId", habitId.toString()) ;
+        button_commit.setOnClickListener {
+            commitHabit();
+        }
     }
 
-    private fun setCalendarView(){
+    private fun commitHabit() {
+        DetailViewModel.getInstance()
+            .commitHabit(habitId = habitId, handler = object : CreationHandler {
+                override fun onCreated(isSuccessful: Boolean) {
+                    runOnUiThread {
+                        if (isSuccessful) {
+                            setDetailInfo();
+                        } else {
+                            Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            })
+    }
+
+    private fun setCalendarView() {
         materialCalendarView = calendarView_habit_detail
         // TODO : 네트워크 통신 구현 시 selectedDayList에 서버에서 얻어온 날짜를 넣어야함
-        val selectedDayList: List<CalendarDay> = listOf(CalendarDay.from(2020, 6 , 5) ,CalendarDay.from(2020, 6 , 4), CalendarDay.from(2020, 7 , 25))
+        val selectedDayList: List<CalendarDay> = listOf(
+            CalendarDay.from(2020, 6, 5),
+            CalendarDay.from(2020, 6, 4),
+            CalendarDay.from(2020, 7, 25)
+        )
         materialCalendarView.addDecorators(DecoratorDays(selectedDayList))
     }
 
-    private fun setDetailInfo(){
+    private fun setDetailInfo() {
         val habitId: Int = intent.getIntExtra("habitId", -1)
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
-        val month = todayDate.substring(5,7).toInt()
+        val month = todayDate.substring(5, 7).toInt()
 
         detailViewModel.init(object : UpdateFinishHandler {
             override fun onUpdated() {
@@ -62,7 +85,7 @@ class DetailActivity : AppCompatActivity() {
         setCalendarView()
     }
 
-    inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator{
+    inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator {
         // TODO : drawable 체크는 테스트임! 디자인 정해지면 정사각형으로 바꾸기
         val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.icon_calendar_check)
         val list = dayList
@@ -76,7 +99,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickBackArrow(){
+    fun onClickBackArrow() {
         imageView_back.setOnClickListener {
             finish()
         }
