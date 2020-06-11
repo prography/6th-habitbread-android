@@ -31,7 +31,7 @@ class DetailRepository {
                 ) {
                     detailData = response.body()!!
                     handler.onResult(detailData);
-                    Log.d("chohee서버성공", detailData.toString())
+                    Log.d("HabitBread", detailData.toString());
                 }
             }
         )
@@ -50,7 +50,7 @@ class DetailRepository {
                     call: Call<BaseResponse>,
                     response: Response<BaseResponse>
                 ) {
-                    Log.d("TAG", "Server connect succeed");
+                    Log.d("HabitBread", "Server connect succeed")
                     handler.onCreated(isSuccessful = true)
                 }
             }

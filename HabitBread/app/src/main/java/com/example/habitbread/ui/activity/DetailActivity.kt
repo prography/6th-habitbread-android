@@ -25,6 +25,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        habitId = intent.getIntExtra("habitId", 0);
         setContentView(R.layout.activity_detail)
         //setCalendarView()
         setDetailInfo()
@@ -62,7 +63,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setDetailInfo() {
-        val habitId: Int = intent.getIntExtra("habitId", -1)
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
         val month = todayDate.substring(5, 7).toInt()

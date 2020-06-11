@@ -45,6 +45,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
                 // 넘겨줘야 할 것들 : 커밋 id
                 val intent = Intent(context, DetailActivity::class.java)
                 intent.putExtra("habitId", data.habitId)
+                Log.d("HabitBread", data.habitId.toString());
                 context?.startActivity(intent)
             }
         }
