@@ -1,8 +1,17 @@
 package com.example.habitbread.ui.fragment
 
-import com.example.habitbread.R
-import com.example.habitbread.base.BaseFragment
-import com.example.habitbread.databinding.FragmentAccountBinding
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 
-class Account : BaseFragment<FragmentAccountBinding>(R.layout.fragment_account) {
+class Account : Fragment(){
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 }
