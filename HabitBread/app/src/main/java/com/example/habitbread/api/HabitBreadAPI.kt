@@ -13,6 +13,8 @@ interface HabitBreadAPI {
     fun getHabitDetail(@Path("habitId") habitId: Int, @Path("year") year: Int, @Path("month") month: Int): Call<DetailResponse>
     @GET("/ranking")
     fun getAllRankings() : Call<RankResponse>
-    @GET("habits/{habitId}/commit")
+    @GET("/habits/{habitId}/commit")
     fun commitHabit(@Path("habitId") habitId: Int): Call<BaseResponse>;
+    @POST("/oauth/google")
+    fun googleOauth(@Body body: TempRequest) : Call<TempResponse>
 }

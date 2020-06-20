@@ -1,6 +1,7 @@
 package com.example.habitbread.base
 
 class Const {
+    val TAG = "HabitBread";
     val RESPONSE_STATUS_SUCCEED = 200;
     val RESPONSE_STATUS_FAILED = getDefaultErrors();
 

@@ -73,3 +73,15 @@ data class RankResponse(
     @SerializedName("rankings")
     val rankings : List<Ranking>
 )
+
+data class TempRequest(
+    @SerializedName("idToken")
+    val idToken: String
+)
+
+data class TempResponse(
+    @SerializedName("accessToken")
+    val idToken: String,
+    @SerializedName("name")
+    val name : String
+)
