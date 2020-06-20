@@ -44,6 +44,16 @@ class MyHabits : Fragment() {
         onShowModal()
     }
 
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        EventBus.getDefault().unregister(this)
+        super.onStop()
+    }
+
     private fun initRecyclerView() {
         recyclerview_adapter = HabitListAdapter(context)
         recyclerview_habitList.adapter = recyclerview_adapter
@@ -61,15 +71,5 @@ class MyHabits : Fragment() {
     fun onBottomSheetDoneEvent(modalPost: ModalPost){
         val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
         habitViewModel.postHabit(body)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        EventBus.getDefault().unregister(this)
-        super.onStop()
     }
 }
