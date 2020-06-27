@@ -48,27 +48,10 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel.getDetailData(habitId, year, month)
         detailViewModel.detailData.observe(this, Observer {
-            Log.d("chohee", it.toString())
-            //textView_detail_title.text = it.habit.title
-//            textView_continue_value.text = it.habit.continuousCount.toString()
-//            textView_total_value.text = it.commitFullCount.toString()
+            textView_detail_title.text = it.habit.title
+            textView_continue_value.text = it.habit.continuousCount.toString() + "회"
+            textView_total_value.text = it.commitFullCount.toString() + "회"
         })
-
-//        detailViewModel.init(object : UpdateFinishHandler {
-//            override fun onUpdated() {
-//                val detailData = detailViewModel.requestDetailData(habitId, year, month)
-//                textView_detail_title.text = detailData.habit.title
-//                textView_continue_value.text = detailData.habit.continuousCount.toString()
-//                textView_total_value.text = detailData.commitFullCount.toString()
-//                // TODO : 여기 달력에 커밋된 날짜 setting 해야함
-//                Log.d("chohee", detailData.habit.commitHistory.toString())
-//                val commitHistoryList = listOf(detailData.habit.commitHistory)
-////                var createdAtList = mutableListOf<String>()
-////                for(i in 0..(commitHistoryList.size-1)){
-////                    createdAtList.add(commitHistoryList.get(i).createdAt)
-////                }
-//            }
-//        }, habitId, year, month)
         setCalendarView()
     }
 
