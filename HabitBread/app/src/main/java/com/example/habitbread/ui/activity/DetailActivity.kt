@@ -1,6 +1,5 @@
 package com.example.habitbread.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +7,6 @@ import androidx.core.content.ContextCompat
 import com.example.habitbread.R
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.ui.viewModel.DetailViewModel
-import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
@@ -19,16 +17,13 @@ import java.time.LocalDate
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var materialCalendarView: MaterialCalendarView
-
     private val detailViewModel: DetailViewModel = DetailViewModel.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        //setCalendarView()
         setDetailInfo()
         onClickBackArrow()
-        //Log.d("choheehabitId", habitId.toString())
     }
 
     private fun setCalendarView(){

@@ -1,15 +1,13 @@
 package com.example.habitbread.ui.viewModel
 
 import com.example.habitbread.`interface`.DetailHandler
-import com.example.habitbread.`interface`.HabitListHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.base.BaseViewModel
 import com.example.habitbread.data.DetailResponse
-import com.example.habitbread.data.HabitResponse
 import com.example.habitbread.repository.DetailRepository
-import com.example.habitbread.repository.HabitRepository
 
 class DetailViewModel private constructor(): BaseViewModel(){
+
     private lateinit var detailInfoData: DetailResponse
 
     companion object {

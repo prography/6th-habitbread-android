@@ -7,7 +7,6 @@ import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.repository.HabitRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import android.util.Log
 import java.lang.Error
 
 class HabitViewModel : BaseViewModel(){
@@ -35,34 +34,4 @@ class HabitViewModel : BaseViewModel(){
             }
         }
     }
-//    private var habitListData: List<HabitResponse>? = null
-//
-//    companion object {
-//        private val instance = HabitViewModel();
-//        fun getInstance() : HabitViewModel = instance
-//    }
-//
-//    fun getHabitListData() : List<HabitResponse>? {
-//        init(updateHandler)
-//        return habitListData
-//    }
-//
-//    fun postNewHabit(data : NewHabit){
-//        HabitRepository().postNewHabit(data)
-//    }
-//
-//    fun init(handler: UpdateFinishHandler) {
-//        HabitRepository().getAllHabits(object : HabitListHandler {
-//            override fun onResult(handlerList: List<HabitResponse>?) {
-//                habitListData = handlerList
-//                handler.onUpdated()
-//            }
-//        })
-//    }
-//
-//    val updateHandler = object : UpdateFinishHandler {
-//        override fun onUpdated() {
-//            // do nothing
-//        }
-//    }
 }
