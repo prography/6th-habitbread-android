@@ -17,6 +17,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.time.LocalDate
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -44,15 +45,26 @@ class DetailActivity : AppCompatActivity() {
         //현 시각 년도, 월 구하기
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
-        val month = todayDate.substring(5,7).toInt()
+        val month = todayDate.substring(5, 7).toInt()
+
+        //calendar setting
+        materialCalendarView = calendarView_habit_detail
 
         detailViewModel.getDetailData(habitId, year, month)
         detailViewModel.detailData.observe(this, Observer {
             textView_detail_title.text = it.habit.title
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
+            val committedDayList: MutableList<CalendarDay> = mutableListOf()
+            for(i in 0..it.habit.commitHistory.size-1){
+                val year = it.habit.commitHistory[i].createdAt.substring(0, 4).toInt()
+                val month = it.habit.commitHistory[i].createdAt.substring(5, 7).toInt()
+                val day = it.habit.commitHistory[i].createdAt.substring(8, 10).toInt()
+                val aDay = CalendarDay.from(year, month, day)
+                committedDayList.add(aDay)
+                materialCalendarView.addDecorators(DecoratorDays(committedDayList))
+            }
         })
-        setCalendarView()
     }
 
     inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator{
