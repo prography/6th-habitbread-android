@@ -29,7 +29,6 @@ class DetailRepository {
                 ) {
                     detailData = response.body()!!
                     handler.onResult(detailData);
-                    Log.d("chohee서버성공", detailData.toString())
                 }
             }
         )

@@ -51,6 +51,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
 
     fun setAdapterData(habitData: List<HabitResponse>?){
         data = habitData
+        Log.d("chohee", habitData.toString())
         notifyDataSetChanged()
     }
 }

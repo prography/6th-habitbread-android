@@ -24,6 +24,7 @@ class HabitRepository {
         runBlocking {
             val req = habitBreadAPI.getAllHabitLists()
             val res = req.await()
+            Log.d("HabitBread", res.toString())
             allHabitListData.postValue(res)
         }
         return allHabitListData
