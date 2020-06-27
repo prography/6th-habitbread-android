@@ -11,5 +11,7 @@
     <drawable name="checkedFalse">#E2E2E2</drawable>
     <color name="appGreenColor">#4C7A65</color>
     <color name="barYellowColor">#F9F5EA</color>
+    <color name="appBackground">#F5F4F1</color>
+    <color name="barGrayColor">#E2E1DD</color>
 </resources>
 

@@ -14,20 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         layout="@layout/layout_title" />
 
-    <EditText
-        android:id="@+id/imageView_refresh"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="50dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="20dp"
-        android:layout_height="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView_habitList"
         app:layout_constraintTop_toBottomOf="@+id/layout_title"

@@ -29,7 +29,6 @@ class HabitViewModel : BaseViewModel(){
         GlobalScope.launch {
             try {
                 val habitList = HabitRepository().postNewHabit(body)
-                Log.d("choheezz", habitList.value.toString())
                 rvData.postValue(habitList.value)
             }catch (err: Error){
 
