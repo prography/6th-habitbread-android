@@ -3,6 +3,7 @@ package com.example.habitbread.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -81,6 +82,11 @@ class DetailActivity : AppCompatActivity() {
         button_commit.setOnClickListener {
             detailViewModel.getCommit(habitId)
             detailViewModel.commitIsSuccess.observe(this, Observer {
+                if(detailViewModel.isCommit == true) {
+                    Toast.makeText(this, "습관빵을 이미 구웠습니다!", Toast.LENGTH_SHORT).show()
+                }else {
+                    Log.d("chohee", "이어서")
+                }
 //                Log.d("chohee", "커밋 눌림")
 //                Log.d("chohee", it.toString())
 //                if(it == "success"){

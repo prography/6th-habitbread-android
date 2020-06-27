@@ -13,6 +13,6 @@ interface HabitBreadAPI {
     fun getAllRankings() : Call<RankResponse>
     @POST("/habits")
     fun postNewHabit(@Body body: NewHabitReq): Call<NewHabitRes>
-    @GET("/habits/{habitId}/commit")
-    fun getCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
+    @POST("/habits/{habitId}/commit")
+    fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
 }

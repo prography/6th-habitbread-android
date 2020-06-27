@@ -12,7 +12,8 @@ import java.lang.Error
 class DetailViewModel : BaseViewModel(){
 
     var detailData: MutableLiveData<DetailResponse> = MutableLiveData()
-    var commitIsSuccess: MutableLiveData<String> = MutableLiveData()
+    var commitIsSuccess: MutableLiveData<Any> = MutableLiveData()
+    var isCommit: Boolean = false
 
     fun getDetailData(habitId: Int, year: Int, month: Int){
         GlobalScope.launch {
@@ -28,8 +29,14 @@ class DetailViewModel : BaseViewModel(){
     fun getCommit(habitId: Int) {
         GlobalScope.launch {
             try {
-                val isSuccess: String = DetailRepository().getCommit(habitId)
-                commitIsSuccess.postValue(isSuccess)
+                val commitData: Any = DetailRepository().getCommit(habitId)
+                if(commitData == "습관빵을 이미 구웠습니다!") {
+                    isCommit = true
+                }else {
+                    isCommit = false
+                }
+                Log.d("chohee", commitData.toString())
+                commitIsSuccess.postValue(commitData)
             }catch (err: Error) {
 
             }
