@@ -17,7 +17,7 @@ class HabitViewModel : BaseViewModel(){
         GlobalScope.launch {
             try {
                 val habitList = HabitRepository().getHabitList()
-                rvData.postValue(habitList.value)
+                rvData.postValue(habitList)
             }catch (err: Error){
 
             }
@@ -28,7 +28,7 @@ class HabitViewModel : BaseViewModel(){
         GlobalScope.launch {
             try {
                 val habitList = HabitRepository().postNewHabit(body)
-                rvData.postValue(habitList.value)
+                rvData.postValue(habitList)
             }catch (err: Error){
 
             }
