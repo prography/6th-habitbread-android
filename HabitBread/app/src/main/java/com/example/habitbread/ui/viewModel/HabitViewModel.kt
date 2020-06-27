@@ -1,41 +1,37 @@
 package com.example.habitbread.ui.viewModel
 
-import com.example.habitbread.`interface`.HabitListHandler
-import com.example.habitbread.`interface`.UpdateFinishHandler
+import androidx.lifecycle.MutableLiveData
 import com.example.habitbread.base.BaseViewModel
 import com.example.habitbread.data.HabitResponse
-import com.example.habitbread.data.NewHabit
+import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.repository.HabitRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.Error
 
-class HabitViewModel private constructor(): BaseViewModel(){
-    private var habitListData: List<HabitResponse>? = null
+class HabitViewModel : BaseViewModel(){
 
-    companion object {
-        private val instance = HabitViewModel();
-        fun getInstance() : HabitViewModel = instance
-    }
+    var rvData: MutableLiveData<List<HabitResponse>> = MutableLiveData()
 
-    fun getHabitListData() : List<HabitResponse>? {
-        init(updateHandler)
-        return habitListData
-    }
-    
-    fun postNewHabit(data : NewHabit){
-        HabitRepository().postNewHabit(data)
-    }
+    fun getAllList(){
+        GlobalScope.launch {
+            try {
+                val habitList = HabitRepository().getHabitList()
+                rvData.postValue(habitList.value)
+            }catch (err: Error){
 
-    fun init(handler: UpdateFinishHandler) {
-        HabitRepository().getAllHabits(object : HabitListHandler {
-            override fun onResult(handlerList: List<HabitResponse>?) {
-                habitListData = handlerList
-                handler.onUpdated()
             }
-        })
+        }
     }
 
-    val updateHandler = object : UpdateFinishHandler {
-        override fun onUpdated() {
-            // do nothing
+    fun postHabit(body: NewHabitReq){
+        GlobalScope.launch {
+            try {
+                val habitList = HabitRepository().postNewHabit(body)
+                rvData.postValue(habitList.value)
+            }catch (err: Error){
+
+            }
         }
     }
 }

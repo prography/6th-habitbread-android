@@ -1,6 +1,6 @@
 package com.example.habitbread.data
 
-data class NewHabit (
+data class NewHabitReq (
     val title: String,
     val category: String,
     val dayOfWeek: String,

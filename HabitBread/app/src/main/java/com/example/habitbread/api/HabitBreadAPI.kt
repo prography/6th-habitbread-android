@@ -1,9 +1,6 @@
 package com.example.habitbread.api
 
-import com.example.habitbread.data.DetailResponse
-import com.example.habitbread.data.HabitResponse
-import com.example.habitbread.data.RankResponse
-import com.example.habitbread.data.NewHabit
+import com.example.habitbread.data.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -15,5 +12,5 @@ interface HabitBreadAPI {
     @GET("/ranking")
     fun getAllRankings() : Call<RankResponse>
     @POST("/habits")
-    fun postNewHabit(@Body body: NewHabit): Call<HabitResponse>
+    fun postNewHabit(@Body body: NewHabitReq): Call<NewHabitRes>
 }

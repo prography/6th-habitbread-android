@@ -42,11 +42,16 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             tv_percentage.text = data.percentage.toString() + "%"
 
             itemView.button_habit.setOnClickListener {
-                // 넘겨줘야 할 것들 : 커밋 id
                 val intent = Intent(context, DetailActivity::class.java)
                 intent.putExtra("habitId", data.habitId)
                 context?.startActivity(intent)
             }
         }
+    }
+
+    fun setAdapterData(habitData: List<HabitResponse>?){
+        data = habitData
+        Log.d("chohee", habitData.toString())
+        notifyDataSetChanged()
     }
 }

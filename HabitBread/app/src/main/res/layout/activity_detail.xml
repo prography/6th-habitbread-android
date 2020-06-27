@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appBackground"
     tools:context=".ui.activity.DetailActivity">
 
     <TextView
@@ -11,37 +12,49 @@
         app:layout_constraintTop_toBottomOf="@id/imageView_bakery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Work out!"
-        android:textSize="35sp"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/textView_description"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="70% 이상 달성 목표!!"
         android:textColor="@android:color/black"/>
 
     <ImageView
         android:id="@+id/imageView_bakery"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="30dp"
+        android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_bakery"/>
+        android:src="@drawable/icon_settings"/>
 
     <ImageView
         android:id="@+id/imageView_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="30dp"
+        android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_back_arrow"/>
 
     <Button
         android:id="@+id/button_commit"
-        app:layout_constraintTop_toBottomOf="@+id/textView_detail_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="30dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -53,88 +66,107 @@
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:gravity="center"
-        android:paddingVertical="20dp"/>
+        android:paddingVertical="15dp"/>
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendarView_habit_detail"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:layout_constraintTop_toBottomOf="@+id/button_commit"
-        app:layout_constraintBottom_toTopOf="@+id/view_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="30dp"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_calendar"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:mcv_tileSize="match_parent"
-        app:mcv_showOtherDates="all"
-        app:mcv_selectionColor="#99754F44"
-        app:mcv_selectionMode="none"/>
-
-    <View
-        android:id="@+id/view_bar"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border_corner_top"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-        android:layout_width="0dp"
-        android:layout_height="10dp"
-        android:background="@color/barYellowColor"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_commit">
 
-    <TextView
-        android:id="@+id/textView_continue_count"
-        app:layout_constraintTop_toBottomOf="@+id/view_bar"
-        app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
-        app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias="0.2"
-        android:text="@string/continueCountTitle"
-        android:textSize="20sp"/>
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendarView_habit_detail"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_margin="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mcv_selectionColor="#99754F44"
+            app:mcv_selectionMode="none"
+            app:mcv_showOtherDates="all"
+            app:mcv_tileSize="match_parent" />
 
-    <TextView
-        android:id="@+id/textView_total_count"
-        app:layout_constraintTop_toBottomOf="@+id/view_bar"
-        app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
-        app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias="0.8"
-        android:text="@string/totalCountTitle"
-        android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/textView_detail_ment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="저번달보다 빵 구운 횟수가 10회 적어요"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
 
-    <TextView
-        android:id="@+id/textView_continue_value"
-        app:layout_constraintTop_toBottomOf="@+id/textView_continue_count"
-        app:layout_constraintStart_toStartOf="@+id/textView_continue_count"
-        app:layout_constraintEnd_toEndOf="@+id/textView_continue_count"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="25"
-        android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/textView_continue_value"
+            app:layout_constraintBottom_toTopOf="@+id/textView_detail_ment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="32회"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/textView_total_value"
+            app:layout_constraintBottom_toTopOf="@+id/textView_detail_ment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="3회"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/textView_continue_title"
+            app:layout_constraintBottom_toTopOf="@+id/textView_continue_value"
+            app:layout_constraintStart_toStartOf="@+id/textView_continue_value"
+            app:layout_constraintEnd_toEndOf="@+id/textView_continue_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="연속횟수"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/textView_total_title"
+            app:layout_constraintBottom_toTopOf="@+id/textView_total_value"
+            app:layout_constraintStart_toStartOf="@+id/textView_total_value"
+            app:layout_constraintEnd_toEndOf="@id/textView_total_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="총 횟수"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"/>
+
+        <View
+            android:id="@+id/view_bar"
+            app:layout_constraintBottom_toTopOf="@+id/textView_continue_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/barGrayColor"/>
 
 
-    <TextView
-        android:id="@+id/textView_total_value"
-        app:layout_constraintTop_toBottomOf="@+id/textView_total_count"
-        app:layout_constraintStart_toStartOf="@+id/textView_total_count"
-        app:layout_constraintEnd_toEndOf="@+id/textView_total_count"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="25"
-        android:textSize="20sp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:id="@+id/view_vertical_bar"
-        app:layout_constraintTop_toBottomOf="@+id/textView_continue_count"
-        app:layout_constraintBottom_toTopOf="@+id/textView_continue_value"
-        app:layout_constraintStart_toStartOf="@+id/calendarView_habit_detail"
-        app:layout_constraintEnd_toEndOf="@+id/calendarView_habit_detail"
-        android:layout_width="3dp"
-        android:layout_height="0dp"
-        android:background="@color/barYellowColor"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
