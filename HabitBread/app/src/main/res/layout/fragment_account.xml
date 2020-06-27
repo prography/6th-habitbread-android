@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/progress_horizontal_exp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_progress"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -52,14 +52,16 @@
                     android:text="만다"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/imageview_profile_image"
+                    app:layout_constraintEnd_toEndOf="@id/imageview_profile_image"
                     app:layout_constraintTop_toBottomOf="@id/imageview_profile_image"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imagebutton_change_nickname"
+                    android:background="@drawable/ic_baseline_pencil"
                     app:layout_constraintStart_toEndOf="@id/textview_profile_nickname"
-                    app:layout_constraintTop_toBottomOf="@id/imageview_profile_image"
+                    app:layout_constraintBottom_toBottomOf="@id/textview_profile_nickname"
                     />
 
 
@@ -67,7 +69,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
@@ -94,7 +96,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
@@ -121,35 +123,53 @@
 
 
         </LinearLayout>
-        <androidx.core.widget.ContentLoadingProgressBar
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
-            android:id="@+id/progress_horizontal_exp"
-            style="@android:style/Widget.Material.ProgressBar.Horizontal"
-            android:progress="25"
+            android:id="@+id/layout_progress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_profile"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="25dp"
+            >
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/progress_exp"
+                style="@android:style/Widget.Material.ProgressBar.Horizontal"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textview_progress_exp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="15%" />
+            </RelativeLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/textview_current_bread_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/progress_horizontal_exp"
+            app:layout_constraintStart_toStartOf="@+id/layout_progress"
             android:textSize="10sp"
             android:text="현재 12개"
-            app:layout_constraintTop_toBottomOf="@id/progress_horizontal_exp"/>
+            app:layout_constraintTop_toBottomOf="@id/layout_progress"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="빵 하나만 더 주세요!"
-            app:layout_constraintTop_toBottomOf="@+id/progress_horizontal_exp"
-            app:layout_constraintEnd_toEndOf="@id/progress_horizontal_exp"
+            app:layout_constraintTop_toBottomOf="@+id/layout_progress"
+            app:layout_constraintEnd_toEndOf="@id/layout_progress"
             android:textSize="10sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -158,7 +178,8 @@
         android:id="@+id/view1"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_my_profile"/>
 
@@ -177,14 +198,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="7dp"/>
+            android:paddingVertical="10dp"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch_alarm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingRight="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="0.5dp"
         android:id="@+id/view2"
+        android:background="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_alarm"/>
 
@@ -202,8 +233,137 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="7dp"/>
+            android:paddingVertical="10dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton_change_info"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_baseline_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:id="@+id/view3"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/layout_change_info"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/layout_ask">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:text="문의하기"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingLeft="25dp"
+            android:paddingVertical="10dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton_ask"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_baseline_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:id="@+id/view4"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/layout_ask"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/layout_delete_account">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:text="계정 삭제"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingLeft="25dp"
+            android:paddingVertical="10dp"/>
+        <ImageButton
+            android:id="@+id/imageButton_delete_account"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_baseline_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:id="@+id/view5"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/layout_delete_account"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/layout_logout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:text="로그아웃"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingLeft="25dp"
+            android:paddingVertical="10dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton_logout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/ic_baseline_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:id="@+id/view6"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/layout_logout"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
