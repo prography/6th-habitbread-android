@@ -4,7 +4,7 @@ class ModalPost(title: String, category: String, dayOfWeek: String, alarmTime: S
     var title: String = ""
     var category: String = ""
     var dayOfWeek: String = ""
-    var alarmTime: String? = ""
+    var alarmTime: String? = null
 
     init{
         this.title = title

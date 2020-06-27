@@ -1,18 +1,13 @@
 package com.example.habitbread.repository
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.example.habitbread.`interface`.DetailHandler
-import com.example.habitbread.`interface`.HabitListHandler
 import com.example.habitbread.api.ServerImpl
+import com.example.habitbread.data.CommitResponse
 import com.example.habitbread.data.DetailResponse
-import com.example.habitbread.data.HabitResponse
 import kotlinx.coroutines.runBlocking
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.await
 import retrofit2.awaitResponse
-import retrofit2.Callback as Callback
 
 class DetailRepository {
 
@@ -23,11 +18,20 @@ class DetailRepository {
     fun getDetailData(habitId: Int, year: Int, month: Int): DetailResponse {
         runBlocking {
             val request = habitBreadAPI.getHabitDetail(habitId, year, month)
-            val response = request.await();
-            Log.d("HabitBread", response.toString())
-            detailData = response;
+            val response = request.await()
+            detailData = response
         }
-        Log.d("choheeDetail", detailData.toString())
         return detailData
+    }
+
+    fun getCommit(habitId: Int) : String {
+        var response: Response<CommitResponse>
+        runBlocking {
+            val request = habitBreadAPI.getCommit(habitId)
+            response = request.awaitResponse()
+            Log.d(TAG, response.code().toString())
+        }
+        // todo: code 문제 해결되면 다시 연결하기
+        return response.body()!!.message
     }
 }

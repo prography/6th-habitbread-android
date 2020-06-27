@@ -1,47 +1,37 @@
 package com.example.habitbread.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.habitbread.R
-import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.ui.viewModel.DetailViewModel
-import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.time.LocalDate
-import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var materialCalendarView: MaterialCalendarView
-    val detailViewModel: DetailViewModel by viewModels()
-
+    private val detailViewModel: DetailViewModel by viewModels()
+    private var habitId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        habitId = intent.getIntExtra("habitId", -1)
         setDetailInfo()
+        onClickCommit()
         onClickBackArrow()
     }
 
-    private fun setCalendarView(){
-        materialCalendarView = calendarView_habit_detail
-        // TODO : 네트워크 통신 구현 시 selectedDayList에 서버에서 얻어온 날짜를 넣어야함
-        val selectedDayList: List<CalendarDay> = listOf(CalendarDay.from(2020, 6 , 5) ,CalendarDay.from(2020, 6 , 4), CalendarDay.from(2020, 7 , 25))
-        materialCalendarView.addDecorators(DecoratorDays(selectedDayList))
-    }
-
     private fun setDetailInfo(){
-        val habitId: Int = intent.getIntExtra("habitId", -1)
-
         //현 시각 년도, 월 구하기
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
@@ -84,6 +74,19 @@ class DetailActivity : AppCompatActivity() {
     fun onClickBackArrow(){
         imageView_back.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun onClickCommit() {
+        button_commit.setOnClickListener {
+            detailViewModel.getCommit(habitId)
+            detailViewModel.commitIsSuccess.observe(this, Observer {
+//                Log.d("chohee", "커밋 눌림")
+//                Log.d("chohee", it.toString())
+//                if(it == "success"){
+//                    //setDetailInfo()
+//                }
+            })
         }
     }
 }

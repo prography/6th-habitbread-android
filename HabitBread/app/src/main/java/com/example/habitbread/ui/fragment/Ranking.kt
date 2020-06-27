@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.R
-import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.adapter.RankListAdapter
 import com.example.habitbread.ui.viewModel.RankingViewModel
 import kotlinx.android.synthetic.main.fragment_ranking.*
@@ -38,19 +37,19 @@ class Ranking : Fragment() {
 
     override fun onResume() {
         super.onResume();
-        getRanks()
+        //getRanks()
     }
 
-    private fun getRanks() {
-        rankingViewModel.init(object : UpdateFinishHandler {
-            override fun onUpdated() {
-                val list = rankingViewModel.getAllRanks();
-                recyclerView_adapter.data = list;
-                setMyRank();
-                recyclerView_adapter.notifyDataSetChanged();
-            }
-        })
-    }
+//    private fun getRanks() {
+//        rankingViewModel.init(object : UpdateFinishHandler {
+//            override fun onUpdated() {
+//                val list = rankingViewModel.getAllRanks();
+//                recyclerView_adapter.data = list;
+//                setMyRank();
+//                recyclerView_adapter.notifyDataSetChanged();
+//            }
+//        })
+//    }
 
     private fun setMyRank() {
         val myData = rankingViewModel.getMyRank();

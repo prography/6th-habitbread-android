@@ -6,11 +6,13 @@ import retrofit2.http.*
 
 interface HabitBreadAPI {
     @GET("/habits")
-    fun getAllHabitLists(): Call<List<HabitResponse>>
+    fun getAllHabitLists(): Call<HabitListResponse>
     @GET("/habits/{habitId}/calendar/{year}/{month}")
     fun getHabitDetail(@Path("habitId") habitId: Int, @Path("year") year: Int, @Path("month") month: Int): Call<DetailResponse>
     @GET("/ranking")
     fun getAllRankings() : Call<RankResponse>
     @POST("/habits")
     fun postNewHabit(@Body body: NewHabitReq): Call<NewHabitRes>
+    @GET("/habits/{habitId}/commit")
+    fun getCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
 }

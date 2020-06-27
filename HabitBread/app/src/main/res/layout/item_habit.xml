@@ -26,28 +26,36 @@
         android:id="@+id/textView_habitName"
         app:layout_constraintTop_toTopOf="@+id/button_habit"
         app:layout_constraintStart_toStartOf="@+id/button_habit"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="운동하기!"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textColor="#4A4646"
+        android:textStyle="bold"
         android:elevation="3dp"/>
 
     <TextView
-        android:id="@+id/textView_percentage"
-        app:layout_constraintTop_toTopOf="@id/button_habit"
-        app:layout_constraintBottom_toBottomOf="@id/button_habit"
-        app:layout_constraintEnd_toEndOf="@id/button_habit"
-        android:layout_marginEnd="40dp"
+        android:id="@+id/textView_description"
+        app:layout_constraintTop_toBottomOf="@+id/textView_habitName"
+        app:layout_constraintStart_toStartOf="@+id/textView_habitName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="87%"
-        android:textSize="30sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
+        android:layout_marginTop="4dp"
+        android:text="70% 이상 달성 목표!"
+        android:textColor="@android:color/black"
+        android:elevation="3dp"/>
+
+    <TextView
+        android:id="@+id/textView_isToday"
+        app:layout_constraintTop_toTopOf="@+id/textView_habitName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘"
+        android:textColor="@android:color/black"
         android:elevation="3dp"/>
 
     <View
