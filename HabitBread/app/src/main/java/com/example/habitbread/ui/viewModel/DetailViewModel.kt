@@ -1,37 +1,30 @@
 package com.example.habitbread.ui.viewModel
 
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.example.habitbread.`interface`.DetailHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.base.BaseViewModel
 import com.example.habitbread.data.DetailResponse
+import com.example.habitbread.data.HabitResponse
 import com.example.habitbread.repository.DetailRepository
+import com.example.habitbread.repository.HabitRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.Error
 
-class DetailViewModel private constructor(): BaseViewModel(){
+class DetailViewModel : BaseViewModel(){
 
-    private lateinit var detailInfoData: DetailResponse
+    var detailData: MutableLiveData<DetailResponse> = MutableLiveData()
 
-    companion object {
-        private val instance = DetailViewModel();
-        fun getInstance() : DetailViewModel = instance
-    }
-
-    fun requestDetailData(habitId: Int, year: Int, month: Int): DetailResponse{
-        init(updateHandler, habitId, year, month)
-        return detailInfoData!!
-    }
-
-    fun init(handler: UpdateFinishHandler, habitId: Int, year: Int, month: Int) {
-        DetailRepository().getDetailData(object : DetailHandler {
-            override fun onResult(handlerList: DetailResponse) {
-                detailInfoData = handlerList
-                handler.onUpdated()
+    fun getDetailData(habitId: Int, year: Int, month: Int){
+        GlobalScope.launch {
+            try {
+                val data = DetailRepository().getDetailData(habitId, year, month)
+                detailData.postValue(data)
+            }catch (err: Error){
+                Log.d("HabitBread", "error")
             }
-        }, habitId, year, month)
-    }
-
-    val updateHandler = object : UpdateFinishHandler {
-        override fun onUpdated() {
-            // do nothing
         }
     }
 }

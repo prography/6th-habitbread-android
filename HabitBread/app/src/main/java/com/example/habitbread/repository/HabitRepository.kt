@@ -18,25 +18,24 @@ class HabitRepository {
     val TAG :String? = "HabitBread"
     private val habitBreadAPI = ServerImpl.APIService
     var allRanks : RankResponse? = null
-    var allHabitListData : MutableLiveData<List<HabitResponse>> = MutableLiveData()
+    private lateinit var allHabitListData : List<HabitResponse>
 
-    fun getHabitList(): MutableLiveData<List<HabitResponse>> {
+    fun getHabitList(): List<HabitResponse> {
         runBlocking {
             val req = habitBreadAPI.getAllHabitLists()
             val res = req.await()
-            Log.d("HabitBread", res.toString())
-            allHabitListData.postValue(res)
+            allHabitListData = res
         }
         return allHabitListData
     }
 
-    fun postNewHabit(body : NewHabitReq): MutableLiveData<List<HabitResponse>>{
+    fun postNewHabit(body : NewHabitReq): List<HabitResponse>{
         runBlocking {
             val postReq = habitBreadAPI.postNewHabit(body)
             val postRes = postReq.await()
             val getReq = habitBreadAPI.getAllHabitLists()
             val getRes = getReq.await()
-            allHabitListData.postValue(getRes)
+            allHabitListData = getRes
         }
         return allHabitListData
     }

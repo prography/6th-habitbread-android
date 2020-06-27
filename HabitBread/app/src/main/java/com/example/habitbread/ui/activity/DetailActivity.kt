@@ -2,11 +2,15 @@ package com.example.habitbread.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.habitbread.R
 import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.ui.viewModel.DetailViewModel
+import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
@@ -17,7 +21,8 @@ import java.time.LocalDate
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var materialCalendarView: MaterialCalendarView
-    private val detailViewModel: DetailViewModel = DetailViewModel.getInstance()
+    val detailViewModel: DetailViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,25 +40,35 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setDetailInfo(){
         val habitId: Int = intent.getIntExtra("habitId", -1)
+
+        //현 시각 년도, 월 구하기
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
         val month = todayDate.substring(5,7).toInt()
 
-        detailViewModel.init(object : UpdateFinishHandler {
-            override fun onUpdated() {
-                val detailData = detailViewModel.requestDetailData(habitId, year, month)
-                textView_detail_title.text = detailData.habit.title
-                textView_continue_value.text = detailData.habit.continuousCount.toString()
-                textView_total_value.text = detailData.commitFullCount.toString()
-                // TODO : 여기 달력에 커밋된 날짜 setting 해야함
-                Log.d("chohee", detailData.habit.commitHistory.toString())
-                val commitHistoryList = listOf(detailData.habit.commitHistory)
-//                var createdAtList = mutableListOf<String>()
-//                for(i in 0..(commitHistoryList.size-1)){
-//                    createdAtList.add(commitHistoryList.get(i).createdAt)
-//                }
-            }
-        }, habitId, year, month)
+        detailViewModel.getDetailData(habitId, year, month)
+        detailViewModel.detailData.observe(this, Observer {
+            Log.d("chohee", it.toString())
+            //textView_detail_title.text = it.habit.title
+//            textView_continue_value.text = it.habit.continuousCount.toString()
+//            textView_total_value.text = it.commitFullCount.toString()
+        })
+
+//        detailViewModel.init(object : UpdateFinishHandler {
+//            override fun onUpdated() {
+//                val detailData = detailViewModel.requestDetailData(habitId, year, month)
+//                textView_detail_title.text = detailData.habit.title
+//                textView_continue_value.text = detailData.habit.continuousCount.toString()
+//                textView_total_value.text = detailData.commitFullCount.toString()
+//                // TODO : 여기 달력에 커밋된 날짜 setting 해야함
+//                Log.d("chohee", detailData.habit.commitHistory.toString())
+//                val commitHistoryList = listOf(detailData.habit.commitHistory)
+////                var createdAtList = mutableListOf<String>()
+////                for(i in 0..(commitHistoryList.size-1)){
+////                    createdAtList.add(commitHistoryList.get(i).createdAt)
+////                }
+//            }
+//        }, habitId, year, month)
         setCalendarView()
     }
 

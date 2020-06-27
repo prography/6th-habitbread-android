@@ -12,6 +12,7 @@ import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.adapter.RankListAdapter
 import com.example.habitbread.ui.viewModel.RankingViewModel
 import kotlinx.android.synthetic.main.fragment_ranking.*
+import kotlinx.android.synthetic.main.item_rank.*
 
 class Ranking : Fragment() {
 
@@ -53,8 +54,8 @@ class Ranking : Fragment() {
 
     private fun setMyRank() {
         val myData = rankingViewModel.getMyRank();
-        textview_my_rank_percentage.text = (myData.rank.toInt() / rankingViewModel.getTotalCount() * 100).toString()
-        textview_my_exp.text = myData.exp.toString()
+        textview_my_rank_percent.text = (myData.rank.toInt() / rankingViewModel.getTotalCount() * 100).toString()
+        textview_rank_exp.text = myData.exp.toString()
         textview_my_rank_with_total.text = String.format("%d / %s", rankingViewModel.getTotalCount(), myData.rank);
     }
 
