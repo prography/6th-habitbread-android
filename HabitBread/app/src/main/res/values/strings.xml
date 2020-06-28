@@ -7,4 +7,5 @@
     <string name="continueCountTitle">연속 횟수</string>
     <string name="totalCountTitle">총 횟수</string>
     <string name="commitButtonText">오늘의 빵 굽기</string>
+    <string name="totalRanking">당신은 %d 명 중에 %s 등입니다."</string>
 </resources>

@@ -17,7 +17,6 @@ class HabitRepository {
 
     val TAG :String? = "HabitBread"
     private val habitBreadAPI = ServerImpl.APIService
-    var allRanks : RankResponse? = null
     private lateinit var allHabitListData : List<HabitResponse>
 
     fun getHabitList(): List<HabitResponse> {
@@ -38,24 +37,5 @@ class HabitRepository {
             allHabitListData = getRes
         }
         return allHabitListData
-    }
-
-    fun getAllRanks(handler: RankHandler) {
-        val call : Call<RankResponse> = habitBreadAPI.getAllRankings()
-        call.enqueue(
-            object: Callback<RankResponse>{
-                override fun onFailure(call: Call<RankResponse>, t: Throwable) {
-                    Log.e(TAG, "Server connect failed")
-                }
-                override fun onResponse(
-                    call: Call<RankResponse>,
-                    response: Response<RankResponse>
-                ) {
-                    Log.d(TAG, response.toString());
-                    allRanks = response.body()
-                    handler.onResult(allRanks!!.user, allRanks!!.userTotalCount, allRanks!!.rankings)
-                }
-            }
-        )
     }
 }

@@ -1,25 +1,29 @@
 package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.R
 import com.example.habitbread.`interface`.UpdateFinishHandler
+import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.adapter.RankListAdapter
+import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.example.habitbread.ui.viewModel.RankingViewModel
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.item_rank.*
 
 class Ranking : Fragment() {
-
-    private lateinit var recyclerView_rankList: RecyclerView
-    private lateinit var recyclerView_adapter: RankListAdapter
-
-    private val rankingViewModel: RankingViewModel = RankingViewModel.getInstance()
+    private lateinit var recyclerview_rankList : RecyclerView
+    private lateinit var recyclerview_adapter: RankListAdapter
+    val rankingViewModel : RankingViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,41 +31,34 @@ class Ranking : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ranking, container, false)
-        recyclerView_rankList = view.findViewById(R.id.recyclerview_rankingList)
+        recyclerview_rankList = view.findViewById(R.id.recyclerview_rankingList)
         return view;
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        rankingViewModel.getAllRanks()
         initRecyclerView();
-    }
-
-    override fun onResume() {
-        super.onResume();
-        getRanks()
-    }
-
-    private fun getRanks() {
-        rankingViewModel.init(object : UpdateFinishHandler {
-            override fun onUpdated() {
-                val list = rankingViewModel.getAllRanks();
-                recyclerView_adapter.data = list;
-                setMyRank();
-                recyclerView_adapter.notifyDataSetChanged();
+        rankingViewModel.rankingData.observe(viewLifecycleOwner, Observer {
+            recyclerview_adapter.setAdapterData(it)
+            if (it.user != null) {
+                val percentage = (it.user.rank.toInt()!!.div(it.userTotalCount)).times(100)
+                textview_my_rank_percent_above.visibility = View.VISIBLE
+                textview_my_rank_percent.visibility = View.VISIBLE
+                textview_my_rank_percent.text = percentage.toString()
+                textview_my_rank_with_total.text = getString(R.string.totalRanking, it.userTotalCount, it.user.rank)
+            } else {
+                textview_my_rank_percent_above.visibility = View.INVISIBLE
+                textview_my_rank_percent.visibility = View.INVISIBLE
+                textview_my_rank_with_total.text = "아직 점수가 산정되지 않았습니다. 잠시만 기다려주세요!"
             }
         })
-    }
 
-    private fun setMyRank() {
-        val myData = rankingViewModel.getMyRank();
-        textview_my_rank_percent.text = (myData.rank.toInt() / rankingViewModel.getTotalCount() * 100).toString()
-        textview_rank_exp.text = myData.exp.toString()
-        textview_my_rank_with_total.text = String.format("%d / %s", rankingViewModel.getTotalCount(), myData.rank);
     }
 
     private fun initRecyclerView() {
-        recyclerView_adapter = RankListAdapter(context)
-        recyclerView_rankList.adapter = recyclerView_adapter
-        recyclerView_rankList.layoutManager = LinearLayoutManager(context)
+            recyclerview_adapter = RankListAdapter(context)
+            recyclerview_rankList.adapter = recyclerview_adapter
+            recyclerview_rankList.layoutManager = LinearLayoutManager(context)
     }
 }

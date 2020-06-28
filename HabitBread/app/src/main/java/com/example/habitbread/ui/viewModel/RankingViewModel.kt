@@ -1,41 +1,31 @@
 package com.example.habitbread.ui.viewModel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitbread.`interface`.RankHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
+import com.example.habitbread.data.HabitResponse
+import com.example.habitbread.data.NewHabitReq
+import com.example.habitbread.data.RankResponse
 import com.example.habitbread.data.Ranking
 import com.example.habitbread.repository.HabitRepository
+import com.example.habitbread.repository.RankingRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.Error
+import java.lang.Exception
 
 class RankingViewModel : ViewModel() {
-    private var rankListData: List<Ranking>? = null;
-    private var rank : Ranking? = null;
-    private var userTotalCount : Int? = null;
+    var rankingData: MutableLiveData<RankResponse> = MutableLiveData()
 
-    companion object {
-        private val instance = RankingViewModel();
-        fun getInstance() : RankingViewModel = instance
-    }
-
-    fun getAllRanks() : List<Ranking> {
-        return rankListData!!;
-    }
-
-    fun getMyRank() : Ranking {
-        return rank!!;
-    }
-
-    fun getTotalCount() : Int {
-        return userTotalCount!!
-    }
-
-    fun init(handler: UpdateFinishHandler) {
-        HabitRepository().getAllRanks(object : RankHandler {
-            override fun onResult(myRank: Ranking, totalCount: Int, allRanks: List<Ranking>) {
-                rank = myRank;
-                rankListData = allRanks;
-                userTotalCount = totalCount;
-                handler.onUpdated();
+    fun getAllRanks() {
+        GlobalScope.launch {
+            try {
+                val rankList = RankingRepository().getAllRanks();
+                rankingData.postValue(rankList);
+            } catch (e : Exception) {
+                e.printStackTrace()
             }
-        })
+        }
     }
 }
