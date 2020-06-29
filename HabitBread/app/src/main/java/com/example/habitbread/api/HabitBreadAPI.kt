@@ -6,15 +6,17 @@ import retrofit2.http.*
 
 interface HabitBreadAPI {
     @GET("/habits")
-    fun getAllHabitLists(): Call<List<HabitResponse>>
+    fun getAllHabitLists(): Call<HabitListResponse>
     @POST("/habits")
     fun postNewHabit(@Body body: NewHabit): Call<HabitResponse>
     @GET("/habits/{habitId}/calendar/{year}/{month}")
     fun getHabitDetail(@Path("habitId") habitId: Int, @Path("year") year: Int, @Path("month") month: Int): Call<DetailResponse>
     @GET("/ranking")
     fun getAllRankings() : Call<RankResponse>
-    @GET("/habits/{habitId}/commit")
-    fun commitHabit(@Path("habitId") habitId: Int): Call<BaseResponse>;
     @POST("/oauth/google")
     fun googleOauth(@Body body: TempRequest) : Call<TempResponse>
+    @POST("/habits")
+    fun postNewHabit(@Body body: NewHabitReq): Call<NewHabitRes>
+    @POST("/habits/{habitId}/commit")
+    fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
 }

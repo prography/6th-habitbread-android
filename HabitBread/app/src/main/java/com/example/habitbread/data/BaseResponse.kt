@@ -22,9 +22,7 @@ data class HabitDetailInfo(
 
 data class HabitCommitHistory(
     @SerializedName("createdAt")
-    val createdAt: String,
-    @SerializedName("habitId")
-    val habitId: Int
+    val createdAt: String
 )
 
 data class HabitResponse(
@@ -84,4 +82,50 @@ data class TempResponse(
     val idToken: String,
     @SerializedName("name")
     val name : String
+)
+
+data class Habits(
+    @SerializedName("habitId")
+    val habitId: Int,
+    @SerializedName("title")
+    val habitName: String,
+    @SerializedName("description")
+    val description: String?,
+    @SerializedName("dayOfWeek")
+    val dayOfWeek: String,
+    @SerializedName("commitHistory")
+    val commitHistory: List<HabitCommitHistory>
+)
+
+data class CommitResponse(
+    @SerializedName("itemId")
+    val itemId: Int?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("description")
+    val description: String?,
+    @SerializedName("level")
+    val level: Int?
+)
+
+data class HabitListResponse(
+    @SerializedName("comment")
+    val comment: String,
+    @SerializedName("habits")
+    val habits: List<Habits>
+)
+
+data class NewHabitRes(
+    @SerializedName("habitId")
+    val habitId: Int,
+    @SerializedName("title")
+    val habitName: String
+)
+
+data class NewHabitReq(
+    val title: String,
+    val category: String,
+    val description: String,
+    val dayOfWeek: String,
+    val alarmTime: String?
 )

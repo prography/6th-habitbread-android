@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.habitbread.R
 import com.example.habitbread.api.HabitBreadAPI
 import com.example.habitbread.api.ServerImpl
+import com.example.habitbread.base.BaseApplication
 import com.example.habitbread.data.TempRequest
 import com.example.habitbread.data.TempResponse
+import com.example.habitbread.utils.SharedPreference
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -97,14 +100,20 @@ class LoginActivity : AppCompatActivity() {
                 call: Call<TempResponse?>,
                 response: Response<TempResponse?>
             ) {
-                Log.d(TAG, "onResponse: ${response.body}")
+                Log.d(TAG, "onResponse: ${response.body()}")
                 val googleOauthResponse = response.body();
-
+                BaseApplication.preferences.myIdToken = googleOauthResponse!!.idToken
+                Log.d("HabitBread", BaseApplication.preferences.myIdToken)
+                if (SharedPreference(baseContext).myIdToken != null) {
+                    val intent :Intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
             override fun onFailure(
                 call: Call<TempResponse?>,
                 t: Throwable
             ) {
+                Log.d("HabitBread", "Error in Server google oauth")
                 t.printStackTrace()
             }
         })

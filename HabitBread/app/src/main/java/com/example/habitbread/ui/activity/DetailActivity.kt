@@ -3,12 +3,13 @@ package com.example.habitbread.ui.activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+
+import androidx.activity.viewModels
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.habitbread.R
-import com.example.habitbread.`interface`.CreationHandler
-import com.example.habitbread.`interface`.UpdateFinishHandler
-import com.example.habitbread.repository.DetailRepository
 import com.example.habitbread.ui.viewModel.DetailViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
@@ -20,69 +21,43 @@ import java.time.LocalDate
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var materialCalendarView: MaterialCalendarView
-    private var habitId: Int = 0;
-    private val detailViewModel: DetailViewModel = DetailViewModel.getInstance()
+    private val detailViewModel: DetailViewModel by viewModels()
+    private var habitId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         habitId = intent.getIntExtra("habitId", 0);
         setContentView(R.layout.activity_detail)
-        //setCalendarView()
+        habitId = intent.getIntExtra("habitId", -1)
         setDetailInfo()
+        onClickCommit()
         onClickBackArrow()
-        //Log.d("choheehabitId", habitId.toString()) ;
-        button_commit.setOnClickListener {
-            commitHabit();
-        }
     }
 
-    private fun commitHabit() {
-        DetailViewModel.getInstance()
-            .commitHabit(habitId = habitId, handler = object : CreationHandler {
-                override fun onCreated(isSuccessful: Boolean) {
-                    runOnUiThread {
-                        if (isSuccessful) {
-                            setDetailInfo();
-                        } else {
-                            Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            })
-    }
-
-    private fun setCalendarView() {
-        materialCalendarView = calendarView_habit_detail
-        // TODO : 네트워크 통신 구현 시 selectedDayList에 서버에서 얻어온 날짜를 넣어야함
-        val selectedDayList: List<CalendarDay> = listOf(
-            CalendarDay.from(2020, 6, 5),
-            CalendarDay.from(2020, 6, 4),
-            CalendarDay.from(2020, 7, 25)
-        )
-        materialCalendarView.addDecorators(DecoratorDays(selectedDayList))
-    }
-
-    private fun setDetailInfo() {
+    private fun setDetailInfo(){
+        //현 시각 년도, 월 구하기
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
         val month = todayDate.substring(5, 7).toInt()
 
-        detailViewModel.init(object : UpdateFinishHandler {
-            override fun onUpdated() {
-                val detailData = detailViewModel.requestDetailData(habitId, year, month)
-                textView_detail_title.text = detailData.habit.title
-                textView_continue_value.text = detailData.habit.continuousCount.toString()
-                textView_total_value.text = detailData.commitFullCount.toString()
-                // TODO : 여기 달력에 커밋된 날짜 setting 해야함
-                Log.d("chohee", detailData.habit.commitHistory.toString())
-                val commitHistoryList = listOf(detailData.habit.commitHistory)
-//                var createdAtList = mutableListOf<String>()
-//                for(i in 0..(commitHistoryList.size-1)){
-//                    createdAtList.add(commitHistoryList.get(i).createdAt)
-//                }
+        //calendar setting
+        materialCalendarView = calendarView_habit_detail
+
+        detailViewModel.getDetailData(habitId, year, month)
+        detailViewModel.detailData.observe(this, Observer {
+            textView_detail_title.text = it.habit.title
+            textView_continue_value.text = it.habit.continuousCount.toString() + "회"
+            textView_total_value.text = it.commitFullCount.toString() + "회"
+            val committedDayList: MutableList<CalendarDay> = mutableListOf()
+            for(i in 0..it.habit.commitHistory.size-1){
+                val year = it.habit.commitHistory[i].createdAt.substring(0, 4).toInt()
+                val month = it.habit.commitHistory[i].createdAt.substring(5, 7).toInt()
+                val day = it.habit.commitHistory[i].createdAt.substring(8, 10).toInt()
+                val aDay = CalendarDay.from(year, month, day)
+                committedDayList.add(aDay)
+                materialCalendarView.addDecorators(DecoratorDays(committedDayList))
             }
-        }, habitId, year, month)
-        setCalendarView()
+        })
     }
 
     inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator {
@@ -102,6 +77,22 @@ class DetailActivity : AppCompatActivity() {
     fun onClickBackArrow() {
         imageView_back.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun onClickCommit() {
+        button_commit.setOnClickListener {
+            detailViewModel.getCommit(habitId)
+            detailViewModel.commitIsSuccess.observe(this, Observer {
+                if(detailViewModel.isCommit == true) {
+                    Toast.makeText(this, "습관빵을 이미 구웠습니다!", Toast.LENGTH_SHORT).show()
+                }else {
+                   Log.d("chohee", "이어서")
+                }
+//                if(it == "success"){
+//                    //setDetailInfo()
+//                }
+            })
         }
     }
 }

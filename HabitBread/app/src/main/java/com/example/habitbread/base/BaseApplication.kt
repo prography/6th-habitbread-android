@@ -9,8 +9,7 @@ class BaseApplication : Application() {
     }
 
     override fun onCreate() {
-        preferences =
-            SharedPreference(applicationContext)
+        preferences = SharedPreference(applicationContext)
         super.onCreate()
     }
 }
