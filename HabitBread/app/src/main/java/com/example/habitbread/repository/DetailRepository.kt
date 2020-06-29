@@ -5,6 +5,7 @@ import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.data.CommitResponse
 import com.example.habitbread.data.DetailResponse
 import kotlinx.coroutines.runBlocking
+import retrofit2.Response
 import retrofit2.await
 import retrofit2.awaitResponse
 
@@ -13,7 +14,7 @@ class DetailRepository {
     val TAG :String? = "HabitBread"
     private val habitBreadAPI = ServerImpl.APIService
     private lateinit var detailData : DetailResponse
-    private lateinit var commitResponse: CommitResponse
+    private var commitResponse: CommitResponse? = null
 
     fun getDetailData(habitId: Int, year: Int, month: Int): DetailResponse {
         runBlocking {
@@ -24,33 +25,30 @@ class DetailRepository {
         return detailData
     }
 
-    fun getCommit(habitId: Int) : Any {
-        var isCommit: Boolean = false
-        var isLevelUp: Boolean = false
+    fun getCommit(habitId: Int)  {
         runBlocking {
             val request = habitBreadAPI.postCommit(habitId)
             val response = request.awaitResponse()
-            if(response.code() == 800) {
-                isCommit = true
-                return@runBlocking
-            }else if(response.code() == 201 && response.body() == null){
-                isLevelUp = false
-                return@runBlocking
-            }else {
-                // 레벨업 했을
-                Log.d("chohee", response.body().toString())
-                //commitResponse = response.body()
-                return@runBlocking
-            }
-        }
+            Log.d("chohee", response.body().toString())
+            Log.d("chohee", response.code().toString())
+            // 303일 때 body = null 임
+            // 201일 때(레벨업 안했을 때) body = CommitResponse(itemId=null, name=null, description=null, level=null)
+            // 201일 때(레벨업 했을 때)
 
-        if(isCommit == true) {
-            return "습관빵을 이미 구웠습니다!"
-        }else if(isLevelUp == true) {
-            return commitResponse
-        }else {
-            Log.d("chohee", "커밋 성")
-            return Unit
+//            if(response.code() == 303) {
+//                Log.d("chohee", "이미 커밋")
+//                commitResponse = response
+//                return@runBlocking
+//            }else if(response.code() == 201 && response.body() == null){
+//                Log.d("chohee", "커밋 성공")
+//                commitResponse = response
+//                return@runBlocking
+//            }else {
+//                Log.d("chohee", "레벨업")
+//                commitResponse = response
+//                return@runBlocking
+//            }
         }
+        //return commitResponse
    }
 }
