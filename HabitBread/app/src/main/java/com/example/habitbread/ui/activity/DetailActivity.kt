@@ -1,8 +1,6 @@
 package com.example.habitbread.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -80,16 +78,16 @@ class DetailActivity : AppCompatActivity() {
 
     private fun onClickCommit() {
         button_commit.setOnClickListener {
-            detailViewModel.getCommit(habitId)
-            detailViewModel.commitIsSuccess.observe(this, Observer {
-                if(detailViewModel.isCommit == true) {
+            detailViewModel.postCommit(habitId)
+            detailViewModel.commitData.observe(this, Observer {
+                if(it.raw().code == 303) {
                     Toast.makeText(this, "습관빵을 이미 구웠습니다!", Toast.LENGTH_SHORT).show()
+                }else if(it.code() == 201 && it.body()?.itemId == null){
+                    setDetailInfo()
                 }else {
-                   Log.d("chohee", "이어서")
+                    // TODO: 레벨업 했을 때 아이템 정보 팝업으로 띄워주기(디자인나오면 다시 하기)
+                    Toast.makeText(this, "축하합니다! 새로운 습관빵을 얻으셨네요!", Toast.LENGTH_SHORT).show()
                 }
-//                if(it == "success"){
-//                    //setDetailInfo()
-//                }
             })
         }
     }

@@ -1,5 +1,6 @@
 package com.example.habitbread.ui.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.habitbread.base.BaseViewModel
 import com.example.habitbread.data.HabitListResponse
@@ -19,7 +20,7 @@ class HabitViewModel : BaseViewModel(){
                 val habitList = HabitRepository().getHabitList()
                 rvData.postValue(habitList)
             }catch (err: Error){
-
+                Log.e("HabitBread", "HabitList VM getAllList API error")
             }
         }
     }
@@ -30,7 +31,7 @@ class HabitViewModel : BaseViewModel(){
                 val habitList = HabitRepository().postNewHabit(body)
                 rvData.postValue(habitList)
             }catch (err: Error){
-
+                Log.e("HabitBread", "HabitList VM postHabit API error")
             }
         }
     }
