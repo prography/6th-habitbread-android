@@ -4,7 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class HabitCommitHistory(
     @SerializedName("createdAt")
-    val createdAt: String,
-    @SerializedName("habitId")
-    val habitId: Int
+    val createdAt: String
 )

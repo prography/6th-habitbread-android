@@ -1,16 +1,20 @@
 package com.example.habitbread.repository
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.example.habitbread.`interface`.RankHandler
 import com.example.habitbread.api.ServerImpl
-import com.example.habitbread.data.HabitResponse
+import com.example.habitbread.data.HabitListResponse
+import com.example.habitbread.data.Habits
 import com.example.habitbread.data.RankResponse
 import com.example.habitbread.data.NewHabitReq
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.await
+import retrofit2.awaitResponse
 import retrofit2.Callback as Callback
 
 class HabitRepository {
@@ -18,24 +22,25 @@ class HabitRepository {
     val TAG :String? = "HabitBread"
     private val habitBreadAPI = ServerImpl.APIService
     var allRanks : RankResponse? = null
-    private lateinit var allHabitListData : List<HabitResponse>
+    private lateinit var allHabitListData : HabitListResponse
 
-    fun getHabitList(): List<HabitResponse> {
+    fun getHabitList(): HabitListResponse {
         runBlocking {
-            val req = habitBreadAPI.getAllHabitLists()
-            val res = req.await()
-            allHabitListData = res
-        }
+            val request = habitBreadAPI.getAllHabitLists()
+            val response = request.await()
+            allHabitListData = response
+       }
         return allHabitListData
     }
 
-    fun postNewHabit(body : NewHabitReq): List<HabitResponse>{
+    fun postNewHabit(body : NewHabitReq): HabitListResponse{
         runBlocking {
-            val postReq = habitBreadAPI.postNewHabit(body)
-            val postRes = postReq.await()
-            val getReq = habitBreadAPI.getAllHabitLists()
-            val getRes = getReq.await()
-            allHabitListData = getRes
+            val postRequest = habitBreadAPI.postNewHabit(body)
+            val postResponse = postRequest.await()
+            val getRequest = habitBreadAPI.getAllHabitLists()
+            val getResponse = getRequest.await()
+            allHabitListData = getResponse
+            Log.d("chohee", postResponse.toString())
         }
         return allHabitListData
     }
