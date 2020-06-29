@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.R
-import com.example.habitbread.data.HabitResponse
 import com.example.habitbread.data.RankResponse
 import com.example.habitbread.data.Ranking
 import kotlinx.android.synthetic.main.item_rank.view.*

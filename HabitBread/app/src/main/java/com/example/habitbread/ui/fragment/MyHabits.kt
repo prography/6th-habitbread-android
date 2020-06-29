@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.R
+import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import kotlinx.android.synthetic.main.fragment_my_habits.*
@@ -39,7 +39,8 @@ class MyHabits : Fragment() {
         habitViewModel.getAllList()
         initRecyclerView()
         habitViewModel.rvData.observe(viewLifecycleOwner, Observer {
-            recyclerview_adapter.setAdapterData(it)
+            textView_announcement.text = it.comment
+            recyclerview_adapter.setAdapterData(it.habits)
         })
         onShowModal()
     }
@@ -69,7 +70,7 @@ class MyHabits : Fragment() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onBottomSheetDoneEvent(modalPost: ModalPost){
-        val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
+        val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, description = "test Description",dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
         habitViewModel.postHabit(body)
     }
 }

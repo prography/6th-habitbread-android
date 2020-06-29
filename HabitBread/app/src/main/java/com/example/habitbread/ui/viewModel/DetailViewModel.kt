@@ -2,20 +2,20 @@ package com.example.habitbread.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.habitbread.`interface`.DetailHandler
-import com.example.habitbread.`interface`.UpdateFinishHandler
 import com.example.habitbread.base.BaseViewModel
+import com.example.habitbread.data.CommitResponse
 import com.example.habitbread.data.DetailResponse
-import com.example.habitbread.data.HabitResponse
 import com.example.habitbread.repository.DetailRepository
-import com.example.habitbread.repository.HabitRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.lang.Error
 
 class DetailViewModel : BaseViewModel(){
 
     var detailData: MutableLiveData<DetailResponse> = MutableLiveData()
+    var commitIsSuccess: MutableLiveData<CommitResponse> = MutableLiveData()
+    var isCommit: Boolean = false
 
     fun getDetailData(habitId: Int, year: Int, month: Int){
         GlobalScope.launch {
@@ -24,6 +24,25 @@ class DetailViewModel : BaseViewModel(){
                 detailData.postValue(data)
             }catch (err: Error){
                 Log.d("HabitBread", "error")
+            }
+        }
+    }
+
+    fun getCommit(habitId: Int) {
+        GlobalScope.launch {
+            try {
+                val commitData = DetailRepository().getCommit(habitId)
+//                if(commitData.code() == 303){
+//                    isCommit = true
+//                }else if(commitData.code() == 201 && commitData.body() == null){
+//
+//                }else{
+//
+//                }
+//                Log.d("chohee", commitData.toString())
+                //commitIsSuccess.postValue(commitData)
+            }catch (err: Error) {
+
             }
         }
     }

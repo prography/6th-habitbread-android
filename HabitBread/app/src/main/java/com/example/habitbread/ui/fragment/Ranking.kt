@@ -53,7 +53,6 @@ class Ranking : Fragment() {
                 textview_my_rank_with_total.text = "아직 점수가 산정되지 않았습니다. 잠시만 기다려주세요!"
             }
         })
-
     }
 
     private fun initRecyclerView() {
