@@ -14,5 +14,7 @@
     <color name="appBackground">#F5F4F1</color>
     <color name="barGrayColor">#E2E1DD</color>
     <color name="dotColor">#C94F4F</color>
+    <color name="addNewHabitBackground">#D2CFC9</color>
+
 </resources>
 

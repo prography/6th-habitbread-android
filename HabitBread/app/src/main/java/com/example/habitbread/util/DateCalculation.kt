@@ -1,6 +1,5 @@
 package com.example.habitbread.util
 
-import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 

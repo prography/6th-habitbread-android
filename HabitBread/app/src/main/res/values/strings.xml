@@ -6,4 +6,5 @@
     <string name="totalCountTitle">총 횟수</string>
     <string name="commitButtonText">오늘의 빵 굽기</string>
     <string name="habitListTitle">나의 습관빵</string>
+    <string name="habitCreateTitle">습관 생성하기</string>
 </resources>

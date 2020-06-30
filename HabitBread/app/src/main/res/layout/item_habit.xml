@@ -17,10 +17,8 @@
         android:layout_height="0dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:shapeAppearance="@style/HabitListTheme"
-        android:backgroundTint="@android:color/white"
-        app:strokeColor="#BDB8AA"
-        app:strokeWidth="0.5dp"
-        android:elevation="3dp"/>
+        app:strokeWidth = "0dp"
+        android:backgroundTint="@android:color/white" />
 
     <TextView
         android:id="@+id/textView_habitName"
@@ -32,8 +30,7 @@
         android:text="운동하기!"
         android:textSize="22sp"
         android:textColor="#4A4646"
-        android:textStyle="bold"
-        android:elevation="3dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView_description"
@@ -43,8 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="70% 이상 달성 목표!"
-        android:textColor="@android:color/black"
-        android:elevation="3dp"/>
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/textView_isToday"
@@ -57,8 +53,7 @@
         android:layout_margin="8dp"
         android:text="오늘"
         android:textSize="14dp"
-        android:textColor="@android:color/black"
-        android:elevation="3dp"/>
+        android:textColor="@android:color/black" />
 
     <ImageView
         android:id="@+id/imageView_dot"
@@ -66,8 +61,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView_isToday"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:src="@drawable/icon_dot"
-        android:elevation="3dp"/>
+        android:src="@drawable/icon_dot" />
 
     <TextView
         android:id="@+id/textView_Sun"
@@ -79,8 +73,7 @@
         android:layout_marginBottom="25dp"
         android:text="일"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textView_Mon"
@@ -93,8 +86,7 @@
         android:layout_marginStart="25dp"
         android:text="월"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textView_Tue"
@@ -107,8 +99,7 @@
         android:layout_marginStart="25dp"
         android:text="화"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textView_Wed"
@@ -121,8 +112,7 @@
         android:layout_marginStart="25dp"
         android:text="수"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textView_Thu"
@@ -135,8 +125,7 @@
         android:layout_marginStart="25dp"
         android:text="목"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textView_Fri"
@@ -149,8 +138,7 @@
         android:layout_marginStart="25dp"
         android:text="금"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/textView_Sat"
@@ -163,8 +151,7 @@
         android:layout_marginStart="25dp"
         android:text="토"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        android:elevation="3dp"/>
+        android:gravity="center" />
 
     <View
         android:id="@+id/view_divider"
@@ -172,6 +159,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
-        android:layout_height="4dp"/>
+        android:layout_height="3dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
