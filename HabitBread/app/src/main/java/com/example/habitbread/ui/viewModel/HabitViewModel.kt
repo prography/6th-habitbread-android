@@ -20,7 +20,7 @@ class HabitViewModel : BaseViewModel(){
                 val habitList = HabitRepository().getHabitList()
                 rvData.postValue(habitList)
             }catch (err: Error){
-                Log.e("HabitBread", "HabitList VM getAllList API error")
+                Log.e("HabitBread", err.printStackTrace().toString())
             }
         }
     }
@@ -31,7 +31,7 @@ class HabitViewModel : BaseViewModel(){
                 val habitList = HabitRepository().postNewHabit(body)
                 rvData.postValue(habitList)
             }catch (err: Error){
-                Log.e("HabitBread", "HabitList VM postHabit API error")
+                Log.e("HabitBread", err.printStackTrace().toString())
             }
         }
     }

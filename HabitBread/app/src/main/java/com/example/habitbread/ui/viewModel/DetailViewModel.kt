@@ -22,7 +22,7 @@ class DetailViewModel : BaseViewModel(){
                 val data = DetailRepository().getDetailData(habitId, year, month)
                 detailData.postValue(data)
             }catch (err: Error){
-                Log.e("HabitBread", "Detail VM getDetailData API error")
+                Log.e("HabitBread", err.printStackTrace().toString())
             }
         }
     }
@@ -30,10 +30,10 @@ class DetailViewModel : BaseViewModel(){
     fun postCommit(habitId: Int) {
         GlobalScope.launch {
             try {
-                val data = DetailRepository().getCommit(habitId)
+                val data = DetailRepository().postCommit(habitId)
                 commitData.postValue(data)
             }catch (err: Error) {
-                Log.e("HabitBread", "Detail VM getCommit API error")
+                Log.e("HabitBread", err.printStackTrace().toString())
             }
         }
     }

@@ -23,7 +23,7 @@ class DetailRepository {
         return detailData
     }
 
-    fun getCommit(habitId: Int): Response<CommitResponse> {
+    fun postCommit(habitId: Int): Response<CommitResponse> {
         runBlocking {
             val request = habitBreadAPI.postCommit(habitId)
             val response: Response<CommitResponse> = request.awaitResponse()
