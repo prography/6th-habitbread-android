@@ -14,8 +14,7 @@ import java.lang.Error
 class DetailViewModel : BaseViewModel(){
 
     var detailData: MutableLiveData<DetailResponse> = MutableLiveData()
-    var commitIsSuccess: MutableLiveData<CommitResponse> = MutableLiveData()
-    var isCommit: Boolean = false
+    var commitData: MutableLiveData<Response<CommitResponse>> = MutableLiveData()
 
     fun getDetailData(habitId: Int, year: Int, month: Int){
         GlobalScope.launch {
@@ -23,26 +22,18 @@ class DetailViewModel : BaseViewModel(){
                 val data = DetailRepository().getDetailData(habitId, year, month)
                 detailData.postValue(data)
             }catch (err: Error){
-                Log.d("HabitBread", "error")
+                Log.e("HabitBread", err.printStackTrace().toString())
             }
         }
     }
 
-    fun getCommit(habitId: Int) {
+    fun postCommit(habitId: Int) {
         GlobalScope.launch {
             try {
-                val commitData = DetailRepository().getCommit(habitId)
-//                if(commitData.code() == 303){
-//                    isCommit = true
-//                }else if(commitData.code() == 201 && commitData.body() == null){
-//
-//                }else{
-//
-//                }
-//                Log.d("chohee", commitData.toString())
-                //commitIsSuccess.postValue(commitData)
+                val data = DetailRepository().postCommit(habitId)
+                commitData.postValue(data)
             }catch (err: Error) {
-
+                Log.e("HabitBread", err.printStackTrace().toString())
             }
         }
     }

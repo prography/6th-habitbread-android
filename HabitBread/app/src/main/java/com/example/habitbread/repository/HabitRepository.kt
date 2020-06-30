@@ -4,17 +4,12 @@ import android.util.Log
 import com.example.habitbread.`interface`.RankHandler
 import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.data.HabitListResponse
-import com.example.habitbread.data.Habits
 import com.example.habitbread.data.RankResponse
 import com.example.habitbread.data.NewHabitReq
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.await
-import retrofit2.awaitResponse
 import retrofit2.Callback as Callback
 
 class HabitRepository {
