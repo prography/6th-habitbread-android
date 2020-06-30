@@ -48,6 +48,7 @@ class MyHabits : Fragment() {
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
+        habitViewModel.getAllList()
     }
 
     override fun onStop() {
@@ -62,10 +63,10 @@ class MyHabits : Fragment() {
     }
 
     private fun onShowModal(){
-        button_add.setOnClickListener {
-            val registrationBottomSheet = RegistrationBottomSheet()
-            registrationBottomSheet.show(parentFragmentManager, "showBottomSheet")
-        }
+//        button_add.setOnClickListener {
+//            val registrationBottomSheet = RegistrationBottomSheet()
+//            registrationBottomSheet.show(parentFragmentManager, "showBottomSheet")
+//        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
