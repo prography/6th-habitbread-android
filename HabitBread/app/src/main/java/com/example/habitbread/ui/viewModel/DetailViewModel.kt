@@ -9,6 +9,7 @@ import com.example.habitbread.data.DetailResponse
 import com.example.habitbread.repository.DetailRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.lang.Error
 
 class DetailViewModel : ViewModel() {
