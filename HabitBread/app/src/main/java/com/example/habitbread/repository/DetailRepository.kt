@@ -4,6 +4,7 @@ import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.data.CommitResponse
 import com.example.habitbread.data.DetailResponse
 import kotlinx.coroutines.runBlocking
+import retrofit2.Response
 import retrofit2.await
 import retrofit2.awaitResponse
 
