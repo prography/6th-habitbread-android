@@ -3,10 +3,11 @@ package com.example.habitbread.repository
 import android.util.Log
 import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.data.HabitListResponse
-import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.data.RankResponse
+import com.example.habitbread.data.NewHabitReq
 import kotlinx.coroutines.runBlocking
 import retrofit2.await
+import retrofit2.Callback as Callback
 
 class HabitRepository {
 
