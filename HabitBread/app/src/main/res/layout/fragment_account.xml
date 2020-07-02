@@ -61,10 +61,11 @@
                     app:layout_constraintEnd_toEndOf="@id/imageview_profile_image"
                     app:layout_constraintTop_toBottomOf="@id/imageview_profile_image"/>
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imagebutton_change_nickname"
+                <Button
+                    android:layout_width="13dp"
+                    android:tag="HELLo"
+                    android:layout_height="13dp"
+                    android:id="@+id/imageButton_change_nickname"
                     android:background="@drawable/ic_baseline_pencil"
                     app:layout_constraintStart_toEndOf="@id/textview_profile_nickname"
                     app:layout_constraintBottom_toBottomOf="@id/textview_profile_nickname"
@@ -241,7 +242,7 @@
             android:paddingLeft="25dp"
             android:paddingVertical="10dp"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/imageButton_change_info"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -249,7 +250,8 @@
             android:background="@drawable/ic_baseline_chevron_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -278,7 +280,7 @@
             android:paddingLeft="25dp"
             android:paddingVertical="10dp"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/imageButton_ask"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -286,7 +288,8 @@
             android:background="@drawable/ic_baseline_chevron_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -314,7 +317,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
             android:paddingVertical="10dp"/>
-        <ImageButton
+        <Button
             android:id="@+id/imageButton_delete_account"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -322,7 +325,8 @@
             android:background="@drawable/ic_baseline_chevron_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -351,7 +355,7 @@
             android:paddingLeft="25dp"
             android:paddingVertical="10dp"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/imageButton_logout"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -359,7 +363,8 @@
             android:background="@drawable/ic_baseline_chevron_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
