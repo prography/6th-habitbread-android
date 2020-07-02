@@ -14,6 +14,7 @@ import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import kotlinx.android.synthetic.main.fragment_my_habits.*
+import kotlinx.android.synthetic.main.layout_add_button.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -48,6 +49,7 @@ class MyHabits : Fragment() {
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
+        habitViewModel.getAllList()
     }
 
     override fun onStop() {

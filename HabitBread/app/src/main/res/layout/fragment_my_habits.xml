@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.MyHabits">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/appBackground"
+    android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/layout_title"
+    <TextView
+        android:id="@+id/textView_habitlist_title"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        layout="@layout/layout_title" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/habitListTitle"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView_habitList"
-        app:layout_constraintTop_toBottomOf="@+id/layout_title"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView_announcement"
+        app:layout_constraintTop_toBottomOf="@+id/textView_habitlist_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="당신의 미래는 깜깜하군요..!"
+        android:textSize="16sp" />
+    
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        app:layout_constraintTop_toBottomOf="@+id/textView_announcement"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="40dp"
         android:layout_width="0dp"
         android:layout_height="0dp">
 
@@ -27,42 +46,57 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView_announcement"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerView_habitlist"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="40dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="당신의 미래는 깜깜하군요..!"
-                android:textSize="16sp" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_habitlist"
-                app:layout_constraintTop_toBottomOf="@+id/textView_announcement"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:overScrollMode="never"/>
-            <ImageView
-                android:id="@+id/button_add"
-                app:layout_constraintTop_toBottomOf="@id/recyclerView_habitlist"
-                app:layout_constraintBottom_toBottomOf="parent"
+
+            <include
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_habitlist"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="50dp"
-                android:layout_marginTop="30dp"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_add" />
+                layout="@layout/layout_add_button"/>
+
+<!--            <Button-->
+<!--                android:id="@+id/button_add"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/recyclerView_habitlist"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="160dp"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                app:shapeAppearance="@style/HabitListTheme"-->
+<!--                android:backgroundTint="@color/addNewHabitBackground"-->
+<!--                app:strokeWidth="0dp" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
+
+
+<!--    <Button-->
+<!--        android:id="@+id/button_add"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/recyclerView_habitlist"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="160dp"-->
+<!--        style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--        app:shapeAppearance="@style/HabitListTheme"-->
+<!--        android:backgroundTint="#F5F3ED"-->
+<!--        app:strokeColor="#BDB8AA"-->
+<!--        app:strokeWidth="0.5dp"-->
+<!--        android:elevation="3dp"/>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
