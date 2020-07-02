@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class RankResponse(
     @SerializedName("user")
-    val user : Ranking,
+    val user : Ranking?,
     @SerializedName("userTotalCount")
     val userTotalCount: Int,
     @SerializedName("rankings")

@@ -19,6 +19,7 @@ class HabitRepository {
     var allRanks : RankResponse? = null
     private lateinit var allHabitListData : HabitListResponse
 
+
     fun getHabitList(): HabitListResponse {
         runBlocking {
             val request = habitBreadAPI.getAllHabitLists()
@@ -38,24 +39,5 @@ class HabitRepository {
             Log.d("chohee", postResponse.toString())
         }
         return allHabitListData
-    }
-
-    fun getAllRanks(handler: RankHandler) {
-        val call : Call<RankResponse> = habitBreadAPI.getAllRankings()
-        call.enqueue(
-            object: Callback<RankResponse>{
-                override fun onFailure(call: Call<RankResponse>, t: Throwable) {
-                    Log.e(TAG, "Server connect failed")
-                }
-                override fun onResponse(
-                    call: Call<RankResponse>,
-                    response: Response<RankResponse>
-                ) {
-                    Log.d(TAG, response.toString());
-                    allRanks = response.body()
-                    handler.onResult(allRanks!!.user, allRanks!!.userTotalCount, allRanks!!.rankings)
-                }
-            }
-        )
     }
 }
