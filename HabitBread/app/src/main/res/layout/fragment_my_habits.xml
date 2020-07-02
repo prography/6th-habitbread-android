@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+    <variable
+        name="viewModel"
+        type="com.example.habitbread.ui.viewModel.HabitViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -100,3 +106,4 @@
 <!--        android:elevation="3dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
