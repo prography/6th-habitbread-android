@@ -16,5 +16,8 @@
     <color name="dotColor">#C94F4F</color>
     <color name="addNewHabitBackground">#D2CFC9</color>
 
+    <!-- bread level colors -->
+    <color name="breadLevel1">#AD9C82</color>
+
 </resources>
 

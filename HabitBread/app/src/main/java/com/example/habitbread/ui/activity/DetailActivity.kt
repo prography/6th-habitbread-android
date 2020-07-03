@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -40,19 +41,22 @@ class DetailActivity : AppCompatActivity() {
         materialCalendarView = calendarView_habit_detail
 
         detailViewModel.getDetailData(habitId, year, month)
+        Log.d("chohee", habitId.toString())
         detailViewModel.detailData.observe(this, Observer {
             textView_detail_title.text = it.habit.title
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
             val committedDayList: MutableList<CalendarDay> = mutableListOf()
+            Log.d("chohee", it.habit.commitHistory.toString())
             for(i in 0..it.habit.commitHistory.size-1){
                 val year = it.habit.commitHistory[i].createdAt.substring(0, 4).toInt()
                 val month = it.habit.commitHistory[i].createdAt.substring(5, 7).toInt()
                 val day = it.habit.commitHistory[i].createdAt.substring(8, 10).toInt()
                 val aDay = CalendarDay.from(year, month, day)
                 committedDayList.add(aDay)
-                materialCalendarView.addDecorators(DecoratorDays(committedDayList))
+//                materialCalendarView.addDecorators(DecoratorDays(committedDayList))
             }
+            materialCalendarView.addDecorators(DecoratorDays(committedDayList))
         })
     }
 

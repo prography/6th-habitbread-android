@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitbread.`interface`.RankHandler
 import com.example.habitbread.`interface`.UpdateFinishHandler
-import com.example.habitbread.data.HabitResponse
 import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.data.RankResponse
 import com.example.habitbread.data.Ranking

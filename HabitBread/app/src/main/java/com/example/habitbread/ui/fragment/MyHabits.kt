@@ -1,5 +1,6 @@
 package com.example.habitbread.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.R
 import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.data.NewHabitReq
+import com.example.habitbread.ui.activity.BakeryActivity
+import com.example.habitbread.ui.activity.DetailActivity
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import kotlinx.android.synthetic.main.fragment_my_habits.*
 import kotlinx.android.synthetic.main.layout_add_button.*
@@ -44,6 +47,7 @@ class MyHabits : Fragment() {
             recyclerview_adapter.setAdapterData(it.habits)
         })
         onShowModal()
+        onShowBakery()
     }
 
     override fun onStart() {
@@ -74,5 +78,12 @@ class MyHabits : Fragment() {
     fun onBottomSheetDoneEvent(modalPost: ModalPost){
         val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, description = "test Description",dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
         habitViewModel.postHabit(body)
+    }
+
+    private fun onShowBakery() {
+        textView_bakery.setOnClickListener {
+            val intent = Intent(context, BakeryActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
