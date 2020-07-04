@@ -7,6 +7,7 @@ import com.example.habitbread.data.RankResponse
 import com.example.habitbread.data.NewHabitReq
 import kotlinx.coroutines.runBlocking
 import retrofit2.await
+import retrofit2.awaitResponse
 
 class HabitRepository {
 
@@ -19,8 +20,9 @@ class HabitRepository {
     fun getHabitList(): HabitListResponse {
         runBlocking {
             val request = habitBreadAPI.getAllHabitLists()
-            val response = request.await()
-            allHabitListData = response
+            val response = request.awaitResponse()
+            Log.d(TAG, response.body().toString())
+            allHabitListData = response.body()!!
        }
         return allHabitListData
     }

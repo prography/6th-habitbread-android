@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.habitbread.api.ServerImpl
+import com.example.habitbread.base.BaseApplication
 import com.example.habitbread.data.GoogleOAuthRequest
 import com.example.habitbread.data.GoogleOAuthResponse
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,8 +34,9 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val googleResponse : Task<GoogleSignInAccount> = client!!.silentSignIn()
-        handleSignInResult(googleResponse)
+       client!!.silentSignIn().addOnCompleteListener {
+           handleSignInResult(it)
+       }
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
@@ -61,6 +64,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             intent = Intent(this@SplashActivity, LoginActivity::class.java)
         }
+        BaseApplication.preferences.googleIdToken = idToken;
         startActivity(intent)
         finish()
     }
