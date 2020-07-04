@@ -20,9 +20,8 @@ class HabitRepository {
     fun getHabitList(): HabitListResponse {
         runBlocking {
             val request = habitBreadAPI.getAllHabitLists()
-            val response = request.awaitResponse()
-            Log.d(TAG, response.body().toString())
-            allHabitListData = response.body()!!
+            val response = request.await()
+            allHabitListData = response
        }
         return allHabitListData
     }
