@@ -58,7 +58,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
 
             // 커밋한 날짜 초록색 표시하기
             for(i in 0..data.commitHistory.size-1) {
-                val inputDate: String = data.commitHistory[i].createdAt.substring(0, 10)
+                val inputDate: String = DateCalculation().convertUTCtoSeoulTime(data.commitHistory[i].createdAt).substring(0, 10)
                 val index = DateCalculation().getTodayOfWeekWithDate(inputDate)
                 itemView.findViewWithTag<TextView>(index.toString()).setBackgroundResource(R.drawable.background_dayofweek)
                 itemView.findViewWithTag<TextView>(index.toString()).setTextColor(Color.parseColor("#FFFFFF"))

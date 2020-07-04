@@ -81,7 +81,7 @@ class MyHabits : Fragment() {
     }
 
     private fun onShowBakery() {
-        textView_bakery.setOnClickListener {
+        imageView_bakery_circle.setOnClickListener {
             val intent = Intent(context, BakeryActivity::class.java)
             startActivity(intent)
         }

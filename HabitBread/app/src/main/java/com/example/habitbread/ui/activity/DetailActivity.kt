@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.habitbread.R
 import com.example.habitbread.ui.viewModel.DetailViewModel
+import com.example.habitbread.util.DateCalculation
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
@@ -41,20 +42,18 @@ class DetailActivity : AppCompatActivity() {
         materialCalendarView = calendarView_habit_detail
 
         detailViewModel.getDetailData(habitId, year, month)
-        Log.d("chohee", habitId.toString())
         detailViewModel.detailData.observe(this, Observer {
             textView_detail_title.text = it.habit.title
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
             val committedDayList: MutableList<CalendarDay> = mutableListOf()
-            Log.d("chohee", it.habit.commitHistory.toString())
             for(i in 0..it.habit.commitHistory.size-1){
-                val year = it.habit.commitHistory[i].createdAt.substring(0, 4).toInt()
-                val month = it.habit.commitHistory[i].createdAt.substring(5, 7).toInt()
-                val day = it.habit.commitHistory[i].createdAt.substring(8, 10).toInt()
+                val seoulTime: String = DateCalculation().convertUTCtoSeoulTime(it.habit.commitHistory[i].createdAt)
+                val year = seoulTime.substring(0, 4).toInt()
+                val month = seoulTime.substring(5, 7).toInt()
+                val day = seoulTime.substring(8, 10).toInt()
                 val aDay = CalendarDay.from(year, month, day)
                 committedDayList.add(aDay)
-//                materialCalendarView.addDecorators(DecoratorDays(committedDayList))
             }
             materialCalendarView.addDecorators(DecoratorDays(committedDayList))
         })

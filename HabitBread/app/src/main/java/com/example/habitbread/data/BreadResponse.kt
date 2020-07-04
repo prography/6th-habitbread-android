@@ -19,7 +19,5 @@ data class ItemResponse (
     @SerializedName("description")
     val description: String,
     @SerializedName("level")
-    val level: Int,
-    @SerializedName("img")
-    val img: String
+    val level: Int
 )

@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="@+id/button_bread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_bakery"/>
+        android:src="@drawable/icon_question"/>
 
     <TextView
         android:id="@+id/textView_bread_name"
@@ -50,5 +50,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="식빵"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="#1A726655"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
