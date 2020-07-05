@@ -17,4 +17,6 @@ interface HabitBreadAPI {
     fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
     @GET("/items")
     fun getBreads(): Call<List<BreadResponse>?>
+    @POST("/oauth/google")
+    fun serverLoginWithGoogle(@Body body: GoogleOAuthRequest) : Call<GoogleOAuthResponse>
 }
