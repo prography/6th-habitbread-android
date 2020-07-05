@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.item_bread.view.*
 
 class BakeryAdapter(val context: Context): RecyclerView.Adapter<BakeryAdapter.BakeryViewHolder>() {
 
-    var data = listOf<Bread>()
+    var breads = listOf<Bread>()
     var itemIds = listOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BakeryViewHolder {
@@ -23,11 +23,11 @@ class BakeryAdapter(val context: Context): RecyclerView.Adapter<BakeryAdapter.Ba
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return breads.size
     }
 
     override fun onBindViewHolder(holder: BakeryViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(breads[position])
     }
 
     inner class BakeryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -57,7 +57,7 @@ class BakeryAdapter(val context: Context): RecyclerView.Adapter<BakeryAdapter.Ba
     }
 
     fun setAdapterData(data: List<Bread>, itemIds: List<Int>){
-        this.data = data
+        this.breads = data
         this.itemIds = itemIds
         notifyDataSetChanged()
     }
