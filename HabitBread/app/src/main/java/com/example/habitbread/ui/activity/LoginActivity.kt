@@ -48,7 +48,12 @@ class LoginActivity : AppCompatActivity() {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+            if (task.isSuccessful) {
+                handleSignInResult(task)
+            } else {
+                Log.d(TAG, task.exception.toString());
+                Log.d(TAG, task.result.toString());
+            }
         }
     }
 
