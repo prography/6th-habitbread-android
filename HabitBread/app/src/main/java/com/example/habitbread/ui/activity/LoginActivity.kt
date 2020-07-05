@@ -28,11 +28,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com")
-                .requestEmail()
-                .build()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
         client = GoogleSignIn.getClient(this, gso)
         button_google_sign_in.setOnClickListener(View.OnClickListener { signIn() })
     }
@@ -48,8 +47,7 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == 9001) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            val task =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
     }
@@ -89,15 +87,17 @@ class LoginActivity : AppCompatActivity() {
                 val googleOauthResponse = response.body();
                 if (googleOauthResponse?.idToken != null) {
                     Log.d(TAG, googleOauthResponse!!.idToken)
-                    val intent :Intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
                     Log.d(TAG, googleOauthResponse.toString());
-                    Toast.makeText(this@LoginActivity, "Google Oauth Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this@LoginActivity, "Google Oauth Failed", Toast.LENGTH_SHORT)
+                        .show();
                 }
 
             }
+
             override fun onFailure(
                 call: Call<GoogleOAuthResponse?>,
                 t: Throwable
