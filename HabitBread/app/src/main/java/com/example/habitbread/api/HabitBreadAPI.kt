@@ -15,4 +15,6 @@ interface HabitBreadAPI {
     fun postNewHabit(@Body body: NewHabitReq): Call<NewHabitRes>
     @POST("/habits/{habitId}/commit")
     fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
+    @POST("/oauth/google")
+    fun serverLoginWithGoogle(@Body body: GoogleOAuthRequest) : Call<GoogleOAuthResponse>
 }

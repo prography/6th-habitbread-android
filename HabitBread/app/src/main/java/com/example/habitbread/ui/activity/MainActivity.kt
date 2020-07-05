@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseActivity
-import com.example.habitbread.databinding.ActivityMainBinding
 import com.example.habitbread.ui.fragment.Account
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.example.habitbread.ui.fragment.MyHabits
