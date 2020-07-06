@@ -64,9 +64,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
-            Log.d("chohee", "들어옴")
             val account = completedTask.getResult(ApiException::class.java)
-            Log.d("chohee", account.toString())
             if (account != null) {
                 Log.d(TAG, "handleSignInResult: " + account.idToken)
                 sendGoogleOauth(account.idToken)
