@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_habit.view.*
 
 class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<HabitListAdapter.HabitListViewHolder>() {
 
-    var data : List<Habits>? = null
+    var habits : List<Habits>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitListViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_habit, parent, false)
@@ -24,12 +24,12 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
     }
 
     override fun getItemCount(): Int {
-        if(data === null) return 0
-        else return data!!.size
+        if(habits === null) return 0
+        else return habits!!.size
     }
 
     override fun onBindViewHolder(holder: HabitListViewHolder, position: Int) {
-        holder.bind(data!![position])
+        holder.bind(habits!![position])
     }
 
     inner class HabitListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -58,7 +58,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
 
             // 커밋한 날짜 초록색 표시하기
             for(i in 0..data.commitHistory.size-1) {
-                val inputDate: String = data.commitHistory[i].createdAt.substring(0, 10)
+                val inputDate: String = DateCalculation().convertUTCtoSeoulTime(data.commitHistory[i].createdAt).substring(0, 10)
                 val index = DateCalculation().getTodayOfWeekWithDate(inputDate)
                 itemView.findViewWithTag<TextView>(index.toString()).setBackgroundResource(R.drawable.background_dayofweek)
                 itemView.findViewWithTag<TextView>(index.toString()).setTextColor(Color.parseColor("#FFFFFF"))
@@ -76,7 +76,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
     }
 
     fun setAdapterData(habitData: List<Habits>?){
-        data = habitData
+        habits = habitData
         notifyDataSetChanged()
     }
 }

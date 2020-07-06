@@ -23,14 +23,44 @@
         android:id="@+id/textView_announcement"
         app:layout_constraintTop_toBottomOf="@+id/textView_habitlist_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imageView_bakery_circle"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="당신의 미래는 깜깜하군요..!"
         android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/imageView_bakery_circle"
+        app:layout_constraintTop_toTopOf="@+id/textView_habitlist_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/icon_bakery_circle"/>
+
+    <ImageView
+        android:id="@+id/imageView_bakery"
+        app:layout_constraintTop_toTopOf="@+id/imageView_bakery_circle"
+        app:layout_constraintStart_toStartOf="@+id/imageView_bakery_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_bakery_circle"
+        app:layout_constraintEnd_toEndOf="@id/imageView_bakery_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_bakery"/>
+
+    <TextView
+        android:id="@+id/textView_bakery"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_bakery_circle"
+        app:layout_constraintStart_toStartOf="@+id/imageView_bakery_circle"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_bakery_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="베이커리"
+        android:textSize="12sp"
+        android:textStyle="bold"/>
     
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -63,40 +93,8 @@
                 android:layout_height="wrap_content"
                 layout="@layout/layout_add_button"/>
 
-<!--            <Button-->
-<!--                android:id="@+id/button_add"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/recyclerView_habitlist"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="160dp"-->
-<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                app:shapeAppearance="@style/HabitListTheme"-->
-<!--                android:backgroundTint="@color/addNewHabitBackground"-->
-<!--                app:strokeWidth="0dp" />-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
-
-<!--    <Button-->
-<!--        android:id="@+id/button_add"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/recyclerView_habitlist"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="160dp"-->
-<!--        style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--        app:shapeAppearance="@style/HabitListTheme"-->
-<!--        android:backgroundTint="#F5F3ED"-->
-<!--        app:strokeColor="#BDB8AA"-->
-<!--        app:strokeWidth="0.5dp"-->
-<!--        android:elevation="3dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

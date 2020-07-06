@@ -34,9 +34,9 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-       client!!.silentSignIn().addOnCompleteListener {
+        client!!.silentSignIn().addOnCompleteListener {
            handleSignInResult(it)
-       }
+        }
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
@@ -54,6 +54,7 @@ class SplashActivity : AppCompatActivity() {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("HabitBread", "signInResult:failed code=" + e.statusCode)
+            updateUi(null);
         }
     }
 

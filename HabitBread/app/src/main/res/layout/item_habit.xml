@@ -59,9 +59,19 @@
         android:id="@+id/imageView_dot"
         app:layout_constraintBottom_toTopOf="@id/textView_isToday"
         app:layout_constraintStart_toEndOf="@+id/textView_isToday"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
         android:src="@drawable/icon_dot" />
+
+    <ImageView
+        android:id="@+id/imageView_forward_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imageView_dot"
+        app:layout_constraintVertical_bias="0.8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_forward_arrow"/>
 
     <TextView
         android:id="@+id/textView_Sun"
@@ -73,6 +83,7 @@
         android:layout_marginBottom="25dp"
         android:text="일"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <TextView
@@ -86,6 +97,7 @@
         android:layout_marginStart="25dp"
         android:text="월"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <TextView
@@ -99,6 +111,7 @@
         android:layout_marginStart="25dp"
         android:text="화"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <TextView
@@ -112,6 +125,7 @@
         android:layout_marginStart="25dp"
         android:text="수"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <TextView
@@ -125,6 +139,7 @@
         android:layout_marginStart="25dp"
         android:text="목"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <TextView
@@ -138,6 +153,7 @@
         android:layout_marginStart="25dp"
         android:text="금"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <TextView
@@ -151,6 +167,7 @@
         android:layout_marginStart="25dp"
         android:text="토"
         android:textColor="@android:color/black"
+        android:background="@drawable/background_dayofweek_default"
         android:gravity="center" />
 
     <View
