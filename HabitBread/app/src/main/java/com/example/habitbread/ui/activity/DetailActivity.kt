@@ -22,11 +22,13 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var materialCalendarView: MaterialCalendarView
     private val detailViewModel: DetailViewModel by viewModels()
     private var habitId: Int = -1
+    private var habitDescription: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         habitId = intent.getIntExtra("habitId", -1)
+        habitDescription = intent.getStringExtra("habitDescription")
         setDetailInfo()
         onClickCommit()
         onClickBackArrow()
@@ -37,6 +39,8 @@ class DetailActivity : AppCompatActivity() {
         val todayDate: String = LocalDate.now().toString()
         val year = todayDate.substring(0, 4).toInt()
         val month = todayDate.substring(5, 7).toInt()
+
+        textView_description.text = habitDescription
 
         //calendar setting
         materialCalendarView = calendarView_habit_detail
@@ -60,7 +64,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     inner class DecoratorDays(dayList: List<CalendarDay>) : DayViewDecorator{
-        // TODO : drawable 체크는 테스트임! 디자인 정해지면 정사각형으로 바꾸기
         val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.icon_calendar_check)
         val list = dayList
 

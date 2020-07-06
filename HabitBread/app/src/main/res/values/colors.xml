@@ -5,7 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorHabitList">#F5F3ED</color>
     <color name="checkedTrue">#80553615</color>
-    <color name="checkedFalse">#E2E2E2</color>
+    <color name="checkedFalse">#FFFFFF</color>
     <color name="checkedTrueTransparency">#66553615</color>
     <drawable name="checkedTrue">#80553615</drawable>
     <drawable name="checkedFalse">#E2E2E2</drawable>

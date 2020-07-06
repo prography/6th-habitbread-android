@@ -10,6 +10,15 @@
     <string name="totalRanking">당신은 %d 명 중에 %s 등입니다."</string>
     <string name="bakeryTitle">베이커리</string>
 
+    <!-- create new habit strings -->
+    <string name="createNewHabitTitle">습관빵 만들기</string>
+    <string name="newHabitName">습관빵 이름</string>
+    <string name="newHabitDescrition">설명</string>
+    <string name="newHabitNameHint">제목을 적어주세요</string>
+    <string name="newHabitDescriptionHint">내용을 적어주세요</string>
+    <string name="alarmTimeTitle">알람</string>
+    <string name="alarmDayTitle">빵 굽는 날</string>
+
     <!-- bread level strings -->
     <string name="level1">LV1</string>
 </resources>
