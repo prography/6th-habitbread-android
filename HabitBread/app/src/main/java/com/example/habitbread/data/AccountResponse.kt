@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 data class AccountResponse(
     @SerializedName("name")
     val accountName: String,
-    @SerializedName("level")
-    val userLevel: Int,
+    @SerializedName("itemTotalCount")
+    val totalItemCount: Int,
     @SerializedName("exp")
     val userExp: Int,
-    @SerializedName("levelPercent")
-    val userPercentage: Int
+    @SerializedName("percent")
+    val percent: Int
 )

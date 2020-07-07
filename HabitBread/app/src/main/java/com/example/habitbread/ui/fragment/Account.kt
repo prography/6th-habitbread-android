@@ -1,17 +1,18 @@
 package com.example.habitbread.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.habitbread.R
+import com.example.habitbread.base.BaseApplication
+import com.example.habitbread.ui.activity.MainActivity
 import com.example.habitbread.ui.viewModel.AccountViewModel
-import com.example.habitbread.ui.viewModel.RankingViewModel
 import kotlinx.android.synthetic.main.fragment_account.*
 
 class Account : Fragment() {
@@ -31,13 +32,20 @@ class Account : Fragment() {
         accountViewModel.getUserInfo();
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer {
             textview_profile_nickname.text = it.accountName
-            progress_exp.progress = it.userPercentage
-            textview_progress_exp.text = it.userPercentage.toString() + "%"
+            progress_exp.progress = it.percent
+            textview_progress_exp.text = it.percent.toString() + "%"
             textview_account_exp.text = it.userExp.toString()
-            textview_bread_num.text = it.userLevel.toString()
-            textview_current_bread_num.text = String.format(getString(R.string.currentBreadNum), it.userLevel);
+            textview_bread_num.text = it.totalItemCount.toString()
+            textview_current_bread_num.text = String.format(getString(R.string.currentBreadNum), it.totalItemCount);
         })
         setOnClickListener();
+        setOnToggleListener();
+    }
+
+    private fun setOnToggleListener() {
+        switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
+            // todo : add fcm to check it. ( register & unregister ) 
+        }
     }
 
     private fun setOnClickListener() {
@@ -48,7 +56,7 @@ class Account : Fragment() {
             Log.d("HabitBread", "ChangeNickname")
         }
         imageButton_delete_account.setOnClickListener {
-            Log.d("HabitBread", "Delete Account")
+            deleteAccount()
         }
         imageButton_logout.setOnClickListener {
             Log.d("HabitBread", "Logout")
@@ -59,5 +67,13 @@ class Account : Fragment() {
         imageButton_change_info.setOnClickListener {
             Log.d("HabitBread", "Change Info")
         }
+    }
+
+    private fun deleteAccount() {
+        // todo : deleteAccount with and go to LoginActivity
+    }
+
+    private fun signOut() {
+        //todo : signout with sharedPreferences and go to LoginActivity signOut
     }
 }

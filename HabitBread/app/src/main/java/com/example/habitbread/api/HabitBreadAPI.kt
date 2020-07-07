@@ -17,4 +17,6 @@ interface HabitBreadAPI {
     fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
     @GET("/users")
     fun getUserInfo() : Call<AccountResponse>
+    @DELETE("/users")
+    fun deleteAccount() : Call<BaseResponse>
 }
