@@ -2,7 +2,7 @@ package com.example.habitbread.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.habitbread.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.example.habitbread.data.CommitResponse
 import com.example.habitbread.data.DetailResponse
 import com.example.habitbread.repository.DetailRepository
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Error
 
-class DetailViewModel : BaseViewModel(){
+class DetailViewModel : ViewModel(){
 
     var detailData: MutableLiveData<DetailResponse> = MutableLiveData()
     var commitData: MutableLiveData<Response<CommitResponse>> = MutableLiveData()

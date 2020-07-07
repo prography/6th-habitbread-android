@@ -2,7 +2,7 @@ package com.example.habitbread.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.habitbread.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.example.habitbread.data.HabitListResponse
 import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.repository.HabitRepository
@@ -10,7 +10,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Error
 
-class HabitViewModel : BaseViewModel(){
+class HabitViewModel : ViewModel(){
 
     var rvData: MutableLiveData<HabitListResponse> = MutableLiveData()
 
