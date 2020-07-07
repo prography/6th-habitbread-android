@@ -67,7 +67,8 @@
             android:hint="@string/newHabitNameHint"
             android:textColorHint="#D2CEC9"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:inputType="text"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +82,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:text="@string/newHabitDescrition"/>
+        android:text="@string/newHabitDescrition" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_description"
@@ -101,7 +102,8 @@
             android:hint="@string/newHabitDescriptionHint"
             android:textColorHint="#D2CEC9"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:inputType="text"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

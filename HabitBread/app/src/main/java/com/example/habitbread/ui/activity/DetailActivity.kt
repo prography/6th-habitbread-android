@@ -1,7 +1,6 @@
 package com.example.habitbread.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -22,32 +21,36 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var materialCalendarView: MaterialCalendarView
     private val detailViewModel: DetailViewModel by viewModels()
     private var habitId: Int = -1
+    private var habitName: String? = ""
     private var habitDescription: String? = ""
+    //현 시각 년도, 월 구하기
+    val todayDate: String = LocalDate.now().toString()
+    val year = todayDate.substring(0, 4).toInt()
+    val month = todayDate.substring(5, 7).toInt()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         habitId = intent.getIntExtra("habitId", -1)
+        habitName = intent.getStringExtra("habitName")
         habitDescription = intent.getStringExtra("habitDescription")
-        setDetailInfo()
+        setDetailContents()
+        setCalendarInfo(habitId, year, month)
         onClickCommit()
         onClickBackArrow()
+        onSwipeMonthEvent()
     }
 
-    private fun setDetailInfo(){
-        //현 시각 년도, 월 구하기
-        val todayDate: String = LocalDate.now().toString()
-        val year = todayDate.substring(0, 4).toInt()
-        val month = todayDate.substring(5, 7).toInt()
-
-        textView_description.text = habitDescription
-
+    private fun setDetailContents() {
         //calendar setting
         materialCalendarView = calendarView_habit_detail
+        textView_detail_title.text = habitName
+        textView_description.text = habitDescription
+    }
 
+    private fun setCalendarInfo(habitId: Int, year: Int, month: Int){
         detailViewModel.getDetailData(habitId, year, month)
         detailViewModel.detailData.observe(this, Observer {
-            textView_detail_title.text = it.habit.title
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
             val committedDayList: MutableList<CalendarDay> = mutableListOf()
@@ -89,12 +92,20 @@ class DetailActivity : AppCompatActivity() {
                 if(it.raw().code == 303) {
                     Toast.makeText(this, "습관빵을 이미 구웠습니다!", Toast.LENGTH_SHORT).show()
                 }else if(it.code() == 201 && it.body()?.itemId == null){
-                    setDetailInfo()
+                    setCalendarInfo(habitId, year, month)
                 }else {
                     // TODO: 레벨업 했을 때 아이템 정보 팝업으로 띄워주기(디자인나오면 다시 하기)
-                    Toast.makeText(this, "축하합니다! 새로운 습관빵을 얻으셨네요!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "축하합니다~ 새로운 습관빵을 얻으셨네요! 베이커리에서 확인하세요!", Toast.LENGTH_LONG).show()
                 }
             })
+        }
+    }
+
+    private fun onSwipeMonthEvent() {
+        materialCalendarView.setOnMonthChangedListener { widget, date ->
+            val swipedYear: Int = date.year
+            val swipedMonth: Int = date.month
+            setCalendarInfo(habitId, swipedYear, swipedMonth)
         }
     }
 }

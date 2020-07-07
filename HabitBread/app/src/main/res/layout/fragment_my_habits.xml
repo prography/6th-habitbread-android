@@ -83,7 +83,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:overScrollMode="never"/>
+                android:overScrollMode="never" />
 
             <include
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_habitlist"
@@ -91,7 +91,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_button"/>
+                layout="@layout/layout_add_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

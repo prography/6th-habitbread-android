@@ -76,7 +76,7 @@ class MyHabits : Fragment() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onBottomSheetDoneEvent(modalPost: ModalPost){
-        val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, description = "test Description",dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
+        val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, description = modalPost.description, dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
         habitViewModel.postHabit(body)
     }
 

@@ -8,8 +8,7 @@ import com.example.habitbread.repository.BakeryRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class BakeryViewModel: BaseViewModel() {
-
+class BakeryViewModel: BaseViewModel(){
     var breadsData: MutableLiveData<List<BreadResponse>?> = MutableLiveData()
 
     fun getBreads(){

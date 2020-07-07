@@ -74,6 +74,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             itemView.button_habit.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
                 intent.putExtra("habitId", data.habitId)
+                intent.putExtra("habitName", data.habitName)
                 intent.putExtra("habitDescription", data.description)
                 context?.startActivity(intent)
             }

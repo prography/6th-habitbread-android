@@ -14,6 +14,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     var getHabitTitle: String = ""
     var getHabitCategory: String = "운동"
+    var getHabitDescription: String? = ""
     var getHabitAlarmDay: String = ""
     var getHabitAlarmTime: String = ""
     var days: MutableList<String> = mutableListOf("0", "0", "0", "0", "0", "0", "0")
@@ -107,11 +108,12 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
     fun onRegisterDone(){
         imageView_done.setOnClickListener {
             getHabitTitle = editText_title.text.toString()
+            getHabitDescription = editText_description.text.toString()
             for(i in 0..6) {
                 getHabitAlarmDay += days[i]
             }
             getHabitAlarmTime = timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
-            EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitAlarmDay, getHabitAlarmTime))
+            EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmDay, getHabitAlarmTime))
             dismiss()
         }
     }
