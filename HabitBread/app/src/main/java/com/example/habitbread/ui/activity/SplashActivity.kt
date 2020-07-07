@@ -24,19 +24,16 @@ class SplashActivity : AppCompatActivity() {
     private var client : GoogleSignInClient? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com")
                 .requestEmail()
                 .build()
         client = GoogleSignIn.getClient(this, gso)
-    }
-
-    override fun onStart() {
-        super.onStart()
         client!!.silentSignIn().addOnCompleteListener {
-           handleSignInResult(it)
+            if (it.isSuccessful) {
+                handleSignInResult(it)
+            }
         }
     }
 

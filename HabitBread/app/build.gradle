@@ -121,4 +121,7 @@ dependencies {
     //navigation testing dependency
     androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
 
+    //viewpager2 dependency
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
 }
