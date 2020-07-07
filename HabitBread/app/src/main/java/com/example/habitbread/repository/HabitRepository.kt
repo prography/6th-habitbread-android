@@ -33,7 +33,6 @@ class HabitRepository {
             val getRequest = habitBreadAPI.getAllHabitLists()
             val getResponse = getRequest.await()
             allHabitListData = getResponse
-            Log.d("chohee", postResponse.toString())
         }
         return allHabitListData
     }

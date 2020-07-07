@@ -5,7 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorHabitList">#F5F3ED</color>
     <color name="checkedTrue">#80553615</color>
-    <color name="checkedFalse">#E2E2E2</color>
+    <color name="checkedFalse">#FFFFFF</color>
     <color name="checkedTrueTransparency">#66553615</color>
     <drawable name="checkedTrue">#80553615</drawable>
     <drawable name="checkedFalse">#E2E2E2</drawable>
@@ -16,12 +16,16 @@
     <color name="dotColor">#C94F4F</color>
     <color name="addNewHabitBackground">#D2CFC9</color>
 
+    <!-- habit list colors -->
+    <color name="transparency">#CCFFFFFF</color>
+
     <!-- bread level colors -->
     <color name="breadLevel1">#1A726655</color>
     <color name="getBreadLevel1">#AD9C82</color>
     <color name="getBreadLevel2">#A5BCB2</color>
     <color name="getBreadLevel3">#AD9C82</color>
     <color name="getBreadLevel4">#AD9C82</color>
+
 
 
 </resources>

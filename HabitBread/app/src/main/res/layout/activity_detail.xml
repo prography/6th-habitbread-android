@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView_detail_title"
-        app:layout_constraintTop_toBottomOf="@id/imageView_bakery"
+        app:layout_constraintTop_toBottomOf="@id/imageView_setting"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:textColor="@android:color/black"/>
 
     <ImageView
-        android:id="@+id/imageView_bakery"
+        android:id="@+id/imageView_setting"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
@@ -92,27 +92,50 @@
             app:mcv_showOtherDates="all"
             app:mcv_tileSize="match_parent" />
 
-        <TextView
-            android:id="@+id/textView_detail_ment"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:id="@+id/linearLayout_delete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="저번달보다 빵 구운 횟수가 10회 적어요"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView_detail_delete_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="습관빵을 삭제하시려면 "
+                android:textColor="#A5A5A5"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/textView_detail_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여기"
+                android:textColor="#6D6D70"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/textView_detail_delete_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="를 눌러주세요"
+                android:textColor="#A5A5A5"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/textView_continue_value"
-            app:layout_constraintBottom_toTopOf="@+id/textView_detail_ment"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout_delete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="10dp"
             android:text="32회"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -120,13 +143,13 @@
 
         <TextView
             android:id="@+id/textView_total_value"
-            app:layout_constraintBottom_toTopOf="@+id/textView_detail_ment"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout_delete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="10dp"
             android:text="3회"
             android:textSize="25sp"
             android:textStyle="bold"

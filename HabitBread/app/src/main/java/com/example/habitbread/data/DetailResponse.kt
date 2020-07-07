@@ -9,5 +9,25 @@ data class DetailResponse(
     val commitFullCount: Int
 )
 
+data class HabitDetailInfo(
+    @SerializedName("habitId")
+    val habitId: Int,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("continuousCount")
+    val continuousCount: Int,
+    @SerializedName("commitHistory")
+    val commitHistory: List<HabitCommitHistory>
+)
+
+data class HabitCommitHistory(
+    @SerializedName("createdAt")
+    val createdAt: String
+)
+
+data class DeleteHabit(
+    @SerializedName("message")
+    val message: String
+)
 
 
