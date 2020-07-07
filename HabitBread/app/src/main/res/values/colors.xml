@@ -16,12 +16,16 @@
     <color name="dotColor">#C94F4F</color>
     <color name="addNewHabitBackground">#D2CFC9</color>
 
+    <!-- habit list colors -->
+    <color name="transparency">#CCFFFFFF</color>
+
     <!-- bread level colors -->
     <color name="breadLevel1">#1A726655</color>
     <color name="getBreadLevel1">#AD9C82</color>
     <color name="getBreadLevel2">#A5BCB2</color>
     <color name="getBreadLevel3">#AD9C82</color>
     <color name="getBreadLevel4">#AD9C82</color>
+
 
 
 </resources>

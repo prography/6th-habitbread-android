@@ -23,14 +23,13 @@ class DetailActivity : AppCompatActivity() {
     private var habitId: Int = -1
     private var habitName: String? = ""
     private var habitDescription: String? = ""
-    //현 시각 년도, 월 구하기
-    val todayDate: String = LocalDate.now().toString()
-    val year = todayDate.substring(0, 4).toInt()
-    val month = todayDate.substring(5, 7).toInt()
+    val year = LocalDate.now().toString().substring(0, 4).toInt() // 현 시각 년도
+    val month = LocalDate.now().toString().substring(5, 7).toInt() // 현 시각 월
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
         habitId = intent.getIntExtra("habitId", -1)
         habitName = intent.getStringExtra("habitName")
         habitDescription = intent.getStringExtra("habitDescription")
@@ -39,6 +38,8 @@ class DetailActivity : AppCompatActivity() {
         onClickCommit()
         onClickBackArrow()
         onSwipeMonthEvent()
+        onClickSetting()
+        onClickDelete()
     }
 
     private fun setDetailContents() {
@@ -106,6 +107,25 @@ class DetailActivity : AppCompatActivity() {
             val swipedYear: Int = date.year
             val swipedMonth: Int = date.month
             setCalendarInfo(habitId, swipedYear, swipedMonth)
+        }
+    }
+
+    private fun onClickSetting() {
+        imageView_setting.setOnClickListener {
+            Toast.makeText(this, "죄송합니다 현재 개발 중인 기능입니다!", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun onClickDelete() {
+        textView_detail_delete.setOnClickListener {
+            detailViewModel.deleteHabit(habitId)
+            detailViewModel.deleteData.observe(this, Observer {
+                if(it.message == "success") {
+                    finish()
+                }else {
+                    Toast.makeText(this, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }

@@ -44,13 +44,13 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             }else if(data.dayOfWeek[DateCalculation().getTodayOfWeek()+1] == '1'){
                 itemView.textView_isToday.text = "내일"
                 itemView.imageView_dot.visibility = View.INVISIBLE
-                itemView.textView_isToday.setBackgroundColor(Color.parseColor("#99FFFFFF"))
-                itemView.button_habit.setBackgroundColor(Color.parseColor("#99FFFFFF"))
+                itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+                itemView.button_habit.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
             }else {
                 itemView.textView_isToday.visibility = View.INVISIBLE
                 itemView.imageView_dot.visibility = View.INVISIBLE
-                itemView.textView_isToday.setBackgroundColor(Color.parseColor("#99FFFFFF"))
-                itemView.button_habit.setBackgroundColor(Color.parseColor("#99FFFFFF"))
+                itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+                itemView.button_habit.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
             }
 
             // 습관 등록 요일만 표시하기

@@ -21,4 +21,9 @@
 
     <!-- bread level strings -->
     <string name="level1">LV1</string>
+
+    <!-- detail strings -->
+    <string name="deleteleft">습관빵을 삭제하시려면 </string>
+    <string name="deleteHere"><u>여기</u></string>
+    <string name="deleteright">를 눌러주세요</string>
 </resources>
