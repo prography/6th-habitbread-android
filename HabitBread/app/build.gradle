@@ -2,6 +2,7 @@ apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -119,4 +120,5 @@ dependencies {
 
     //navigation testing dependency
     androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
+
 }
