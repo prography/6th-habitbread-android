@@ -110,4 +110,5 @@ dependencies {
 
     //time picker dependencies
     implementation 'com.github.ifr0z:timepickercompact:1.0'
+    implementation 'org.conscrypt:conscrypt-android:2.2.1'
 }

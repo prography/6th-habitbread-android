@@ -1,12 +1,19 @@
 package com.example.habitbread.ui.fragment
 
+import android.app.Dialog
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.habitbread.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_registraion.*
 import org.greenrobot.eventbus.EventBus
 
@@ -38,6 +45,18 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         onRegisterCancle()
         onRegisterDone()
     }
+
+//    todo : 이 코드는 dialog를 한번에 맨 위로 올리는 코드이다. 이 코드를 쓸 건지 말지 상의해보자.
+//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+//        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog;
+//        bottomSheetDialog.setOnShowListener {dialog ->
+//            val bottomDialog = dialog as BottomSheetDialog
+//            val bottomSheet = bottomDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+//            val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
+//            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED;
+//        }
+//        return bottomSheetDialog
+//    }
 
     fun handlingCategoryChips(){
         chip_mon.setOnCheckedChangeListener { buttonView, isChecked ->

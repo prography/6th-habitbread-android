@@ -41,6 +41,7 @@
         android:id="@+id/textView_title"
         app:layout_constraintStart_toStartOf="@id/imageView_close"
         app:layout_constraintTop_toBottomOf="@+id/textView_registration"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -54,6 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_title"
         app:layout_constraintStart_toStartOf="@+id/textView_title"
         app:layout_constraintEnd_toEndOf="@id/imageView_done"
+        app:layout_constraintBottom_toTopOf="@id/textView_registration_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="#ffffff"
@@ -76,6 +78,7 @@
         android:id="@+id/textView_registration_description"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout_name"
         app:layout_constraintStart_toStartOf="@id/textView_title"
+        app:layout_constraintBottom_toTopOf="@id/textInputLayout_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -88,6 +91,7 @@
         android:id="@+id/textInputLayout_description"
         app:layout_constraintTop_toBottomOf="@+id/textView_registration_description"
         app:layout_constraintStart_toStartOf="@id/textView_title"
+        app:layout_constraintBottom_toTopOf="@id/textView_alarm_day"
         app:layout_constraintEnd_toEndOf="@id/imageView_done"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -112,6 +116,7 @@
         android:id="@+id/textView_alarm_day"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_description"
         app:layout_constraintStart_toStartOf="@+id/textView_title"
+        app:layout_constraintBottom_toTopOf="@id/horizontalScrollView_alarm_day"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,6 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_alarm_day"
         app:layout_constraintStart_toStartOf="@+id/textView_alarm_day"
         app:layout_constraintEnd_toEndOf="@+id/imageView_done"
+        app:layout_constraintBottom_toTopOf="@id/textView_alarm_time"
         android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content">
@@ -211,6 +217,7 @@
     <TextView
         android:id="@+id/textView_alarm_time"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView_alarm_day"
+        app:layout_constraintBottom_toTopOf="@id/timepicker_alarm_time"
         app:layout_constraintStart_toStartOf="@+id/textView_title"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
@@ -226,7 +233,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView_done"
         app:layout_constraintBottom_toBottomOf="@id/textView_alarm_time"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:checked="true"/>
 
     <ru.ifr0z.timepickercompact.TimePickerCompact
@@ -235,8 +242,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:timePickerMode = "spinner"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
