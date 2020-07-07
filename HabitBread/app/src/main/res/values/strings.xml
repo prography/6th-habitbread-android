@@ -18,6 +18,7 @@
     <string name="newHabitDescriptionHint">내용을 적어주세요</string>
     <string name="alarmTimeTitle">알람</string>
     <string name="alarmDayTitle">빵 굽는 날</string>
+    <string name="alarmOff">알람이 꺼져있습니다</string>
 
     <!-- bread level strings -->
     <string name="level1">LV1</string>

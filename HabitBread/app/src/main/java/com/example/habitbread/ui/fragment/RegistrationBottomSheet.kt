@@ -1,19 +1,16 @@
 package com.example.habitbread.ui.fragment
 
 import android.app.Dialog
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.habitbread.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_registraion.*
 import org.greenrobot.eventbus.EventBus
 
@@ -42,21 +39,21 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         handlingCategoryChips()
+        onCheckAlarmSwith()
         onRegisterCancle()
         onRegisterDone()
     }
 
-//    todo : 이 코드는 dialog를 한번에 맨 위로 올리는 코드이다. 이 코드를 쓸 건지 말지 상의해보자.
-//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-//        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog;
-//        bottomSheetDialog.setOnShowListener {dialog ->
-//            val bottomDialog = dialog as BottomSheetDialog
-//            val bottomSheet = bottomDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
-//            val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-//            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED;
-//        }
-//        return bottomSheetDialog
-//    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog;
+        bottomSheetDialog.setOnShowListener {dialog ->
+            val bottomDialog = dialog as BottomSheetDialog
+            val bottomSheet = bottomDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED;
+        }
+        return bottomSheetDialog
+    }
 
     fun handlingCategoryChips(){
         chip_mon.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -124,6 +121,18 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
+    fun onCheckAlarmSwith() {
+        switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked == true) {
+                timepicker_alarm_time.visibility = View.VISIBLE
+                textView_isAlarmChecked.visibility = View.INVISIBLE
+            }else {
+                timepicker_alarm_time.visibility = View.INVISIBLE
+                textView_isAlarmChecked.visibility = View.VISIBLE
+            }
+        }
+    }
+
     fun onRegisterDone(){
         imageView_done.setOnClickListener {
             getHabitTitle = editText_title.text.toString()
@@ -131,7 +140,11 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             for(i in 0..6) {
                 getHabitAlarmDay += days[i]
             }
-            getHabitAlarmTime = timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
+            if(switch_alarm.isChecked == true) {
+                getHabitAlarmTime = timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
+            }else {
+                getHabitAlarmTime = ""
+            }
             EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmDay, getHabitAlarmTime))
             dismiss()
         }
