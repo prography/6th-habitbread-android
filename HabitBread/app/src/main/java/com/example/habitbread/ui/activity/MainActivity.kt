@@ -46,11 +46,7 @@ class MainActivity : AppCompatActivity() {
 //                TODO("Not yet implemented")
             }
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 //                TODO("Not yet implemented")
             }
 
@@ -63,10 +59,6 @@ class MainActivity : AppCompatActivity() {
     private fun initBottomNavigation() {
         main_bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.myHabits -> {
-                    setPageIndex(0)
-                    return@setOnNavigationItemSelectedListener true
-                }
                 R.id.ranking -> {
                     setPageIndex(1)
                     return@setOnNavigationItemSelectedListener true
@@ -75,8 +67,11 @@ class MainActivity : AppCompatActivity() {
                     setPageIndex(2)
                     return@setOnNavigationItemSelectedListener true
                 }
+                else -> {
+                    setPageIndex(0)
+                    return@setOnNavigationItemSelectedListener true
+                }
             }
-            false
         }
     }
 
