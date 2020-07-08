@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">#553615</item>
         <item name="colorPrimaryDark">#FF553615</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -10,9 +9,35 @@
 
     <!-- Habit List theme -->
     <style name="HabitListTheme" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <!-- Customize your theme here. -->
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">20dp</item>
+        <item name="cornerSize">10dp</item>
     </style>
 
+    <!-- Bottom Sheet Dialog theme -->
+    <style name="bottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+    </style>
+
+    <!-- Alarm WeekDay theme -->
+    <style name="AlarmWeekDayTheme" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="android:shape">oval</item>
+    </style>
+
+    <!-- Alarm Chip Text theme -->
+    <style name="AlarmChipTextTheme" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Alarm Chip theme -->
+    <style name="AlarmChipTheme" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/selector_chip</item>
+        <item name="rippleColor">@color/appGreenColor</item>
+        <item name="chipCornerRadius">120dp</item>
+        <item name="chipMinTouchTargetSize">0dp</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipStrokeColor">#787877</item>
+    </style>
 </resources>

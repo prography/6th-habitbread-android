@@ -2,12 +2,13 @@ package com.example.habitbread.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.habitbread.R
 import com.example.habitbread.api.FirebaseAPI
 import com.example.habitbread.base.BaseActivity
-import com.example.habitbread.databinding.ActivityMainBinding
 import com.example.habitbread.ui.fragment.Account
 import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.example.habitbread.ui.fragment.MyHabits
@@ -18,9 +19,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-
-    private val viewModel: HabitViewModel by viewModel()
+class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
@@ -31,7 +30,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        dataBinding.viewModel = viewModel;
         initBottomNavigation()
     }
 
