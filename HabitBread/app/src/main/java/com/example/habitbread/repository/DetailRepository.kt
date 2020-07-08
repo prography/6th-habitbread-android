@@ -2,6 +2,7 @@ package com.example.habitbread.repository
 
 import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.data.CommitResponse
+import com.example.habitbread.data.DeleteHabit
 import com.example.habitbread.data.DetailResponse
 import kotlinx.coroutines.runBlocking
 import retrofit2.Response
@@ -13,6 +14,7 @@ class DetailRepository {
     private val habitBreadAPI = ServerImpl.APIService
     private lateinit var detailData : DetailResponse
     private lateinit var commitResponse: Response<CommitResponse>
+    private lateinit var deleteHabit: DeleteHabit
 
     fun getDetailData(habitId: Int, year: Int, month: Int): DetailResponse {
         runBlocking {
@@ -31,4 +33,13 @@ class DetailRepository {
         }
         return commitResponse
    }
+
+    fun deleteHabit(habitId: Int): DeleteHabit {
+        runBlocking {
+            val request = habitBreadAPI.deleteHabit(habitId)
+            val response: DeleteHabit = request.await()
+            deleteHabit = response
+        }
+        return deleteHabit
+    }
 }

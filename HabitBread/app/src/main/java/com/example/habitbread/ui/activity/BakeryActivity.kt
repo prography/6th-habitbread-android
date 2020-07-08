@@ -11,6 +11,7 @@ import com.example.habitbread.adapter.BakeryAdapter
 import com.example.habitbread.data.BreadsData
 import com.example.habitbread.ui.viewModel.BakeryViewModel
 import com.example.habitbread.util.GridViewDecoration
+import kotlinx.android.synthetic.main.activity_bakery.*
 
 class BakeryActivity : AppCompatActivity() {
 
@@ -30,6 +31,7 @@ class BakeryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bakery)
         initRecyclerView()
         setBreads()
+        onClickBackArrow()
     }
 
     private fun initRecyclerView() {
@@ -99,5 +101,11 @@ class BakeryActivity : AppCompatActivity() {
             rvBakeryAdapterLevel3.notifyDataSetChanged()
             rvBakeryAdapterLevel4.notifyDataSetChanged()
         })
+    }
+
+    private fun onClickBackArrow() {
+        imageVew_back_button.setOnClickListener {
+            finish()
+        }
     }
 }

@@ -37,7 +37,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {  
         try {
             val account = completedTask.getResult(ApiException::class.java)
             if (account != null) {

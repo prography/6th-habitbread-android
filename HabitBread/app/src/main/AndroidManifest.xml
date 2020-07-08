@@ -12,17 +12,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--Set custom default icon for FCM notification-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_launcher_foreground" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+      
         <activity android:name=".ui.activity.SplashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      
         <activity android:name=".ui.activity.LoginActivity"/>
         <activity android:name=".ui.activity.DetailActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.BakeryActivity" />
+
+        <service
+            android:name="com.example.habitbread.api.FirebaseAPI"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+      
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.habitbread.R
 import com.example.habitbread.api.ServerImpl
+import com.example.habitbread.base.BaseApplication
 import com.example.habitbread.data.GoogleOAuthResponse
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -92,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 val googleOauthResponse = response.body();
                 if (googleOauthResponse?.idToken != null) {
                     Log.d(TAG, googleOauthResponse.idToken)
+                    BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
                     val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
