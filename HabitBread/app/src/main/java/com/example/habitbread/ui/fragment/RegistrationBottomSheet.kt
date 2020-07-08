@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.habitbread.R
 import com.example.habitbread.adapter.AlarmWeekAdapter
@@ -17,7 +18,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
     private lateinit var adapterAlarmWeekDay: AlarmWeekAdapter
 
     var getHabitTitle: String = ""
-    var getHabitCategory: String = "운동"
+    var getHabitCategory: String = "기타"
     var getHabitAlarmDay: String = "1000000"
     var getHabitAlarmTime: String = ""
 
@@ -64,7 +65,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
 //            chip?.let {
 //                Toast.makeText(context, chip.text, Toast.LENGTH_SHORT).show()
 //                //convertDayToInt(chip.text.toString())
-//            }
+//            }타
 //        }
 //    }
 
@@ -72,7 +73,11 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         imageView_done.setOnClickListener {
             dismiss()
             getHabitTitle = editText_title.text.toString()
-            EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitAlarmDay, getHabitAlarmTime))
+            if (getHabitTitle.isNotEmpty()) {
+                EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitAlarmDay, getHabitAlarmTime))
+            } else {
+                Toast.makeText(this.context, "제목이 있어야 합니다!!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

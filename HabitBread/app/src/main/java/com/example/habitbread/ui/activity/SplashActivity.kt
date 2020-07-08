@@ -57,11 +57,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun updateUi(idToken: String?) {
-        var intent : Intent? = null;
-        if (idToken != null) {
-            intent = Intent(this@SplashActivity, MainActivity::class.java)
+        val intent : Intent = if (idToken != null) {
+            Intent(this@SplashActivity, MainActivity::class.java)
         } else {
-            intent = Intent(this@SplashActivity, LoginActivity::class.java)
+            Intent(this@SplashActivity, LoginActivity::class.java)
         }
         BaseApplication.preferences.googleIdToken = idToken;
         startActivity(intent)

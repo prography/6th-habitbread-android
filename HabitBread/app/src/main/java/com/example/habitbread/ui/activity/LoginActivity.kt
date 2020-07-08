@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.d(TAG, "onResponse: ${response.body()}")
                 val googleOauthResponse = response.body();
                 if (googleOauthResponse?.idToken != null) {
-                    Log.d(TAG, googleOauthResponse!!.idToken)
+                    Log.d(TAG, googleOauthResponse.idToken)
                     val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

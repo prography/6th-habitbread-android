@@ -15,10 +15,10 @@ class DateCalculation {
     }
 
     fun getTodayOfWeekWithDate(inputDate: String): Int {
-        val dataFormat = SimpleDateFormat("yyyy-MM-dd")
-        val date: Date = dataFormat.parse(inputDate)
+        val dataFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+        val date: Date? = dataFormat.parse(inputDate)
         val calendar: Calendar = Calendar.getInstance()
-        calendar.time = date
+        calendar.time = date!!
         return calendar.get(Calendar.DAY_OF_WEEK)-1
     }
 

@@ -2,7 +2,6 @@ apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
-apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -108,18 +107,6 @@ dependencies {
 
     //google gsm dependencies
     implementation "com.google.android.gms:play-services-auth:18.0.0"
-    
-    //application navigation dependency
-    def navigation_version = "2.3.0"
-    //Kotlin language navigation dependency
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-
-    //dynamic feature module support dependency
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigation_version"
-
-    //navigation testing dependency
-    androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
 
     //viewpager2 dependency
     implementation "androidx.viewpager2:viewpager2:1.0.0"
