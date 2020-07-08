@@ -26,4 +26,10 @@
         app:menu="@menu/bottom_navigation_items"
         android:background="@color/appBackground"
         app:labelVisibilityMode="unlabeled"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/main_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

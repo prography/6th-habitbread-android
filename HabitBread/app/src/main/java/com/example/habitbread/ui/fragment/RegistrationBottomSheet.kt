@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.FrameLayout
 import com.example.habitbread.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -17,7 +19,7 @@ import org.greenrobot.eventbus.EventBus
 class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     var getHabitTitle: String = ""
-    var getHabitCategory: String = "운동"
+    var getHabitCategory: String = "기타"
     var getHabitDescription: String? = ""
     var getHabitAlarmDay: String = ""
     var getHabitAlarmTime: String = ""
@@ -136,6 +138,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
     fun onRegisterDone(){
         imageView_done.setOnClickListener {
             getHabitTitle = editText_title.text.toString()
+
             getHabitDescription = editText_description.text.toString()
             for(i in 0..6) {
                 getHabitAlarmDay += days[i]
