@@ -5,19 +5,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProvider
 import com.example.habitbread.R
-import com.example.habitbread.api.FirebaseAPI
-import com.example.habitbread.base.BaseActivity
 import com.example.habitbread.ui.fragment.Account
-import com.example.habitbread.ui.viewModel.HabitViewModel
 import com.example.habitbread.ui.fragment.MyHabits
 import com.example.habitbread.ui.fragment.Ranking
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 

@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:721656071466:android:31e128eee0faa8a6cd8a53",
+        "android_client_info": {
+          "package_name": "com.example.fcmtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721656071466-ns8uh7dtvt3idqt26ie4eo4dd2sibv35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7u2cR-oZsV2D2Hj06iS_f5sMvF6bHx0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721656071466-ns8uh7dtvt3idqt26ie4eo4dd2sibv35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:721656071466:android:b71b963d4d2db165cd8a53",
         "android_client_info": {
           "package_name": "com.example.habitbread"
