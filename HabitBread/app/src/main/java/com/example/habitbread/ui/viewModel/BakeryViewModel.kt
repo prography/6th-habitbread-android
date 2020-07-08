@@ -2,13 +2,14 @@ package com.example.habitbread.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.habitbread.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.example.habitbread.data.BreadResponse
 import com.example.habitbread.repository.BakeryRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class BakeryViewModel: BaseViewModel(){
+class BakeryViewModel: ViewModel() {
+
     var breadsData: MutableLiveData<List<BreadResponse>?> = MutableLiveData()
 
     fun getBreads(){
