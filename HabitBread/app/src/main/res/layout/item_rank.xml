@@ -17,17 +17,20 @@
             android:id="@+id/textview_rank_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="1"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"/>
 
         <ImageView
             android:background="@drawable/ic_baseline_pencil"
             android:id="@+id/imageview_crown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/textview_rank_num"/>
@@ -39,6 +42,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="nickname"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
         android:layout_gravity="center_vertical"
         android:gravity="center"/>
 
@@ -48,6 +53,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="exp"
+        android:textColor="@android:color/black"
         android:layout_gravity="center_vertical"
         android:gravity="center"/>
 
@@ -57,6 +63,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="honor"
+        android:textColor="@android:color/black"
         android:layout_gravity="center_vertical"
         android:gravity="center"/>
 

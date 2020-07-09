@@ -36,10 +36,10 @@ class Ranking : Fragment() {
         rankingViewModel.rankingData.observe(viewLifecycleOwner, Observer {
             recyclerview_adapter.setAdapterData(it)
             if (it.user != null) {
-                val percentage = (it.user.rank.toInt()!!.div(it.userTotalCount)).times(100)
+                val percentage = (it.user.rank.toInt().div(it.userTotalCount)).times(100)
                 textview_my_rank_percent_above.visibility = View.VISIBLE
                 textview_my_rank_percent.visibility = View.VISIBLE
-                textview_my_rank_percent.text = percentage.toString()
+                textview_my_rank_percent.text = percentage.toString() + "%"
                 textview_my_rank_with_total.text = getString(R.string.totalRanking, it.userTotalCount, it.user.rank)
             } else {
                 textview_my_rank_percent_above.visibility = View.INVISIBLE

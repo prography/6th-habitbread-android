@@ -2,7 +2,12 @@ package com.example.habitbread.api
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import com.example.habitbread.data.UserInfoRequest
+import com.example.habitbread.data.UserInfoResponse
 import com.google.firebase.messaging.FirebaseMessagingService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FirebaseAPI : FirebaseMessagingService() {
 
@@ -10,10 +15,30 @@ class FirebaseAPI : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         Log.d(TAG, "Refreshed token: $token")
         super.onNewToken(token)
-        Log.d("chohee", token)
+        sendRegistrationToServer(token)
         // If you want to send messages to this application instance or
-        // manage this apps subscriptions on the server side, send the
+        // manage this apps subscrip
+        // tions on the server side, send the
         // Instance ID token to your app server.
-        // 새로운 토큰을 사용하기 위해 sendRegistrationToServer(token) 같은 함수 호출하기
+    }
+
+    fun sendRegistrationToServer(token: String) {
+        //TODO: 패치 보내기
+        val HabitBreadAPI = ServerImpl.APIService
+        val call: Call<UserInfoResponse> = HabitBreadAPI.patchUserInfo(UserInfoRequest(null, null, token))
+        call.enqueue(
+            object : Callback<UserInfoResponse>{
+                override fun onFailure(call: Call<UserInfoResponse>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<UserInfoResponse>,
+                    response: Response<UserInfoResponse>
+                ) {
+
+                }
+            }
+        )
     }
 }

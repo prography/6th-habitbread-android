@@ -2,6 +2,7 @@ package com.example.habitbread.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,8 @@ import com.example.habitbread.R
 import com.example.habitbread.adapter.HabitListAdapter
 import com.example.habitbread.data.NewHabitReq
 import com.example.habitbread.ui.activity.BakeryActivity
-import com.example.habitbread.ui.activity.DetailActivity
 import com.example.habitbread.ui.viewModel.HabitViewModel
+import com.example.habitbread.util.DateCalculation
 import kotlinx.android.synthetic.main.fragment_my_habits.*
 import kotlinx.android.synthetic.main.layout_add_button.*
 import org.greenrobot.eventbus.EventBus
@@ -44,7 +45,8 @@ class MyHabits : Fragment() {
         initRecyclerView()
         habitViewModel.rvData.observe(viewLifecycleOwner, Observer {
             textView_announcement.text = it.comment
-            recyclerview_adapter.setAdapterData(it.habits)
+            val sortedList = DateCalculation().habitListSorting(it.habits)
+            recyclerview_adapter.setAdapterData(sortedList)
         })
         onShowModal()
         onShowBakery()

@@ -17,7 +17,7 @@ import org.greenrobot.eventbus.EventBus
 class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     var getHabitTitle: String = ""
-    var getHabitCategory: String = "운동"
+    var getHabitCategory: String = "기타"
     var getHabitDescription: String? = ""
     var getHabitAlarmDay: String = ""
     var getHabitAlarmTime: String = ""

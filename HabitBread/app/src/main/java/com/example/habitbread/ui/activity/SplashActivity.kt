@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.habitbread.R
 import com.example.habitbread.api.ServerImpl
 import com.example.habitbread.base.BaseApplication
 import com.example.habitbread.data.GoogleOAuthRequest
@@ -14,7 +15,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,12 +30,10 @@ class SplashActivity : AppCompatActivity() {
                 .requestEmail()
                 .build()
         client = GoogleSignIn.getClient(this, gso)
-    }
-
-    override fun onStart() {
-        super.onStart()
         client!!.silentSignIn().addOnCompleteListener {
-           handleSignInResult(it)
+            if (it.isSuccessful) {
+                handleSignInResult(it)
+            }
         }
     }
 
@@ -59,11 +57,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun updateUi(idToken: String?) {
-        var intent : Intent? = null;
-        if (idToken != null) {
-            intent = Intent(this@SplashActivity, MainActivity::class.java)
+        val intent : Intent = if (idToken != null) {
+            Intent(this@SplashActivity, MainActivity::class.java)
         } else {
-            intent = Intent(this@SplashActivity, LoginActivity::class.java)
+            Intent(this@SplashActivity, LoginActivity::class.java)
         }
         BaseApplication.preferences.googleIdToken = idToken;
         startActivity(intent)
