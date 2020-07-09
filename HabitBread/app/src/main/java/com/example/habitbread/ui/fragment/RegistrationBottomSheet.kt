@@ -1,12 +1,15 @@
 package com.example.habitbread.ui.fragment
 
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.example.habitbread.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -16,6 +19,7 @@ import org.greenrobot.eventbus.EventBus
 
 class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
+    private val TAG: String = "RegistrationBottomSheet"
     var getHabitTitle: String = ""
     var getHabitCategory: String = "기타"
     var getHabitDescription: String? = ""
@@ -135,8 +139,9 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     fun onRegisterDone(){
         imageView_done.setOnClickListener {
-            getHabitTitle = editText_title.text.toString()
+            val getNewTitle = editText_title.text.toString()
             getHabitDescription = editText_description.text.toString()
+            getHabitAlarmDay = ""
             for(i in 0..6) {
                 getHabitAlarmDay += days[i]
             }
@@ -145,8 +150,25 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }else {
                 getHabitAlarmTime = ""
             }
-            EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmDay, getHabitAlarmTime))
-            dismiss()
+
+            // check all data is entered
+            var isDoneReady: Boolean = true
+            if(getNewTitle.length == 0) {
+                isDoneReady = false
+            }else {
+                getHabitTitle = getNewTitle
+            }
+            if(getHabitAlarmDay == "0000000") {
+                isDoneReady = false
+            }
+
+            // call create habit api
+            if(isDoneReady == true) {
+                EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmDay, getHabitAlarmTime))
+                dismiss()
+            }else {
+                Toast.makeText(context, "습관빵 이름과 빵 굽는 날은 반드시 입력해주세요!", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

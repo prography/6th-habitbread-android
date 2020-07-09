@@ -147,13 +147,22 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
 
     fun onModifyDone(){
         imageView_done.setOnClickListener {
-            getHabitTitle = editText_title.text.toString()
-            getHabitDescription = editText_description.text.toString()
+            val getChangedTitle = editText_title.text.toString()
+            val getChangedDescription = editText_description.text.toString()
+
+            // check all is entered
+            if(getChangedTitle.length != 0) {
+                getHabitTitle = getChangedTitle
+            }
+            if(getChangedDescription.length != 0) {
+                getHabitDescription = getChangedDescription
+            }
             if(switch_alarm.isChecked == true) {
                 getHabitAlarmTime = timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
             }else {
                 getHabitAlarmTime = ""
             }
+
             setNewDataOnHabitListener.setNewDataOnHabit(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmTime)
             dismiss()
         }

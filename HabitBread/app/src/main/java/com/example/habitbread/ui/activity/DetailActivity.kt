@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -55,9 +56,12 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
         detailViewModel.putChangedHabitData(habitId, NewChangedHabitReq(
             newTitle, newCategory, newDescription, newAlarmTime
         ))
+        setCalendarInfo(habitId, year, month)
         detailViewModel.changedHabitData.observe(this, Observer {
             textView_detail_title.text = it.title
             textView_description.text = it.description
+            habitName = it.title
+            habitDescription = it.description
         })
     }
 
