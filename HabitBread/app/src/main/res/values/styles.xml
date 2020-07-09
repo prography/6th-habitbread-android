@@ -3,8 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">#553615</item>
-        <item name="colorPrimaryDark">#FF553615</item>
+        <item name="colorPrimaryDark">#F5F4F1</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <!-- Habit List theme -->

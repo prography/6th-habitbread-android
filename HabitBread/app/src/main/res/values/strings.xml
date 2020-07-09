@@ -8,8 +8,6 @@
     <string name="habitListTitle">나의 습관빵</string>
     <string name="habitCreateTitle">습관 생성하기</string>
 
-
-
     <!-- ranking strings -->
     <string name="rankingTitle">랭킹</string>
     <string name="totalRanking">당신은 %d 명 중에 %s 등입니다."</string>
@@ -23,6 +21,9 @@
     <string name="alarmTimeTitle">알람</string>
     <string name="alarmDayTitle">빵 굽는 날</string>
     <string name="alarmOff">알람이 꺼져있습니다</string>
+
+    <!-- modify habit strings -->
+    <string name="modificationTitle">습관빵 수정하기</string>
 
     <!-- bakery strings -->
     <string name="bakeryTitle">베이커리</string>

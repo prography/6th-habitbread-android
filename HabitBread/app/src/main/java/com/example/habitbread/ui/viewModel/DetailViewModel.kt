@@ -3,9 +3,7 @@ package com.example.habitbread.ui.viewModel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.habitbread.data.CommitResponse
-import com.example.habitbread.data.DeleteHabit
-import com.example.habitbread.data.DetailResponse
+import com.example.habitbread.data.*
 import com.example.habitbread.repository.DetailRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,6 +15,7 @@ class DetailViewModel : ViewModel(){
     var detailData: MutableLiveData<DetailResponse> = MutableLiveData()
     var commitData: MutableLiveData<Response<CommitResponse>> = MutableLiveData()
     var deleteData: MutableLiveData<DeleteHabit> = MutableLiveData()
+    var changedHabitData: MutableLiveData<NewChangedHabitRes> = MutableLiveData()
 
     fun getDetailData(habitId: Int, year: Int, month: Int){
         GlobalScope.launch {
@@ -45,6 +44,17 @@ class DetailViewModel : ViewModel(){
             try {
                 val data = DetailRepository().deleteHabit(habitId)
                 deleteData.postValue(data)
+            }catch (err: Error) {
+                Log.e("HabitBread", err.printStackTrace().toString())
+            }
+        }
+    }
+
+    fun putChangedHabitData(habitId: Int, body: NewChangedHabitReq) {
+        GlobalScope.launch {
+            try {
+                val data = DetailRepository().putChangedHabitData(habitId, body)
+                changedHabitData.postValue(data)
             }catch (err: Error) {
                 Log.e("HabitBread", err.printStackTrace().toString())
             }

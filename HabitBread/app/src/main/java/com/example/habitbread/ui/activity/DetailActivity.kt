@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.habitbread.R
+import com.example.habitbread.data.NewChangedHabitReq
+import com.example.habitbread.ui.fragment.ModificationBottomSheet
+import com.example.habitbread.ui.fragment.RegistrationBottomSheet
 import com.example.habitbread.ui.viewModel.DetailViewModel
 import com.example.habitbread.util.DateCalculation
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -16,7 +19,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.time.LocalDate
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOnHabitListener {
 
     private lateinit var materialCalendarView: MaterialCalendarView
     private val detailViewModel: DetailViewModel by viewModels()
@@ -25,11 +28,12 @@ class DetailActivity : AppCompatActivity() {
     private var habitDescription: String? = ""
     val year = LocalDate.now().toString().substring(0, 4).toInt() // 현 시각 년도
     val month = LocalDate.now().toString().substring(5, 7).toInt() // 현 시각 월
+    var dayOfWeek: String = ""
+    var alarmTime: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-
         habitId = intent.getIntExtra("habitId", -1)
         habitName = intent.getStringExtra("habitName")
         habitDescription = intent.getStringExtra("habitDescription")
@@ -40,6 +44,21 @@ class DetailActivity : AppCompatActivity() {
         onSwipeMonthEvent()
         onClickSetting()
         onClickDelete()
+    }
+
+    override fun setNewDataOnHabit(
+        newTitle: String,
+        newCategory: String,
+        newDescription: String?,
+        newAlarmTime: String?
+    ) {
+        detailViewModel.putChangedHabitData(habitId, NewChangedHabitReq(
+            newTitle, newCategory, newDescription, newAlarmTime
+        ))
+        detailViewModel.changedHabitData.observe(this, Observer {
+            textView_detail_title.text = it.title
+            textView_description.text = it.description
+        })
     }
 
     private fun setDetailContents() {
@@ -54,6 +73,10 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel.detailData.observe(this, Observer {
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
+            this.dayOfWeek = it.habit.dayOfWeek
+            this.alarmTime = it.habit.alarmTime
+
+            // calendar commit days setting
             val committedDayList: MutableList<CalendarDay> = mutableListOf()
             for(element in it.habit.commitHistory){
                 val seoulTime: String = DateCalculation().convertUTCtoSeoulTime(element.createdAt)
@@ -80,7 +103,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickBackArrow(){
+    private fun onClickBackArrow(){
         imageView_back.setOnClickListener {
             finish()
         }
@@ -112,7 +135,15 @@ class DetailActivity : AppCompatActivity() {
 
     private fun onClickSetting() {
         imageView_setting.setOnClickListener {
-            Toast.makeText(this, "죄송합니다 현재 개발 중인 기능입니다!", Toast.LENGTH_LONG).show()
+            // send detail datas from activity to fragment.
+            val bundle: Bundle = Bundle()
+            bundle.putString("title", habitName)
+            bundle.putString("description", habitDescription)
+            bundle.putString("dayOfWeek", dayOfWeek)
+            bundle.putString("alarmTime", alarmTime)
+            val modificationBottomSheet = ModificationBottomSheet()
+            modificationBottomSheet.arguments = bundle
+            modificationBottomSheet.show(supportFragmentManager, "showBottomSheet")
         }
     }
 

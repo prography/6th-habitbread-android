@@ -8,3 +8,10 @@ data class NewHabitRes (
     @SerializedName("title")
     val habitName: String
 )
+
+data class NewChangedHabitRes (
+    val title: String,
+    val category: String,
+    val description: String?,
+    val alarmTime: String?
+)

@@ -38,7 +38,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        handlingCategoryChips()
+        onClickDayOfWeekChips()
         onCheckAlarmSwith()
         onRegisterCancle()
         onRegisterDone()
@@ -55,7 +55,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         return bottomSheetDialog
     }
 
-    fun handlingCategoryChips(){
+    fun onClickDayOfWeekChips(){
         chip_mon.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked == true) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))

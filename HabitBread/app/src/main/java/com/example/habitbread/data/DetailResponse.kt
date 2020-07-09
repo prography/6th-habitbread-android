@@ -14,6 +14,10 @@ data class HabitDetailInfo(
     val habitId: Int,
     @SerializedName("title")
     val title: String,
+    @SerializedName("dayOfWeek")
+    val dayOfWeek: String,
+    @SerializedName("alarmTime")
+    val alarmTime: String,
     @SerializedName("continuousCount")
     val continuousCount: Int,
     @SerializedName("commitHistory")
