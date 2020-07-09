@@ -1,5 +1,6 @@
 package com.example.habitbread.util
 
+import com.example.habitbread.data.Habits
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -29,7 +30,19 @@ class DateCalculation {
         val utcDateTime: ZonedDateTime = dateTime.atZone(utcZone)
         val zdt: ZonedDateTime = utcDateTime.withZoneSameInstant(ZoneId.of("Asia/Seoul"))
         val date: String = zdt.format(DateTimeFormatter.ISO_LOCAL_DATE)
-        //val date: Date = Date.from(zdt.toInstant())
-        return date.toString()
+        return date
+    }
+
+    fun habitListSorting(habitList: List<Habits>): List<Habits> {
+        var sortedList = habitList
+        sortedList = habitList.sortedWith(Comparator<Habits> { o1, o2 ->
+            when{
+                // 1, 0, -1 우선순위로 정렬
+                o1.dayOfWeek.substring(DateCalculation().getTodayOfWeek(), DateCalculation().getTodayOfWeek()+1) < o2.dayOfWeek.substring(DateCalculation().getTodayOfWeek(), DateCalculation().getTodayOfWeek()+1) -> 1
+                o1.dayOfWeek.substring(DateCalculation().getTodayOfWeek()+1, DateCalculation().getTodayOfWeek()+2) < o2.dayOfWeek.substring(DateCalculation().getTodayOfWeek()+1, DateCalculation().getTodayOfWeek()+2) -> 0
+                else -> -1
+            }
+        })
+        return sortedList
     }
 }
