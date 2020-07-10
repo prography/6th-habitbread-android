@@ -42,10 +42,11 @@ class RankListAdapter(val context: Context?) : RecyclerView.Adapter<RankListAdap
                 imageView_crown.visibility = View.GONE
             } else {
                 if (rankingData[0].rank == data.rank) {
-                    Log.d("HabitBread", rankingData[0].rank)
+                    imageView_crown.setBackgroundResource(R.drawable.ic_goldcrown);
                 } else {
-                    Log.d("HabitBread", rankingData[1].rank)
+                    imageView_crown.setBackgroundResource(R.drawable.ic_silvercrown)
                 }
+                imageView_crown.visibility = View.VISIBLE
             }
             tv_rank.text = data.rank
             tv_nickname.text = data.userName

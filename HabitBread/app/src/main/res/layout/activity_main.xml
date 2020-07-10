@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.habitbread.ui.activity.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_frameLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp">
-
-    </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +19,11 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/main_bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
