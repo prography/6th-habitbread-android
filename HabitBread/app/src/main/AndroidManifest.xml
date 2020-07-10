@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.habitbread">
+    package="com.habitbread.main">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".base.BaseApplication"
+        android:name="com.habitbread.main.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,7 +27,7 @@
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
       
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name="com.habitbread.main.ui.activity.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,13 +36,13 @@
             </intent-filter>
         </activity>
       
-        <activity android:name=".ui.activity.LoginActivity"/>
-        <activity android:name=".ui.activity.DetailActivity"/>
-        <activity android:name=".ui.activity.MainActivity"/>
-        <activity android:name=".ui.activity.BakeryActivity" />
+        <activity android:name="com.habitbread.main.ui.activity.LoginActivity"/>
+        <activity android:name="com.habitbread.main.ui.activity.DetailActivity"/>
+        <activity android:name="com.habitbread.main.ui.activity.MainActivity"/>
+        <activity android:name="com.habitbread.main.ui.activity.BakeryActivity" />
 
         <service
-            android:name="com.example.habitbread.api.FirebaseAPI"
+            android:name="com.habitbread.main.api.FirebaseAPI"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
