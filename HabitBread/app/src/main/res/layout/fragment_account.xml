@@ -12,21 +12,30 @@
         android:id="@+id/textView_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="내 계정"
         android:textSize="30sp"
+        android:textStyle="bold"
         android:textColor="#000000"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_my_profile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/border_round_all_corner"
         app:layout_constraintTop_toBottomOf="@id/textView_title"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_alarm"
+        android:elevation="3dp">
 
         <LinearLayout
             android:id="@+id/layout_profile"
@@ -49,7 +58,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/icon_app_main">
                 </ImageView>
 
                 <TextView
@@ -57,7 +67,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textview_profile_nickname"
                     android:text="만다"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="@id/imageview_profile_image"
                     app:layout_constraintEnd_toEndOf="@id/imageview_profile_image"
                     app:layout_constraintTop_toBottomOf="@id/imageview_profile_image"/>
@@ -85,7 +98,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12"
-                    android:textSize="15sp"
+                    android:textSize="24sp"
+                    android:textColor="@android:color/black"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -94,8 +108,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="빵 갯수"
+                    android:textColor="@android:color/black"
                     app:layout_constraintTop_toBottomOf="@id/textview_bread_num"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
@@ -112,7 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12"
-                    android:textSize="15sp"
+                    android:textSize="24sp"
+                    android:textColor="@android:color/black"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -121,8 +137,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="경험"
+                    android:textSize="14sp"
+                    android:text="경험치"
+                    android:textColor="@android:color/black"
                     app:layout_constraintTop_toBottomOf="@id/textview_account_exp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
@@ -141,14 +158,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="25dp"
-            >
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <ProgressBar
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/progress_exp"
-                style="@android:style/Widget.Material.ProgressBar.Horizontal"/>
+                android:progress="35"
+                android:progressBackgroundTint="#A67B58"
+                style="@android:style/Widget.Material.ProgressBar.Horizontal" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -182,31 +201,24 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:id="@+id/view1"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_my_profile"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_change_info"
+        android:background="@android:color/white"
         android:id="@+id/layout_alarm">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전체 알람 끄기"
-            android:textSize="28sp"
+            android:text="@string/turnOffAllAlarm"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="10dp"/>
+            android:paddingVertical="20dp"/>
 
         <Switch
             android:layout_width="wrap_content"
@@ -219,36 +231,30 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:id="@+id/view2"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_alarm"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintBottom_toTopOf="@id/layout_ask"
+        android:background="@android:color/white"
         android:id="@+id/layout_change_info">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:text="개인 정보 변경"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="@string/changePrivateInfo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="10dp"/>
+            android:paddingVertical="20dp"/>
 
         <Button
             android:id="@+id/imageButton_change_info"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/ic_baseline_chevron_right_24"
+            android:background="@drawable/icon_right_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -256,37 +262,31 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:id="@+id/view3"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/layout_change_info"
-        app:layout_constraintStart_toStartOf="parent"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_delete_account"
+        android:background="@android:color/white"
         android:id="@+id/layout_ask">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:text="문의하기"
+            android:textSize="20sp"
+            android:text="@string/ask"
+            android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="10dp"/>
+            android:paddingVertical="20dp"/>
 
         <Button
             android:id="@+id/imageButton_ask"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/ic_baseline_chevron_right_24"
+            android:background="@drawable/icon_right_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -294,36 +294,30 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:id="@+id/view4"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/layout_ask"
-        app:layout_constraintStart_toStartOf="parent"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_logout"
+        android:background="@android:color/white"
         android:id="@+id/layout_delete_account">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:text="계정 삭제"
+            android:textSize="20sp"
+            android:text="@string/deleteAccount"
+            android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="10dp"/>
+            android:paddingVertical="20dp"/>
         <Button
             android:id="@+id/imageButton_delete_account"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/ic_baseline_chevron_right_24"
+            android:background="@drawable/icon_right_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -331,51 +325,36 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:id="@+id/view5"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/layout_delete_account"
-        app:layout_constraintStart_toStartOf="parent"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/white"
         android:id="@+id/layout_logout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:text="로그아웃"
+            android:textSize="20sp"
+            android:text="@string/logOut"
+            android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="25dp"
-            android:paddingVertical="10dp"/>
+            android:paddingVertical="20dp"/>
 
         <Button
             android:id="@+id/imageButton_logout"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/ic_baseline_chevron_right_24"
+            android:background="@drawable/icon_right_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:id="@+id/view6"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/layout_logout"
-        app:layout_constraintStart_toStartOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

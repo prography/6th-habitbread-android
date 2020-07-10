@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -74,6 +75,17 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
         detailViewModel.detailData.observe(this, Observer {
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
+            textView_detail_compare.text = it.comparedToLastMonth.toString() + "회"
+            if(it.comparedToLastMonth > 0) {
+                textView_detail_compare_right.text = "많아요!"
+            }else if(it.comparedToLastMonth == 0) {
+                textView_detail_compare_left.text = "저번달과 빵 구운 횟수가 똑같네요! 잘 하셨어요~"
+                textView_detail_compare.visibility = View.GONE
+                textView_detail_compare_right.visibility = View.GONE
+            }else {
+                textView_detail_compare_right.text = "적어요ㅠ"
+            }
+
             this.dayOfWeek = it.habit.dayOfWeek
             this.alarmTime = it.habit.alarmTime
 

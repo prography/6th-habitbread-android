@@ -92,10 +92,11 @@
             app:mcv_selectionColor="#99754F44"
             app:mcv_selectionMode="none"
             app:mcv_showOtherDates="all"
-            app:mcv_tileSize="match_parent" />
+            app:mcv_tileSize="match_parent"
+            />
 
         <LinearLayout
-            android:id="@+id/linearLayout_delete"
+            android:id="@+id/linearLayout_compare"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -104,7 +105,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/textView_detail_delete_left"
+                android:id="@+id/textView_detail_compare_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="저번달보다 빵 구운 횟수가 "
@@ -112,7 +113,7 @@
                 android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/textView_detail_delete"
+                android:id="@+id/textView_detail_compare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10회"
@@ -121,7 +122,7 @@
                 android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/textView_detail_delete_right"
+                android:id="@+id/textView_detail_compare_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 적어요"
@@ -132,7 +133,7 @@
 
         <TextView
             android:id="@+id/textView_continue_value"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_delete"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout_compare"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.3"
@@ -146,7 +147,7 @@
 
         <TextView
             android:id="@+id/textView_total_value"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_delete"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout_compare"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.7"

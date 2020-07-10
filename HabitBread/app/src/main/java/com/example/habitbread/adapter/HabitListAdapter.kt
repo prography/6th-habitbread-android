@@ -41,10 +41,10 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             tv_habitName.text = data.habitName
             tv_description.text = data.description
             var shoudCommitToday: Boolean = false
-            if(data.dayOfWeek[DateCalculation().getTodayOfWeek()] == '1') {
+            if(data.dayOfWeek[DateCalculation().today] == '1') {
                 itemView.textView_isToday.text = "오늘"
                 shoudCommitToday = true
-            }else if(data.dayOfWeek[DateCalculation().getTodayOfWeek()+1] == '1'){
+            }else if(data.dayOfWeek[DateCalculation().tomorrow] == '1'){
                 itemView.textView_isToday.text = "내일"
                 itemView.imageView_dot.visibility = View.INVISIBLE
                 itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))

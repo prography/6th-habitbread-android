@@ -17,7 +17,7 @@ interface HabitBreadAPI {
     fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
     @GET("/items")
     fun getBreads(): Call<List<BreadResponse>?>
-    @POST("/oauth/google")
+    @POST("/oauth/google/verify")
     fun serverLoginWithGoogle(@Body body: GoogleOAuthRequest): Call<GoogleOAuthResponse>
     @DELETE("/habits/{habitId}")
     fun deleteHabit(@Path("habitId") habitId: Int): Call<DeleteHabit>
