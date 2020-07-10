@@ -18,6 +18,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.time.LocalDate
+import kotlin.math.abs
 
 class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOnHabitListener {
 
@@ -75,7 +76,7 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
         detailViewModel.detailData.observe(this, Observer {
             textView_continue_value.text = it.habit.continuousCount.toString() + "회"
             textView_total_value.text = it.commitFullCount.toString() + "회"
-            textView_detail_compare.text = it.comparedToLastMonth.toString() + "회"
+            textView_detail_compare.text = abs(it.comparedToLastMonth).toString() + "회"
             if(it.comparedToLastMonth > 0) {
                 textView_detail_compare_right.text = "많아요!"
             }else if(it.comparedToLastMonth == 0) {
