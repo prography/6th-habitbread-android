@@ -1,5 +1,6 @@
 package com.example.habitbread.ui.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.habitbread.data.AccountResponse
@@ -26,11 +27,8 @@ class AccountViewModel : ViewModel() {
         }
     }
 
-    fun deleteAccount() : BaseResponse{
-        val response : BaseResponse
-        runBlocking {
-            response = AccountRepository().deleteAccount()
-        }
-        return response
+    fun deleteAccount() {
+        val response = AccountRepository().deleteAccount();
+        Log.d("HabitBread", response.toString())
     }
 }

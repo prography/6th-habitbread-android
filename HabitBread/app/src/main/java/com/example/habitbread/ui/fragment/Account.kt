@@ -13,8 +13,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.habitbread.R
 import com.example.habitbread.base.BaseApplication
+import com.example.habitbread.ui.activity.LoginActivity
 import com.example.habitbread.ui.activity.MainActivity
 import com.example.habitbread.ui.viewModel.AccountViewModel
+import com.example.habitbread.util.AccountUtils
 import kotlinx.android.synthetic.main.fragment_account.*
 
 class Account : Fragment() {
@@ -77,9 +79,25 @@ class Account : Fragment() {
     }
 
     private fun deleteAccount() {
+        // todo : show Dialog with delete Account
+        BaseApplication.preferences.clearPreferences();
+        AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
+            accountViewModel.deleteAccount();
+            backToLogin()
+        }
     }
 
     private fun signOut() {
-        //todo : signout with sharedPreferences and go to LoginActivity signOut
+        // todo : show dialog with signOut
+        BaseApplication.preferences.clearPreferences()
+        AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
+            backToLogin()
+        }
+    }
+
+    private fun backToLogin() {
+        val intent = Intent(this.requireActivity(), LoginActivity::class.java);
+        startActivity(intent);
+        this.requireActivity().finish();
     }
 }
