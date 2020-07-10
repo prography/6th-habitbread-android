@@ -107,25 +107,26 @@
                 android:id="@+id/textView_detail_delete_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="습관빵을 삭제하시려면 "
-                android:textColor="#A5A5A5"
-                android:textSize="12sp"/>
+                android:text="저번달보다 빵 구운 횟수가 "
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/textView_detail_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="여기"
-                android:textColor="#6D6D70"
-                android:textSize="12sp"/>
+                android:text="10회"
+                android:textColor="@color/appGreenColor"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/textView_detail_delete_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="를 눌러주세요"
-                android:textColor="#A5A5A5"
-                android:textSize="12sp"/>
+                android:text=" 적어요"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
         </LinearLayout>
 
 

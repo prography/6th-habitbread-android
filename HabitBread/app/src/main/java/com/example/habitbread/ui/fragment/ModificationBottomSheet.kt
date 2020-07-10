@@ -11,7 +11,10 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.habitbread.R
+import com.example.habitbread.ui.viewModel.DetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -22,6 +25,7 @@ import ru.ifr0z.timepickercompact.TimePickerCompact
 class ModificationBottomSheet : BottomSheetDialogFragment() {
 
     private val TAG: String = "ModificationBottomSheet"
+    var getHabitId: Int = -1
     var getHabitTitle: String = ""
     var getHabitCategory: String = "기타"
     var getHabitDescription: String? = ""
@@ -31,6 +35,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
     private lateinit var editText_title: EditText
     private lateinit var editText_description: EditText
     private lateinit var setNewDataOnHabitListener: SetNewDataOnHabitListener
+    val detailViewModel: DetailViewModel by viewModels()
 
     override fun getTheme(): Int {
         return R.style.bottomSheetDialogTheme
@@ -55,6 +60,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         onCheckAlarmSwith()
         onModifyCancle()
         onModifyDone()
+        onClickDelete()
     }
 
     override fun onAttach(context: Context) {
@@ -79,6 +85,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
 
     private fun setPreviousDetailData(view: View) {
         // get previous detail datas from activity
+        getHabitId = this.requireArguments().getInt("habitId")
         getHabitTitle = this.requireArguments().getString("title").toString()
         getHabitDescription = this.arguments?.getString("description")
         getHabitAlarmDay = this.requireArguments().getString("dayOfWeek").toString()
@@ -175,6 +182,20 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
     fun onModifyCancle(){
         imageView_close.setOnClickListener {
             dismiss()
+        }
+    }
+
+    private fun onClickDelete() {
+        textView_modify_delete.setOnClickListener {
+            detailViewModel.deleteHabit(getHabitId)
+            detailViewModel.deleteData.observe(this, Observer {
+                if(it.message == "success") {
+                    activity?.finish()
+                    Toast.makeText(context, "습관빵이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(context, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }

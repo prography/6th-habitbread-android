@@ -3,6 +3,7 @@ package com.example.habitbread.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,8 +40,10 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
         fun bind(data: Habits){
             tv_habitName.text = data.habitName
             tv_description.text = data.description
+            var shoudCommitToday: Boolean = false
             if(data.dayOfWeek[DateCalculation().getTodayOfWeek()] == '1') {
                 itemView.textView_isToday.text = "오늘"
+                shoudCommitToday = true
             }else if(data.dayOfWeek[DateCalculation().getTodayOfWeek()+1] == '1'){
                 itemView.textView_isToday.text = "내일"
                 itemView.imageView_dot.visibility = View.INVISIBLE
@@ -55,19 +58,29 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
 
             // 습관 등록 요일만 표시하기
            for(i in 0..6) {
-                if(data.dayOfWeek[i] == '0') {
+                if(data.dayOfWeek[i] == '1') {
+                    itemView.findViewWithTag<TextView>(i.toString()).visibility = View.VISIBLE
+                }else {
                     itemView.findViewWithTag<TextView>(i.toString()).visibility = View.GONE
                 }
             }
 
             // 커밋한 날짜 초록색 표시하기
+            val isCommitList: MutableList<Int> = mutableListOf()
             for(i in 0..data.commitHistory.size-1) {
                 val inputDate: String = DateCalculation().convertUTCtoSeoulTime(data.commitHistory[i].createdAt).substring(0, 10)
                 val index = DateCalculation().getTodayOfWeekWithDate(inputDate)
                 itemView.findViewWithTag<TextView>(index.toString()).setBackgroundResource(R.drawable.background_dayofweek)
                 itemView.findViewWithTag<TextView>(index.toString()).setTextColor(Color.parseColor("#FFFFFF"))
-                if(index == DateCalculation().getTodayOfWeek()) {
+                isCommitList.add(index)
+            }
+
+            // 빨간 점 표시하기
+            if(shoudCommitToday == true) {
+                if(isCommitList.contains(DateCalculation().getTodayOfWeek())) {
                     itemView.imageView_dot.visibility = View.INVISIBLE
+                }else {
+                    itemView.imageView_dot.visibility = View.VISIBLE
                 }
             }
 

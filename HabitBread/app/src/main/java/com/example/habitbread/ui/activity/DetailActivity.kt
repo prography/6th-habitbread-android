@@ -1,7 +1,6 @@
 package com.example.habitbread.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,6 @@ import androidx.lifecycle.Observer
 import com.example.habitbread.R
 import com.example.habitbread.data.NewChangedHabitReq
 import com.example.habitbread.ui.fragment.ModificationBottomSheet
-import com.example.habitbread.ui.fragment.RegistrationBottomSheet
 import com.example.habitbread.ui.viewModel.DetailViewModel
 import com.example.habitbread.util.DateCalculation
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -44,7 +42,6 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
         onClickBackArrow()
         onSwipeMonthEvent()
         onClickSetting()
-        onClickDelete()
     }
 
     override fun setNewDataOnHabit(
@@ -141,6 +138,7 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
         imageView_setting.setOnClickListener {
             // send detail datas from activity to fragment.
             val bundle: Bundle = Bundle()
+            bundle.putInt("habitId", habitId)
             bundle.putString("title", habitName)
             bundle.putString("description", habitDescription)
             bundle.putString("dayOfWeek", dayOfWeek)
@@ -148,19 +146,6 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
             val modificationBottomSheet = ModificationBottomSheet()
             modificationBottomSheet.arguments = bundle
             modificationBottomSheet.show(supportFragmentManager, "showBottomSheet")
-        }
-    }
-
-    private fun onClickDelete() {
-        textView_detail_delete.setOnClickListener {
-            detailViewModel.deleteHabit(habitId)
-            detailViewModel.deleteData.observe(this, Observer {
-                if(it.message == "success") {
-                    finish()
-                }else {
-                    Toast.makeText(this, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
-                }
-            })
         }
     }
 }
