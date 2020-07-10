@@ -28,7 +28,13 @@ class AccountViewModel : ViewModel() {
     }
 
     fun deleteAccount() {
-        val response = AccountRepository().deleteAccount();
-        Log.d("HabitBread", response.toString())
+       GlobalScope.launch {
+           try {
+               val response = AccountRepository().deleteAccount();
+               Log.d("HabitBread", response.toString())
+           } catch (e : Exception) {
+               e.printStackTrace()
+           }
+       }
     }
 }

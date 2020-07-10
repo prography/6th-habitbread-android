@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.fragment
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.DialogCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -79,20 +83,32 @@ class Account : Fragment() {
     }
 
     private fun deleteAccount() {
-        // todo : show Dialog with delete Account
-        BaseApplication.preferences.clearPreferences();
-        AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
-            accountViewModel.deleteAccount();
-            backToLogin()
-        }
+        val dialog = AlertDialog.Builder(requireContext())
+            .setMessage("정말 탈퇴 하시겠습니까??")
+            .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
+                BaseApplication.preferences.clearPreferences()
+                accountViewModel.deleteAccount()
+                AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
+                    backToLogin()
+                }
+            }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.dismiss()
+            };
+        dialog.create().show();
     }
 
     private fun signOut() {
-        // todo : show dialog with signOut
-        BaseApplication.preferences.clearPreferences()
-        AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
-            backToLogin()
-        }
+        val dialog = AlertDialog.Builder(requireContext())
+            .setMessage("정말 로그아웃 하시겠습니까??")
+            .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
+                BaseApplication.preferences.clearPreferences()
+                AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
+                    backToLogin()
+                }
+            }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.dismiss()
+            };
+        dialog.create().show();
     }
 
     private fun backToLogin() {
