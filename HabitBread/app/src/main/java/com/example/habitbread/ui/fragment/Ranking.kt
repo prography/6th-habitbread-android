@@ -1,6 +1,7 @@
 package com.example.habitbread.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.example.habitbread.R
 import com.example.habitbread.adapter.RankListAdapter
 import com.example.habitbread.ui.viewModel.RankingViewModel
 import kotlinx.android.synthetic.main.fragment_ranking.*
+import kotlin.math.floor
 
 class Ranking : Fragment() {
     private lateinit var recyclerview_rankList : RecyclerView
@@ -36,10 +38,10 @@ class Ranking : Fragment() {
         rankingViewModel.rankingData.observe(viewLifecycleOwner, Observer {
             recyclerview_adapter.setAdapterData(it)
             if (it.user != null) {
-                val percentage = (it.user.rank.toInt().div(it.userTotalCount)).times(100)
+                val percentage = floor(it.user.rank.toDouble()/it.userTotalCount*100).toInt()
                 textview_my_rank_percent_above.visibility = View.VISIBLE
                 textview_my_rank_percent.visibility = View.VISIBLE
-                textview_my_rank_percent.text = percentage.toString() + "%"
+                textview_my_rank_percent.text = "$percentage%"
                 textview_my_rank_with_total.text = getString(R.string.totalRanking, it.userTotalCount, it.user.rank)
             } else {
                 textview_my_rank_percent_above.visibility = View.INVISIBLE

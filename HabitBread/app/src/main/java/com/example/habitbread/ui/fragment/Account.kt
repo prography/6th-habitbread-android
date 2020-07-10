@@ -57,21 +57,14 @@ class Account : Fragment() {
     }
 
     private fun setOnClickListener() {
-        imageButton_ask.setOnClickListener {
-            showNotReadyToast();
-        }
         imageButton_change_nickname.setOnClickListener {
-            Log.d("HabitBread", "ChangeNickname")
+            showNotReadyToast()
         }
         imageButton_delete_account.setOnClickListener {
             deleteAccount()
         }
         imageButton_logout.setOnClickListener {
             signOut()
-        }
-        imageButton_ask.setOnClickListener {
-            showNotReadyToast()
-
         }
         imageButton_change_info.setOnClickListener {
             showNotReadyToast()
