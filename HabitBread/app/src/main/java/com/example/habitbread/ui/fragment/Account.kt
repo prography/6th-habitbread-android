@@ -1,11 +1,13 @@
 package com.example.habitbread.ui.fragment
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -50,7 +52,7 @@ class Account : Fragment() {
 
     private fun setOnClickListener() {
         imageButton_ask.setOnClickListener {
-            Log.d("HabitBread", "Nothing");
+            showNotReadyToast();
         }
         imageButton_change_nickname.setOnClickListener {
             Log.d("HabitBread", "ChangeNickname")
@@ -59,18 +61,22 @@ class Account : Fragment() {
             deleteAccount()
         }
         imageButton_logout.setOnClickListener {
-            Log.d("HabitBread", "Logout")
+            signOut()
         }
         imageButton_ask.setOnClickListener {
-            Log.d("HabitBread", "ask")
+            showNotReadyToast()
+
         }
         imageButton_change_info.setOnClickListener {
-            Log.d("HabitBread", "Change Info")
+            showNotReadyToast()
         }
     }
 
+    private fun showNotReadyToast() {
+        Toast.makeText(this.context, "아직 준비중인 기능입니다.", Toast.LENGTH_SHORT).show();
+    }
+
     private fun deleteAccount() {
-        // todo : deleteAccount with and go to LoginActivity
     }
 
     private fun signOut() {

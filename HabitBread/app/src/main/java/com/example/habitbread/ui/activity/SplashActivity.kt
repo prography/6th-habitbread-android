@@ -30,9 +30,11 @@ class SplashActivity : AppCompatActivity() {
                 .requestEmail()
                 .build()
         client = GoogleSignIn.getClient(this, gso)
-        client!!.silentSignIn().addOnCompleteListener {
-            if (it.isSuccessful) {
-                handleSignInResult(it)
+        if (BaseApplication.preferences.googleIdToken != null) {
+            client!!.silentSignIn().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    handleSignInResult(it)
+                }
             }
         }
     }
