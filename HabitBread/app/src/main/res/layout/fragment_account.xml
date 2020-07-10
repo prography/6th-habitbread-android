@@ -30,10 +30,10 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/border_round_all_corner"
         android:elevation="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_account_bulk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_title"
-        app:layout_constraintBottom_toTopOf="@+id/layout_account_bulk">
+        app:layout_constraintTop_toBottomOf="@id/textView_title">
 
         <LinearLayout
             android:id="@+id/layout_profile"
@@ -163,7 +163,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progress="35"
-                android:progressBackgroundTint="#A67B58" />
+                android:progressBackgroundTint="#A67B58"
+                android:progressTint="#A67B58" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -234,107 +235,110 @@
                 android:paddingRight="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:thumbTint="@android:color/white"
+                app:trackTint="@color/appGreenColor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/layout_alarm"
-                        app:layout_constraintBottom_toTopOf="@id/layout_delete_account"
-                        android:background="@android:color/white"
-                        android:id="@+id/layout_change_info">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_change_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@id/layout_delete_account"
+            app:layout_constraintTop_toBottomOf="@id/layout_alarm">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="20sp"
-                            android:textColor="@android:color/black"
-                            android:text="@string/changePrivateInfo"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:paddingLeft="25dp"
-                            android:paddingVertical="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp"
+                android:paddingLeft="25dp"
+                android:text="@string/changePrivateInfo"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                        <Button
-                            android:id="@+id/imageButton_change_info"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/icon_right_arrow"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:clickable="true"/>
+            <Button
+                android:id="@+id/imageButton_change_info"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_right_arrow"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_change_info"
-                        app:layout_constraintBottom_toTopOf="@+id/layout_logout"
-                        android:background="@android:color/white"
-                        android:id="@+id/layout_delete_account">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_delete_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/layout_logout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_change_info">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="20sp"
-                            android:text="@string/deleteAccount"
-                            android:textColor="@android:color/black"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:paddingLeft="25dp"
-                            android:paddingVertical="15dp"/>
-                        <Button
-                            android:id="@+id/imageButton_delete_account"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/icon_right_arrow"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:clickable="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp"
+                android:paddingLeft="25dp"
+                android:text="@string/deleteAccount"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/imageButton_delete_account"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_right_arrow"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layout_delete_account"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:background="@android:color/white"
-                        android:id="@+id/layout_logout">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="20sp"
-                            android:text="@string/logOut"
-                            android:textColor="@android:color/black"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:paddingLeft="25dp"
-                            android:paddingVertical="15dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_delete_account">
 
-                        <Button
-                            android:id="@+id/imageButton_logout"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/icon_right_arrow"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:clickable="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp"
+                android:paddingLeft="25dp"
+                android:text="@string/logOut"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/imageButton_logout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_right_arrow"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
-    
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

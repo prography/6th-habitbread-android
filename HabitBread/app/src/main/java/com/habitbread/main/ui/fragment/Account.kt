@@ -47,7 +47,10 @@ class Account : Fragment() {
 
     private fun setOnToggleListener() {
         switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-            // todo : add fcm to check it. ( register & unregister ) 
+            if (isChecked) {
+                showNotReadyToast();
+                switch_alarm.isChecked = false;
+            }
         }
     }
 
