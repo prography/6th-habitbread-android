@@ -1,10 +1,10 @@
-package com.example.habitbread.ui.viewModel
+package com.habitbread.main.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.habitbread.data.BreadResponse
-import com.example.habitbread.repository.BakeryRepository
+import com.habitbread.main.data.BreadResponse
+import com.habitbread.main.repository.BakeryRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
