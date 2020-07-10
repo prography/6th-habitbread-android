@@ -15,6 +15,10 @@ interface HabitBreadAPI {
     fun postNewHabit(@Body body: NewHabitReq): Call<NewHabitRes>
     @POST("/habits/{habitId}/commit")
     fun postCommit(@Path("habitId") habitId: Int): Call<CommitResponse>
+    @GET("/users")
+    fun getUserInfo() : Call<AccountResponse>
+    @DELETE("/users")
+    fun deleteAccount() : Call<BaseResponse>
     @GET("/items")
     fun getBreads(): Call<List<BreadResponse>?>
     @POST("/oauth/google")

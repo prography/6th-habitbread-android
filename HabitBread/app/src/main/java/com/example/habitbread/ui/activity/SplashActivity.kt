@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
     private val TAG = "HabitBread"
-    private var client : GoogleSignInClient? = null;
+    private var client: GoogleSignInClient? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val gso =
@@ -30,14 +30,19 @@ class SplashActivity : AppCompatActivity() {
                 .requestEmail()
                 .build()
         client = GoogleSignIn.getClient(this, gso)
-        client!!.silentSignIn().addOnCompleteListener {
-            if (it.isSuccessful) {
-                handleSignInResult(it)
+        if (BaseApplication.preferences.googleIdToken != null) {
+            client!!.silentSignIn().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    handleSignInResult(it)
+                } else {
+                    updateUi(null);
+                }
             }
         }
+
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {  
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             if (account != null) {
@@ -57,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun updateUi(idToken: String?) {
-        val intent : Intent = if (idToken != null) {
+        val intent: Intent = if (idToken != null) {
             Intent(this@SplashActivity, MainActivity::class.java)
         } else {
             Intent(this@SplashActivity, LoginActivity::class.java)
@@ -79,6 +84,7 @@ class SplashActivity : AppCompatActivity() {
                 val googleOauthResponse = response.body();
                 updateUi(googleOauthResponse?.idToken);
             }
+
             override fun onFailure(
                 call: Call<GoogleOAuthResponse?>,
                 t: Throwable

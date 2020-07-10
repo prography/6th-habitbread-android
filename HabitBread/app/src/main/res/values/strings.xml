@@ -13,6 +13,7 @@
     <!-- ranking strings -->
     <string name="rankingTitle">랭킹</string>
     <string name="totalRanking">당신은 %d 명 중에 %s 등입니다."</string>
+    <string name="currentBreadNum">현재 %d개</string>
 
     <!-- create new habit strings -->
     <string name="createNewHabitTitle">습관빵 만들기</string>
