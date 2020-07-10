@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.habitbread"
+        applicationId "com.habitbread.main"
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1

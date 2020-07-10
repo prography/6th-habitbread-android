@@ -198,7 +198,7 @@
     </entry>
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/habitbread/ui/viewModel/BakeryViewModel.kt" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/habitbread/main/ui/viewModel/BakeryViewModel.kt" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
