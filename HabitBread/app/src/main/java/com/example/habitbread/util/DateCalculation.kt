@@ -1,5 +1,6 @@
 package com.example.habitbread.util
 
+import android.util.Log
 import com.example.habitbread.data.Habits
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -9,6 +10,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DateCalculation {
+    val today = getTodayOfWeek()
+    val tomorrow = if(today == 6) 0 else today + 1
     fun getTodayOfWeek(): Int {
         val calendar: Calendar = Calendar.getInstance()
         val dayOfWeek: Int = calendar.get(java.util.Calendar.DAY_OF_WEEK)-1 // Sun = 0, Mon = 1, Tue = 2, ... , Sat = 6
@@ -36,10 +39,20 @@ class DateCalculation {
     fun habitListSorting(habitList: List<Habits>): List<Habits> {
         var sortedList = habitList
         sortedList = habitList.sortedWith(Comparator<Habits> { o1, o2 ->
+            val todayIndex: Int = DateCalculation().getTodayOfWeek()
+            var tomorrowIndex: Int = todayIndex + 1
+            if(todayIndex == 6) {
+                tomorrowIndex = 0
+            }
+            val todayCompareFirst: Int = o1.dayOfWeek[todayIndex].toInt()
+            val todayCompareSecond: Int = o2.dayOfWeek[todayIndex].toInt()
+            val tomorrowCompareFirst: Int = o1.dayOfWeek[tomorrowIndex].toInt()
+            val tomorrowCompareSecond: Int = o2.dayOfWeek[tomorrowIndex].toInt()
+
             when{
                 // 1, 0, -1 우선순위로 정렬
-                o1.dayOfWeek.substring(DateCalculation().getTodayOfWeek(), DateCalculation().getTodayOfWeek()+1) < o2.dayOfWeek.substring(DateCalculation().getTodayOfWeek(), DateCalculation().getTodayOfWeek()+1) -> 1
-                o1.dayOfWeek.substring(DateCalculation().getTodayOfWeek()+1, DateCalculation().getTodayOfWeek()+2) < o2.dayOfWeek.substring(DateCalculation().getTodayOfWeek()+1, DateCalculation().getTodayOfWeek()+2) -> 0
+                todayCompareFirst < todayCompareSecond -> 1
+                tomorrowCompareFirst < tomorrowCompareSecond -> 0
                 else -> -1
             }
         })

@@ -7,3 +7,10 @@ data class NewHabitReq (
     val dayOfWeek: String,
     val alarmTime: String?
 )
+
+data class NewChangedHabitReq (
+    val title: String,
+    val category: String,
+    val description: String?,
+    val alarmTime: String?
+)

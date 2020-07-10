@@ -6,7 +6,9 @@ data class DetailResponse(
     @SerializedName("habit")
     val habit: HabitDetailInfo,
     @SerializedName("commitFullCount")
-    val commitFullCount: Int
+    val commitFullCount: Int,
+    @SerializedName("comparedToLastMonth")
+    val comparedToLastMonth: Int
 )
 
 data class HabitDetailInfo(
@@ -14,6 +16,10 @@ data class HabitDetailInfo(
     val habitId: Int,
     @SerializedName("title")
     val title: String,
+    @SerializedName("dayOfWeek")
+    val dayOfWeek: String,
+    @SerializedName("alarmTime")
+    val alarmTime: String,
     @SerializedName("continuousCount")
     val continuousCount: Int,
     @SerializedName("commitHistory")

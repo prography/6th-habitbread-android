@@ -48,8 +48,8 @@ class MyHabits : Fragment() {
             val sortedList = DateCalculation().habitListSorting(it.habits)
             recyclerview_adapter.setAdapterData(sortedList)
         })
-        onShowModal()
-        onShowBakery()
+        onClickNewHabit()
+        onClickBakery()
     }
 
     override fun onStart() {
@@ -69,7 +69,7 @@ class MyHabits : Fragment() {
         recyclerview_habitList.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun onShowModal(){
+    private fun onClickNewHabit(){
         button_add.setOnClickListener {
             val registrationBottomSheet = RegistrationBottomSheet()
             registrationBottomSheet.show(parentFragmentManager, "showBottomSheet")
@@ -82,7 +82,7 @@ class MyHabits : Fragment() {
         habitViewModel.postHabit(body)
     }
 
-    private fun onShowBakery() {
+    private fun onClickBakery() {
         imageView_bakery_circle.setOnClickListener {
             val intent = Intent(context, BakeryActivity::class.java)
             startActivity(intent)
