@@ -3,6 +3,7 @@ package com.habitbread.main.ui.viewModel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.habitbread.main.api.FirebaseAPI
 import com.habitbread.main.data.AccountResponse
 import com.habitbread.main.data.UserInfoResponse
 import com.habitbread.main.repository.AccountRepository
@@ -26,10 +27,10 @@ class AccountViewModel : ViewModel() {
         }
     }
 
-    fun changeUserName(nickName: String) {
+    fun changeUserName(nickname: String) {
         GlobalScope.launch {
             try {
-                val userInfoList = AccountRepository().updateUserInfo(nickName, null, null)
+                val userInfoList = AccountRepository().updateUserInfo(nickname, null)
                 userInfoData.postValue(userInfoList);
             } catch (e : Exception) {
                 e.printStackTrace()

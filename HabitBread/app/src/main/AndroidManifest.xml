@@ -27,16 +27,13 @@
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
       
-        <activity android:name="com.habitbread.main.ui.activity.SplashActivity">
-
+        <activity android:name="com.habitbread.main.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
-        <activity android:name="com.habitbread.main.ui.activity.LoginActivity"/>
         <activity android:name="com.habitbread.main.ui.activity.DetailActivity"/>
         <activity android:name="com.habitbread.main.ui.activity.MainActivity"/>
         <activity android:name="com.habitbread.main.ui.activity.BakeryActivity" />

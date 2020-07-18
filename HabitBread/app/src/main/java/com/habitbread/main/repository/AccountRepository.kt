@@ -34,9 +34,9 @@ class AccountRepository {
         return baseResponse
     }
 
-    fun updateUserInfo(nickname: String?, exp: Int?, fcmToken: String?) : UserInfoResponse {
+    fun updateUserInfo(nickname: String?, fcmToken: String?) : UserInfoResponse {
         runBlocking {
-            val request = habitBreadAPI.patchUserInfo(UserInfoRequest(nickname, exp, fcmToken))
+            val request = habitBreadAPI.patchUserInfo(UserInfoRequest(nickname, fcmToken))
             val response = request.await()
             userInfo = response
         }
