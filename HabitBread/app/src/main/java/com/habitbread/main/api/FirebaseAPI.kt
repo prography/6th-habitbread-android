@@ -1,6 +1,5 @@
 package com.habitbread.main.api
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import com.habitbread.main.data.UserInfoRequest
 import com.habitbread.main.data.UserInfoResponse
@@ -11,6 +10,7 @@ import retrofit2.Response
 
 class FirebaseAPI : FirebaseMessagingService() {
     lateinit var fireBaseToken : String
+    private val TAG = "HabitBread"
 
     // 새 토큰이 생성될 때마다 onNewToken 콜백이 호출됨
     override fun onNewToken(token: String) {
