@@ -2,12 +2,17 @@ package com.habitbread.main.ui.fragment
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -43,6 +48,7 @@ class Account : Fragment() {
         })
         setOnClickListener();
         setOnToggleListener();
+        setNickNameButton();
     }
 
     private fun setOnToggleListener() {
@@ -54,9 +60,37 @@ class Account : Fragment() {
         }
     }
 
+    private fun setNickNameButton() {
+        imageButton_change_nickname.setOnClickListener {
+            val dialogEditText = getDialogEditText()
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle("닉네임을 변경합니다")
+                .setView(dialogEditText)
+                .setPositiveButton("변경!") { dialogInterface: DialogInterface, i: Int ->
+                    if (dialogEditText.length() < 0) {
+                        Toast.makeText(requireContext(), "0을 넘겨야 해요~", Toast.LENGTH_SHORT).show()
+                    } else {
+                        accountViewModel.changeUserName(dialogEditText.text.toString())
+                    }
+                }.setNegativeButton("최소!") {
+                    dialogInterface, i -> dialogInterface.cancel()
+                }
+
+            dialog.create().show()
+        }
+    }
+
+
+    private fun getDialogEditText() : EditText {
+        val et = EditText(requireContext())
+        et.setPadding(10, 0, 10, 0);
+        et.setBackgroundColor(resources.getColor(R.color.checkedTrue));
+        return et
+    }
+
     private fun setOnClickListener() {
         imageButton_change_nickname.setOnClickListener {
-            showNotReadyToast()
+            setNickNameButton()
         }
         imageButton_delete_account.setOnClickListener {
             deleteAccount()

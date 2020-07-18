@@ -10,11 +10,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class FirebaseAPI : FirebaseMessagingService() {
+    private lateinit var fireBaseToken : String
 
     // 새 토큰이 생성될 때마다 onNewToken 콜백이 호출됨
     override fun onNewToken(token: String) {
         Log.d(TAG, "Refreshed token: $token")
         super.onNewToken(token)
+        fireBaseToken = token
         sendRegistrationToServer(token)
         // If you want to send messages to this application instance or
         // manage this apps subscrip
