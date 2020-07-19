@@ -34,7 +34,6 @@ class Account : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        accountViewModel.getUserInfo();
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer {
             textview_profile_nickname.text = it.accountName
             progress_exp.progress = it.percent
@@ -59,6 +58,10 @@ class Account : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        accountViewModel.getUserInfo()
+    }
     private fun setNickNameButton() {
         imageButton_change_nickname.setOnClickListener {
             val dialogEditText = getDialogEditText()
@@ -70,6 +73,9 @@ class Account : Fragment() {
                         Toast.makeText(requireContext(), "0을 넘겨야 해요~", Toast.LENGTH_SHORT).show()
                     } else {
                         accountViewModel.changeUserName(dialogEditText.text.toString())
+                        accountViewModel.userInfoData.observe(viewLifecycleOwner, Observer {
+                            textview_profile_nickname.text = it.userName;
+                        })
                     }
                 }.setNegativeButton("최소!") {
                     dialogInterface, i -> dialogInterface.cancel()

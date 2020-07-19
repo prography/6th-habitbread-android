@@ -77,6 +77,4 @@ class MainActivity : AppCompatActivity() {
     private fun setPageIndex(index: Int) {
         viewPager.currentItem = index
     }
-
-
 }
