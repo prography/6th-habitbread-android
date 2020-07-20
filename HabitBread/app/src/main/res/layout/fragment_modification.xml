@@ -141,7 +141,7 @@
             app:singleLine="true">
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_mon"
-                android:tag="0"
+                android:tag="1"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -152,7 +152,7 @@
                 android:textAppearance="@style/AlarmChipTextTheme" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_tue"
-                android:tag="1"
+                android:tag="2"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -163,7 +163,7 @@
                 android:textAppearance="@style/AlarmChipTextTheme" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_wed"
-                android:tag="2"
+                android:tag="3"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -174,7 +174,7 @@
                 android:textAppearance="@style/AlarmChipTextTheme" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_thu"
-                android:tag="3"
+                android:tag="4"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -185,7 +185,7 @@
                 android:textAppearance="@style/AlarmChipTextTheme" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_fri"
-                android:tag="4"
+                android:tag="5"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -196,7 +196,7 @@
                 android:textAppearance="@style/AlarmChipTextTheme" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_sat"
-                android:tag="5"
+                android:tag="6"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -207,7 +207,7 @@
                 android:textAppearance="@style/AlarmChipTextTheme" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_sun"
-                android:tag="6"
+                android:tag="0"
                 style="@style/AlarmChipTheme"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -239,9 +239,8 @@
         app:layout_constraintBottom_toBottomOf="@id/textView_alarm_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/ThemeOverlay.App.Switch"
         app:useMaterialThemeColors = "false"
-        app:thumbTint = "@android:color/white"
-        app:trackTint = "@color/appGreenColor"
         android:checked="true"/>
 
     <ru.ifr0z.timepickercompact.TimePickerCompact
