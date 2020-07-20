@@ -17,10 +17,10 @@
         <!--Set custom default icon for FCM notification-->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher_foreground" />
+            android:resource="@drawable/icon_fcm_push" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/appGreenColor" />
+            android:resource="@color/appBackground" />
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="true" />
