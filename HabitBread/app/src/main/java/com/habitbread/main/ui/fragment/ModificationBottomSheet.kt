@@ -2,6 +2,8 @@ package com.habitbread.main.ui.fragment
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.habitbread.main.R
@@ -19,6 +23,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.habitbread.main.base.BaseApplication
+import com.habitbread.main.util.AccountUtils
 import kotlinx.android.synthetic.main.fragment_modification.*
 import ru.ifr0z.timepickercompact.TimePickerCompact
 
@@ -34,6 +41,8 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
     private lateinit var timepicker_alarm_time: TimePickerCompact
     private lateinit var editText_title: EditText
     private lateinit var editText_description: EditText
+    private lateinit var textView_isAlarmChecked: TextView
+    private lateinit var switch_alarm: SwitchMaterial
     private lateinit var setNewDataOnHabitListener: SetNewDataOnHabitListener
     val detailViewModel: DetailViewModel by viewModels()
 
@@ -50,6 +59,8 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         timepicker_alarm_time = view.findViewById(R.id.timepicker_alarm_time)
         editText_title = view.findViewById(R.id.editText_title)
         editText_description = view.findViewById(R.id.editText_description)
+        textView_isAlarmChecked = view.findViewById(R.id.textView_isAlarmChecked)
+        switch_alarm = view.findViewById(R.id.switch_alarm)
         setPreviousDetailData(view)
         return view
     }
@@ -73,12 +84,12 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog;
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         bottomSheetDialog.setOnShowListener {dialog ->
             val bottomDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED;
+            bottomSheetBehavior.peekHeight = Resources.getSystem().displayMetrics.heightPixels
         }
         return bottomSheetDialog
     }
@@ -113,6 +124,10 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
             val previousAlarmMinute: Int = getHabitAlarmTime!!.substring(3, 5).toInt()
             timepicker_alarm_time.hour = previousAlarmHour
             timepicker_alarm_time.minute = previousAlarmMinute
+        }else {
+            timepicker_alarm_time.visibility = View.INVISIBLE
+            textView_isAlarmChecked.visibility = View.VISIBLE
+            switch_alarm.isChecked = false
         }
     }
 
@@ -187,15 +202,22 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
 
     private fun onClickDelete() {
         textView_modify_delete.setOnClickListener {
-            detailViewModel.deleteHabit(getHabitId)
-            detailViewModel.deleteData.observe(this, Observer {
-                if(it.message == "success") {
-                    activity?.finish()
-                    Toast.makeText(context, "습관빵이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-                }else {
-                    Toast.makeText(context, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
+            val dialog = AlertDialog.Builder(requireContext())
+                .setMessage("정말 삭제 하시겠습니까?")
+                .setPositiveButton("예") { dialogInterface: DialogInterface, i: Int ->
+                    detailViewModel.deleteHabit(getHabitId)
+                    detailViewModel.deleteData.observe(this, Observer {
+                        if(it.message == "success") {
+                            activity?.finish()
+                            Toast.makeText(context, "습관빵이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                        }else {
+                            Toast.makeText(context, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.dismiss()
                 }
-            })
+            dialog.create().show()
         }
     }
 }

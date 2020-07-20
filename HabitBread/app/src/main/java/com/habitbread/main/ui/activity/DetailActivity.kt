@@ -78,13 +78,19 @@ class DetailActivity : AppCompatActivity(), ModificationBottomSheet.SetNewDataOn
             textView_total_value.text = it.commitFullCount.toString() + "회"
             textView_detail_compare.text = abs(it.comparedToLastMonth).toString() + "회"
             if(it.comparedToLastMonth > 0) {
+                textView_detail_compare_left.text = "저번달보다 빵 구운 횟수가 "
                 textView_detail_compare_right.text = "많아요!"
+                textView_detail_compare.visibility = View.VISIBLE
+                textView_detail_compare_right.visibility = View.VISIBLE
             }else if(it.comparedToLastMonth == 0) {
                 textView_detail_compare_left.text = "저번달과 빵 구운 횟수가 똑같네요! 잘 하셨어요~"
                 textView_detail_compare.visibility = View.GONE
                 textView_detail_compare_right.visibility = View.GONE
             }else {
+                textView_detail_compare_left.text = "저번달보다 빵 구운 횟수가 "
                 textView_detail_compare_right.text = "적어요ㅠ"
+                textView_detail_compare.visibility = View.VISIBLE
+                textView_detail_compare_right.visibility = View.VISIBLE
             }
 
             this.dayOfWeek = it.habit.dayOfWeek

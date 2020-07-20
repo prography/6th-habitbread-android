@@ -4,8 +4,10 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">#553615</item>
         <item name="colorPrimaryDark">#F5F4F1</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnSurface">#303030</item>
+        <item name="colorSecondary">@color/appGreenColor</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="switchStyle">@style/ThemeOverlay.App.Switch</item>
     </style>
 
     <!-- Habit List theme -->
@@ -40,5 +42,13 @@
         <item name="chipMinTouchTargetSize">0dp</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">#787877</item>
+    </style>
+
+    <!-- Alarm switch theme -->
+    <style name="ThemeOverlay.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+        <item name="colorSurface">#ffffff</item>
+        <item name="colorOnSurface">#303030</item>
+        <item name="colorSecondary">@color/appGreenColor</item>
     </style>
 </resources>
