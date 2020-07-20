@@ -3,6 +3,7 @@ package com.habitbread.main.ui.fragment
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -83,12 +84,12 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog;
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         bottomSheetDialog.setOnShowListener {dialog ->
             val bottomDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED;
+            bottomSheetBehavior.peekHeight = Resources.getSystem().displayMetrics.heightPixels
         }
         return bottomSheetDialog
     }
@@ -198,20 +199,6 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
             dismiss()
         }
     }
-
-//    private fun onClickDelete() {
-//        textView_modify_delete.setOnClickListener {
-//            detailViewModel.deleteHabit(getHabitId)
-//            detailViewModel.deleteData.observe(this, Observer {
-//                if(it.message == "success") {
-//                    activity?.finish()
-//                    Toast.makeText(context, "습관빵이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-//                }else {
-//                    Toast.makeText(context, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
-//                }
-//            })
-//        }
-//    }
 
     private fun onClickDelete() {
         textView_modify_delete.setOnClickListener {

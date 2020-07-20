@@ -1,6 +1,7 @@
 package com.habitbread.main.ui.fragment
 
 import android.app.Dialog
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -47,12 +48,12 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog;
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         bottomSheetDialog.setOnShowListener {dialog ->
             val bottomDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED;
+            bottomSheetBehavior.peekHeight = Resources.getSystem().displayMetrics.heightPixels
         }
         return bottomSheetDialog
     }
