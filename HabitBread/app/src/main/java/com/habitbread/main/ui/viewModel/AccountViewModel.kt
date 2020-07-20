@@ -27,10 +27,10 @@ class AccountViewModel : ViewModel() {
         }
     }
 
-    fun changeUserName(nickname: String) {
+    fun updateUserNickname(nickname: String) {
         GlobalScope.launch {
             try {
-                val userInfoList = AccountRepository().updateUserInfo(nickname, null)
+                val userInfoList = AccountRepository().updateUserNickname(nickname)
                 userInfoData.postValue(userInfoList);
             } catch (e : Exception) {
                 e.printStackTrace()

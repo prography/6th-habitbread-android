@@ -27,7 +27,7 @@ class FirebaseAPI : FirebaseMessagingService() {
     fun sendRegistrationToServer(token: String) {
         //TODO: 패치 보내기
         val HabitBreadAPI = ServerImpl.APIService
-        val call: Call<UserInfoResponse> = HabitBreadAPI.patchUserInfo(UserInfoRequest(null, token))
+        val call: Call<UserInfoResponse> = HabitBreadAPI.patchFcmToken(UserInfoRequest.FcmTokenRequest(token))
         call.enqueue(
             object : Callback<UserInfoResponse>{
                 override fun onFailure(call: Call<UserInfoResponse>, t: Throwable) {

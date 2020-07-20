@@ -72,7 +72,7 @@ class Account : Fragment() {
                     if (dialogEditText.length() < 0) {
                         Toast.makeText(requireContext(), "0을 넘겨야 해요~", Toast.LENGTH_SHORT).show()
                     } else {
-                        accountViewModel.changeUserName(dialogEditText.text.toString())
+                        accountViewModel.updateUserNickname(dialogEditText.text.toString())
                         accountViewModel.userInfoData.observe(viewLifecycleOwner, Observer {
                             textview_profile_nickname.text = it.userName;
                         })

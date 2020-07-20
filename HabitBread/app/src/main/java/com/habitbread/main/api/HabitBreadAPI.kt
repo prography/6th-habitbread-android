@@ -28,5 +28,7 @@ interface HabitBreadAPI {
     @PUT("/habits/{habitId}")
     fun putChangedHabitData(@Path("habitId") habitId: Int, @Body body: NewChangedHabitReq): Call<NewChangedHabitRes>
     @PATCH("/users")
-    fun patchUserInfo(@Body body: UserInfoRequest): Call<UserInfoResponse>
+    fun updateNickname(@Body body: UserInfoRequest.NicknameRequest) : Call<UserInfoResponse>
+    @PATCH("/users")
+    fun patchFcmToken(@Body body: UserInfoRequest.FcmTokenRequest) : Call<UserInfoResponse>
 }
