@@ -26,7 +26,7 @@
             android:value="true" />
         <meta-data
             android:name="firebase_analytics_collection_enabled"
-            android:value="false" />
+            android:value="true" />
       
         <activity android:name="com.habitbread.main.ui.activity.SplashActivity">
 
