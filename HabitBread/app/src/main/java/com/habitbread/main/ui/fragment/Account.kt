@@ -80,7 +80,6 @@ class Account : Fragment() {
                 }.setNegativeButton("최소!") {
                     dialogInterface, i -> dialogInterface.cancel()
                 }
-
             dialog.create().show()
         }
     }

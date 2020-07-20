@@ -33,9 +33,10 @@ class LoginActivity : AppCompatActivity() {
         client = GoogleOauthUtils(this@LoginActivity).client
         if (AccountUtils(this@LoginActivity).isAlreadyLoggedIn()) {
             client.silentSignIn().addOnCompleteListener {
-                button_google_sign_in.visibility = View.VISIBLE
                 if (it.isSuccessful) {
                     handleSignInResult(it)
+                } else {
+                    button_google_sign_in.visibility = View.VISIBLE
                 }
             }
         } else {
