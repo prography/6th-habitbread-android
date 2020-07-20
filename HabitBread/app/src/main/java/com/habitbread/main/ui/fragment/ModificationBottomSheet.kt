@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
+import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.android.synthetic.main.fragment_modification.*
 import ru.ifr0z.timepickercompact.TimePickerCompact
 
@@ -34,6 +36,8 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
     private lateinit var timepicker_alarm_time: TimePickerCompact
     private lateinit var editText_title: EditText
     private lateinit var editText_description: EditText
+    private lateinit var textView_isAlarmChecked: TextView
+    private lateinit var switch_alarm: SwitchMaterial
     private lateinit var setNewDataOnHabitListener: SetNewDataOnHabitListener
     val detailViewModel: DetailViewModel by viewModels()
 
@@ -50,6 +54,8 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         timepicker_alarm_time = view.findViewById(R.id.timepicker_alarm_time)
         editText_title = view.findViewById(R.id.editText_title)
         editText_description = view.findViewById(R.id.editText_description)
+        textView_isAlarmChecked = view.findViewById(R.id.textView_isAlarmChecked)
+        switch_alarm = view.findViewById(R.id.switch_alarm)
         setPreviousDetailData(view)
         return view
     }
@@ -113,6 +119,10 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
             val previousAlarmMinute: Int = getHabitAlarmTime!!.substring(3, 5).toInt()
             timepicker_alarm_time.hour = previousAlarmHour
             timepicker_alarm_time.minute = previousAlarmMinute
+        }else {
+            timepicker_alarm_time.visibility = View.INVISIBLE
+            textView_isAlarmChecked.visibility = View.VISIBLE
+            switch_alarm.isChecked = false
         }
     }
 
