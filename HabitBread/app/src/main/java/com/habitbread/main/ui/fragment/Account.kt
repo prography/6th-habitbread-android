@@ -70,14 +70,14 @@ class Account : Fragment() {
                 .setView(dialogEditText)
                 .setPositiveButton("변경!") { dialogInterface: DialogInterface, i: Int ->
                     if (dialogEditText.length() < 0) {
-                        Toast.makeText(requireContext(), "0을 넘겨야 해요~", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "닉네임 길이는 1글자 이상이여야 합니다~", Toast.LENGTH_SHORT).show()
                     } else {
                         accountViewModel.updateUserNickname(dialogEditText.text.toString())
                         accountViewModel.userInfoData.observe(viewLifecycleOwner, Observer {
                             textview_profile_nickname.text = it.userName;
                         })
                     }
-                }.setNegativeButton("최소!") {
+                }.setNegativeButton("취소!") {
                     dialogInterface, i -> dialogInterface.cancel()
                 }
             dialog.create().show()
