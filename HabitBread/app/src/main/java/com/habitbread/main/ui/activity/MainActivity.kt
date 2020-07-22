@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initViewPager()
         initBottomNavigation()
-    }
-
-    override fun onResume() {
-        super.onResume()
         if (BaseApplication.preferences.isTokenRegistered) {
             PushUtils().register()
         }
