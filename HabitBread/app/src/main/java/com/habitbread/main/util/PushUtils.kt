@@ -26,8 +26,6 @@ class PushUtils {
             // This is a new Token(Instance ID)
             val token = task.result?.token.toString()
             Log.d("FCM_Token", token)
-            val userInfoResponse = AccountRepository().updateFcmToken(task.result!!.token)
-            Log.d("UserInfoResult", userInfoResponse.toString())
         })
     }
 

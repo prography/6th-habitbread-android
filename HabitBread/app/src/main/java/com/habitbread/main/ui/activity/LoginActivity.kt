@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         } else {
-           button_google_sign_in.visibility = View.INVISIBLE
+           button_google_sign_in.visibility = View.VISIBLE
         }
     }
 
