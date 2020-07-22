@@ -32,8 +32,6 @@ class Ranking : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        rankingViewModel.getAllRanks()
-        initRecyclerView();
         rankingViewModel.rankingData.observe(viewLifecycleOwner, Observer {
             recyclerview_adapter.setAdapterData(it)
             if (it.user != null) {
@@ -48,6 +46,12 @@ class Ranking : Fragment() {
                 textview_my_rank_with_total.text = "아직 점수가 산정되지 않았습니다. 잠시만 기다려주세요!"
             }
         })
+        initRecyclerView();
+    }
+
+    override fun onResume() {
+        super.onResume()
+        rankingViewModel.getAllRanks()
     }
 
     private fun initRecyclerView() {

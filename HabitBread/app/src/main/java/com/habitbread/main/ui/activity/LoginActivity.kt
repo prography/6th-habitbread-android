@@ -16,24 +16,32 @@ import com.habitbread.main.data.GoogleOAuthResponse
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.habitbread.main.util.AccountUtils
+import com.habitbread.main.util.GoogleOauthUtils
 import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
     private val TAG = "HabitBread"
-    var client: GoogleSignInClient? = null
+    lateinit var client: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com")
-            .requestEmail()
-            .build()
-        client = GoogleSignIn.getClient(this, gso)
         button_google_sign_in.setOnClickListener(View.OnClickListener { signIn() })
+        client = GoogleOauthUtils(this@LoginActivity).client
+        if (AccountUtils(this@LoginActivity).isAlreadyLoggedIn()) {
+            client.silentSignIn().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    handleSignInResult(it)
+                } else {
+                    button_google_sign_in.visibility = View.VISIBLE
+                }
+            }
+        } else {
+           button_google_sign_in.visibility = View.INVISIBLE
+        }
     }
 
     public override fun onActivityResult(
