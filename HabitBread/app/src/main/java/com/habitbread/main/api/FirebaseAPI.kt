@@ -32,14 +32,14 @@ class FirebaseAPI : FirebaseMessagingService() {
         call.enqueue(
             object : Callback<UserInfoResponse>{
                 override fun onFailure(call: Call<UserInfoResponse>, t: Throwable) {
-
+                    Log.d(TAG, "Fail patch new token")
                 }
 
                 override fun onResponse(
                     call: Call<UserInfoResponse>,
                     response: Response<UserInfoResponse>
                 ) {
-
+                    Log.d(TAG, "Success patch new token")
                 }
             }
         )

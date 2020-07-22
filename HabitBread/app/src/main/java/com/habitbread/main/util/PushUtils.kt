@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
+import com.habitbread.main.api.FirebaseAPI
 import com.habitbread.main.data.UserInfoResponse
 import com.habitbread.main.repository.AccountRepository
 import kotlinx.coroutines.runBlocking
@@ -26,6 +27,8 @@ class PushUtils {
             // This is a new Token(Instance ID)
             val token = task.result?.token.toString()
             Log.d("FCM_Token", token)
+
+            FirebaseAPI().sendRegistrationToServer(token)
         })
     }
 
