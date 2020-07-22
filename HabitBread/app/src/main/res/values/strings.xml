@@ -45,4 +45,7 @@
     <string name="ask">문의하기</string>
     <string name="deleteAccount">계정 삭제</string>
     <string name="logOut">로그아웃</string>
+
+    <!-- fcm strings -->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 </resources>

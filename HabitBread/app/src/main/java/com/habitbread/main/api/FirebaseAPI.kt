@@ -4,6 +4,7 @@ import android.util.Log
 import com.habitbread.main.data.UserInfoRequest
 import com.habitbread.main.data.UserInfoResponse
 import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
