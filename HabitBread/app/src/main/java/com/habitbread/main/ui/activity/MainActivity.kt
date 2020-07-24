@@ -27,11 +27,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     private fun initViewPager() {
         viewPager = findViewById(R.id.main_viewPager);
 
