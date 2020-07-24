@@ -24,7 +24,7 @@
     <color name="breadLevel1">#1A726655</color>
     <color name="getBreadLevel1">#AD9C82</color>
     <color name="getBreadLevel2">#A5BCB2</color>
-    <color name="getBreadLevel3">#AD9C82</color>
-    <color name="getBreadLevel4">#AD9C82</color>
+    <color name="getBreadLevel3">#EFC4AB</color>
+    <color name="getBreadLevel4">#D267BB</color>
 </resources>
 
