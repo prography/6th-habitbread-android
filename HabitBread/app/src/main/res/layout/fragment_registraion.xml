@@ -235,8 +235,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:useMaterialThemeColors = "false"
-        app:thumbTint = "@android:color/white"
-        app:trackTint = "@color/appGreenColor"
+        style="@style/ThemeOverlay.App.Switch"
         android:checked="true"/>
 
     <ru.ifr0z.timepickercompact.TimePickerCompact

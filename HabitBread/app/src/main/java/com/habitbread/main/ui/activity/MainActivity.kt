@@ -22,13 +22,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initViewPager()
         initBottomNavigation()
+        if (BaseApplication.preferences.isTokenRegistered) {
+            PushUtils().register()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (BaseApplication.preferences.isTokenRegistered) {
-            PushUtils().register()
-        }
+
     }
 
     private fun initViewPager() {

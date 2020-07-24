@@ -49,9 +49,9 @@ class BakeryAdapter(val context: Context): RecyclerView.Adapter<BakeryAdapter.Ba
                     tvLevel.setBackgroundResource(R.drawable.border_bread_level4)
                 }
                 tvBreadName.setTextColor(Color.parseColor("#726655"))
-                ivBread.setBackgroundResource(data.breadImg)
+                ivBread.setImageResource(data.breadImg)
             }else{
-                ivBread.setBackgroundResource(data.defaultImg)
+                ivBread.setImageResource(data.defaultImg)
             }
         }
     }

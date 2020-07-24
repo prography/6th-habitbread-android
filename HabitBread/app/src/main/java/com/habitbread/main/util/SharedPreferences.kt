@@ -25,6 +25,4 @@ class SharedPreferences(context: Context) {
     fun clearPreferences() {
         preferences!!.edit().clear().apply();
     }
-
-
 }
