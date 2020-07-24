@@ -9,19 +9,24 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.habitbread.main.R
 import com.habitbread.main.base.BaseApplication
+import com.habitbread.main.data.NewHabitReq
 import com.habitbread.main.ui.activity.LoginActivity
 import com.habitbread.main.ui.viewModel.AccountViewModel
 import com.habitbread.main.util.AccountUtils
 import com.habitbread.main.util.PushUtils
 import kotlinx.android.synthetic.main.fragment_account.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class Account : Fragment() {
     val accountViewModel : AccountViewModel by viewModels()
+    var userNickname: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +40,8 @@ class Account : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer {
-            textview_profile_nickname.text = it.accountName
+            userNickname = it.accountName
+            textview_profile_nickname.text = userNickname
             progress_exp.progress = it.percent
             textview_progress_exp.text = it.percent.toString() + "%"
             textview_account_exp.text = it.userExp.toString()
@@ -87,8 +93,7 @@ class Account : Fragment() {
 
     private fun getDialogEditText() : EditText {
         val et = EditText(requireContext())
-        et.setPadding(10, 0, 10, 0);
-        et.setBackgroundColor(resources.getColor(R.color.checkedTrue));
+        et.setText(userNickname)
         return et
     }
 

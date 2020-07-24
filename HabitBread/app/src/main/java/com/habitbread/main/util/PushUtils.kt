@@ -26,6 +26,7 @@ class PushUtils {
 
             // This is a new Token(Instance ID)
             val token = task.result?.token.toString()
+            FirebaseAPI().sendRegistrationToServer(token)
             Log.d("FCM_Token", token)
 
             FirebaseAPI().sendRegistrationToServer(token)
