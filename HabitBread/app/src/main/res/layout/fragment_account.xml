@@ -236,8 +236,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:thumbTint="@android:color/white"
-                app:trackTint="@color/appGreenColor" />
+                style="@style/ThemeOverlay.App.Switch"
+                app:useMaterialThemeColors = "false"
+                android:checked="true"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

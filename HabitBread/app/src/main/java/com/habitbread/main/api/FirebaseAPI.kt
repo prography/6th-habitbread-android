@@ -4,6 +4,7 @@ import android.util.Log
 import com.habitbread.main.data.UserInfoRequest
 import com.habitbread.main.data.UserInfoResponse
 import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,14 +32,14 @@ class FirebaseAPI : FirebaseMessagingService() {
         call.enqueue(
             object : Callback<UserInfoResponse>{
                 override fun onFailure(call: Call<UserInfoResponse>, t: Throwable) {
-
+                    Log.d(TAG, "Fail patch new token")
                 }
 
                 override fun onResponse(
                     call: Call<UserInfoResponse>,
                     response: Response<UserInfoResponse>
                 ) {
-
+                    Log.d(TAG, "Success patch new token")
                 }
             }
         )
