@@ -149,7 +149,7 @@
             android:id="@+id/layout_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -159,12 +159,12 @@
 
             <ProgressBar
                 android:id="@+id/progress_exp"
-                style="@android:style/Widget.Material.ProgressBar.Horizontal"
+                style="@style/MyProgressBar"
+                android:theme="@style/MyProgressBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progress="35"
-                android:progressBackgroundTint="#A67B58"
-                android:progressTint="#A67B58" />
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -175,7 +175,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="15%" />
+                    android:gravity="center"
+                    android:text="35%" />
             </RelativeLayout>
         </FrameLayout>
 

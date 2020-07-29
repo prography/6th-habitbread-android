@@ -51,4 +51,13 @@
         <item name="colorOnSurface">#303030</item>
         <item name="colorSecondary">@color/appGreenColor</item>
     </style>
+
+    <!-- progress bar theme -->
+    <style name="MyProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorControlNormal">#ECE9E2</item>
+        <item name="colorControlActivated">#A67B58</item>
+        <item name="colorControlHighlight">#A67B58</item>
+        <item name="android:progressDrawable">@drawable/custom_progressbar</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
 </resources>
