@@ -17,13 +17,15 @@
         android:background="@color/appBackground"
         app:labelVisibilityMode="unlabeled"/>
 
-    <androidx.viewpager.widget.ViewPager
+
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_viewPager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/main_bottom_navigation"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layoutDirection="inherit"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
