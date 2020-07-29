@@ -19,7 +19,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.habitbread.main.util.AccountUtils
-import com.habitbread.main.util.GoogleOauthUtils
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -30,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         button_google_sign_in.setOnClickListener(View.OnClickListener { signIn() })
-        client = GoogleOauthUtils(this@LoginActivity).client
+        client = AccountUtils(this@LoginActivity).googleSignInClient
         if (AccountUtils(this@LoginActivity).isAlreadyLoggedIn()) {
             client.silentSignIn().addOnCompleteListener {
                 if (it.isSuccessful) {
