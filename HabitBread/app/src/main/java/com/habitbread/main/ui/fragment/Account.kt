@@ -1,28 +1,23 @@
 package com.habitbread.main.ui.fragment
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.habitbread.main.R
 import com.habitbread.main.base.BaseApplication
-import com.habitbread.main.data.NewHabitReq
-import com.habitbread.main.ui.activity.LoginActivity
 import com.habitbread.main.ui.viewModel.AccountViewModel
 import com.habitbread.main.util.AccountUtils
 import com.habitbread.main.util.PushUtils
 import kotlinx.android.synthetic.main.fragment_account.*
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 class Account : Fragment() {
     val accountViewModel : AccountViewModel by viewModels()
@@ -148,8 +143,6 @@ class Account : Fragment() {
     }
 
     private fun backToLogin() {
-        val intent = Intent(this.requireActivity(), LoginActivity::class.java);
-        startActivity(intent);
-        this.requireActivity().finish();
+        Log.d("HabitBread", "Back To Login");
     }
 }

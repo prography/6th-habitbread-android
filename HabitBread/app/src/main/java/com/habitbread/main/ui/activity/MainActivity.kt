@@ -5,7 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.habitbread.main.R
@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initViewPager()
         initBottomNavigation()
+        initDestination()
         if (BaseApplication.preferences.isTokenRegistered) {
             PushUtils().register()
         }
@@ -35,6 +36,16 @@ class MainActivity : AppCompatActivity() {
         pagerAdapter.addFragment(Account())
         main_viewPager.adapter = pagerAdapter
         main_viewPager.registerOnPageChangeCallback(PageChangeCallback())
+    }
+
+    private fun initDestination() {
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener{controller, destination, arguments ->
+            if (destination.id == R.id.myHabits) {
+                main_bottom_navigation.visibility = View.VISIBLE
+            } else {
+                main_bottom_navigation.visibility = View.INVISIBLE
+            }
+        }
     }
 
     private fun initBottomNavigation() {
@@ -67,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             return fragmentList[position]
         }
     }
+
 
     private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {

@@ -1,37 +1,53 @@
-package com.habitbread.main.ui.activity
-
-import com.habitbread.main.data.GoogleOAuthRequest
-import retrofit2.*
+package com.habitbread.main.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.habitbread.main.R
-import com.habitbread.main.api.ServerImpl
-import com.habitbread.main.base.BaseApplication
-import com.habitbread.main.data.GoogleOAuthResponse
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.habitbread.main.R
+import com.habitbread.main.api.ServerImpl
+import com.habitbread.main.base.BaseApplication
+import com.habitbread.main.data.GoogleOAuthRequest
+import com.habitbread.main.data.GoogleOAuthResponse
 import com.habitbread.main.util.AccountUtils
-import com.habitbread.main.util.GoogleOauthUtils
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : Fragment() {
     private val TAG = "HabitBread"
     lateinit var client: GoogleSignInClient
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        button_google_sign_in.setOnClickListener(View.OnClickListener { signIn() })
-        client = GoogleOauthUtils(this@LoginActivity).client
-        if (AccountUtils(this@LoginActivity).isAlreadyLoggedIn()) {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        button_google_sign_in.setOnClickListener {
+//            Toast.makeText(requireContext(), "Hello, World", Toast.LENGTH_SHORT).show()
+            signIn()
+        }
+        client = AccountUtils(requireContext()).googleSignInClient
+        if (AccountUtils(requireContext()).isAlreadyLoggedIn()) {
             client.silentSignIn().addOnCompleteListener {
                 if (it.isSuccessful) {
                     handleSignInResult(it)
@@ -40,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         } else {
-           button_google_sign_in.visibility = View.VISIBLE
+            button_google_sign_in.visibility = View.VISIBLE
         }
     }
 
@@ -101,12 +117,11 @@ class LoginActivity : AppCompatActivity() {
                 if (googleOauthResponse?.idToken != null) {
                     Log.d(TAG, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
-                    val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    // Navigation Control
+                    findNavController().navigate(R.id.action_loginFragment_to_myHabits2)
                 } else {
                     Log.d(TAG, googleOauthResponse.toString());
-                    Toast.makeText(this@LoginActivity, "Google Oauth Failed", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "Google Oauth Failed", Toast.LENGTH_SHORT)
                         .show();
                 }
 

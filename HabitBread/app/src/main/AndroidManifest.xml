@@ -30,17 +30,16 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
-      
-        <activity android:name="com.habitbread.main.ui.activity.LoginActivity">
+
+        <activity android:name="com.habitbread.main.ui.activity.DetailActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name="com.habitbread.main.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.habitbread.main.ui.activity.DetailActivity"
-            android:launchMode="singleTop"/>
-        <activity android:name="com.habitbread.main.ui.activity.MainActivity"/>
         <activity android:name="com.habitbread.main.ui.activity.BakeryActivity"
             android:launchMode="singleTop"/>
 

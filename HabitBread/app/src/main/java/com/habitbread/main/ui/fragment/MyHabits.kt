@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.habitbread.main.R
@@ -16,6 +17,7 @@ import com.habitbread.main.data.NewHabitReq
 import com.habitbread.main.ui.activity.BakeryActivity
 import com.habitbread.main.ui.viewModel.HabitViewModel
 import com.habitbread.main.util.DateCalculation
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_my_habits.*
 import kotlinx.android.synthetic.main.layout_add_button.*
 import org.greenrobot.eventbus.EventBus
