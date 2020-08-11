@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.habitbread.main.R
 import com.habitbread.main.adapter.HabitListAdapter
 import com.habitbread.main.data.NewHabitReq
-import com.habitbread.main.ui.activity.BakeryActivity
 import com.habitbread.main.ui.viewModel.HabitViewModel
 import com.habitbread.main.util.DateCalculation
 import kotlinx.android.synthetic.main.activity_main.*
@@ -85,8 +84,7 @@ class MyHabits : Fragment() {
 
     private fun onClickBakery() {
         imageView_bakery_circle.setOnClickListener {
-            val intent = Intent(context, BakeryActivity::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_viewPager_to_bakery)
         }
     }
 }

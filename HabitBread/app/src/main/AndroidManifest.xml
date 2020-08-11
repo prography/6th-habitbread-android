@@ -41,8 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.habitbread.main.ui.activity.BakeryActivity"
-            android:launchMode="singleTop"/>
 
         <service
             android:name="com.habitbread.main.api.FirebaseAPI"

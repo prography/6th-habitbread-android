@@ -1,9 +1,13 @@
-package com.habitbread.main.ui.activity
+package com.habitbread.main.ui.fragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.habitbread.main.R
@@ -11,9 +15,9 @@ import com.habitbread.main.adapter.BakeryAdapter
 import com.habitbread.main.data.BreadsData
 import com.habitbread.main.ui.viewModel.BakeryViewModel
 import com.habitbread.main.util.GridViewDecoration
-import kotlinx.android.synthetic.main.activity_bakery.*
+import kotlinx.android.synthetic.main.fragment_bakery.view.*
 
-class BakeryActivity : AppCompatActivity() {
+class Bakery : Fragment() {
 
     private lateinit var rvBakeryLevel1: RecyclerView
     private lateinit var rvBakeryLevel2: RecyclerView
@@ -26,47 +30,56 @@ class BakeryActivity : AppCompatActivity() {
     private val bakeryViewModel: BakeryViewModel by viewModels()
     private val breadsData: BreadsData = BreadsData()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bakery)
-        initRecyclerView()
-        setBreads()
-        onClickBackArrow()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view =  inflater.inflate(R.layout.fragment_bakery, container, false)
+        initRecyclerView(view)
+        view.imageVew_back_button.setOnClickListener {
+            findNavController().navigateUp();
+        }
+        return view
     }
 
-    private fun initRecyclerView() {
-        //Level1
-        rvBakeryLevel1 = findViewById(R.id.recyclerView_level1)
-        rvBakeryAdapterLevel1 = BakeryAdapter(this)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setBreads()
+    }
+
+    private fun initRecyclerView(view: View) {
+        rvBakeryLevel1 = view.findViewById(R.id.recyclerView_level1)
+        rvBakeryAdapterLevel1 = BakeryAdapter(requireContext())
         rvBakeryLevel1.adapter = rvBakeryAdapterLevel1
-        rvBakeryLevel1.layoutManager = GridLayoutManager(this, 3)
+        rvBakeryLevel1.layoutManager = GridLayoutManager(requireContext(), 3)
         rvBakeryLevel1.addItemDecoration(GridViewDecoration(3, 20, true))
 
         //Level2
-        rvBakeryLevel2 = findViewById(R.id.recyclerView_level2)
-        rvBakeryAdapterLevel2 = BakeryAdapter(this)
+        rvBakeryLevel2 = view.findViewById(R.id.recyclerView_level2)
+        rvBakeryAdapterLevel2 = BakeryAdapter(requireContext())
         rvBakeryLevel2.adapter = rvBakeryAdapterLevel2
-        rvBakeryLevel2.layoutManager = GridLayoutManager(this, 3)
+        rvBakeryLevel2.layoutManager = GridLayoutManager(requireContext(), 3)
         rvBakeryLevel2.addItemDecoration(GridViewDecoration(3, 20, true))
 
         //Level3
-        rvBakeryLevel3 = findViewById(R.id.recyclerView_level3)
-        rvBakeryAdapterLevel3 = BakeryAdapter(this)
+        rvBakeryLevel3 = view.findViewById(R.id.recyclerView_level3)
+        rvBakeryAdapterLevel3 = BakeryAdapter(requireContext())
         rvBakeryLevel3.adapter = rvBakeryAdapterLevel3
-        rvBakeryLevel3.layoutManager = GridLayoutManager(this, 3)
+        rvBakeryLevel3.layoutManager = GridLayoutManager(requireContext(), 3)
         rvBakeryLevel3.addItemDecoration(GridViewDecoration(3, 20, true))
 
         //Level4
-        rvBakeryLevel4 = findViewById(R.id.recyclerView_level4)
-        rvBakeryAdapterLevel4 = BakeryAdapter(this)
+        rvBakeryLevel4 = view.findViewById(R.id.recyclerView_level4)
+        rvBakeryAdapterLevel4 = BakeryAdapter(requireContext())
         rvBakeryLevel4.adapter = rvBakeryAdapterLevel4
-        rvBakeryLevel4.layoutManager = GridLayoutManager(this, 3)
+        rvBakeryLevel4.layoutManager = GridLayoutManager(requireContext(), 3)
         rvBakeryLevel4.addItemDecoration(GridViewDecoration(3, 20, true))
     }
 
     private fun setBreads() {
         bakeryViewModel.getBreads()
-        bakeryViewModel.breadsData.observe(this, Observer {
+        bakeryViewModel.breadsData.observe(requireActivity(), Observer {
             val level1ItemIds: MutableList<Int> = mutableListOf()
             val level2ItemIds: MutableList<Int> = mutableListOf()
             val level3ItemIds: MutableList<Int> = mutableListOf()
@@ -103,9 +116,5 @@ class BakeryActivity : AppCompatActivity() {
         })
     }
 
-    private fun onClickBackArrow() {
-        imageVew_back_button.setOnClickListener {
-            finish()
-        }
-    }
+
 }

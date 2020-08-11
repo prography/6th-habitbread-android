@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/appBackground"
-    tools:context=".ui.activity.BakeryActivity">
+    tools:context=".ui.fragment.Bakery">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
