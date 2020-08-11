@@ -115,7 +115,7 @@ class Login : Fragment() {
                     Log.d(TAG, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
                     // Navigation Control
-                    findNavController().navigate(R.id.action_login_to_myHabits)
+                    findNavController().navigate(R.id.action_login_to_viewPager)
                 } else {
                     Log.d(TAG, googleOauthResponse.toString());
                     Toast.makeText(requireContext(), "Google Oauth Failed", Toast.LENGTH_SHORT)

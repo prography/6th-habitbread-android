@@ -10,30 +10,21 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_login_to_myHabits"
-            app:destination="@id/myHabits"
+            android:id="@+id/action_login_to_viewPager"
+            app:destination="@id/viewPager"
             app:popUpTo="@id/login"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/myHabits"
-        android:name="com.habitbread.main.ui.fragment.MyHabits"
-        tools:layout="@layout/fragment_my_habits"
-        android:label="MyHabits" />
-    <fragment
-        android:id="@+id/account"
-        android:name="com.habitbread.main.ui.fragment.Account"
-        android:label="Account">
-        <action
-            android:id="@+id/action_account_to_login"
-            app:destination="@id/login"
-            app:popUpTo="@id/account"
             app:popUpToInclusive="true"/>
     </fragment>
     <fragment
-        android:id="@+id/ranking"
-        android:name="com.habitbread.main.ui.fragment.Ranking"
-        android:label="Ranking" />
-
+        android:id="@+id/viewPager"
+        android:name="com.habitbread.main.ui.fragment.ViewPager"
+        android:label="fragment_viewpager"
+        tools:layout="@layout/fragment_viewpager" >
+        <action
+            android:id="@+id/action_viewPager_to_login"
+            app:destination="@id/login"
+            app:popUpTo="@id/viewPager"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

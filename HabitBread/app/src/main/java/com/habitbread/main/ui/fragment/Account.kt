@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.habitbread.main.R
 import com.habitbread.main.base.BaseApplication
 import com.habitbread.main.ui.viewModel.AccountViewModel
@@ -142,5 +143,6 @@ class Account : Fragment() {
 
     private fun backToLogin() {
         Log.d("HabitBread", "Back To Login");
+        findNavController().navigate(R.id.action_viewPager_to_login)
     }
 }

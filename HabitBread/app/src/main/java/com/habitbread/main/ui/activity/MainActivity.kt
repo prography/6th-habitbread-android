@@ -23,26 +23,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initDestination()
         if (BaseApplication.preferences.isTokenRegistered) {
             PushUtils().register()
         }
     }
 
-    private fun initDestination() {
-        val navController = findNavController(R.id.nav_host_fragment)
-        navController.addOnDestinationChangedListener{controller, destination, arguments ->
-            if (isOnBottomNavigation(destination.id)) {
-                main_bottom_navigation.visibility = View.VISIBLE
-                main_bottom_navigation.setupWithNavController(navController)
-                navController.popBackStack()
-            } else {
-                main_bottom_navigation.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun isOnBottomNavigation(destinationId: Int) : Boolean{
-        return destinationId == R.id.myHabits || destinationId == R.id.ranking || destinationId == R.id.account;
-    }
 }
