@@ -115,7 +115,6 @@ class Account : Fragment() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage("정말 탈퇴 하시겠습니까??")
             .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
-                BaseApplication.preferences.clearPreferences()
                 PushUtils().unregister()
                 accountViewModel.deleteAccount()
                 AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
@@ -131,7 +130,6 @@ class Account : Fragment() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage("정말 로그아웃 하시겠습니까??")
             .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
-                BaseApplication.preferences.clearPreferences()
                 PushUtils().unregister()
                 AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
                     backToLogin()

@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -27,7 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginFragment : Fragment() {
+class Login : Fragment() {
     private val TAG = "HabitBread"
     lateinit var client: GoogleSignInClient
 
@@ -117,7 +115,7 @@ class LoginFragment : Fragment() {
                     Log.d(TAG, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
                     // Navigation Control
-                    findNavController().navigate(R.id.action_loginFragment_to_myHabits2)
+                    findNavController().navigate(R.id.action_login_to_myHabits)
                 } else {
                     Log.d(TAG, googleOauthResponse.toString());
                     Toast.makeText(requireContext(), "Google Oauth Failed", Toast.LENGTH_SHORT)

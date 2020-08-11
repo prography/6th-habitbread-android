@@ -18,14 +18,16 @@ class AccountUtils(context: Context) {
     }
 
     fun signOut() : Task<Void> {
+        BaseApplication.preferences.clearPreferences()
         return googleSignInClient.signOut()
     }
 
     fun revokeAccess() : Task<Void> {
+        BaseApplication.preferences.clearPreferences()
         return googleSignInClient.revokeAccess()
     }
 
     fun isAlreadyLoggedIn() : Boolean {
-        return (BaseApplication.preferences.googleIdToken != null && GoogleSignIn.getLastSignedInAccount(googleSignInClient.applicationContext) != null)
+        return (!BaseApplication.preferences.googleIdToken.isNullOrEmpty() && GoogleSignIn.getLastSignedInAccount(googleSignInClient.applicationContext) != null)
     }
 }

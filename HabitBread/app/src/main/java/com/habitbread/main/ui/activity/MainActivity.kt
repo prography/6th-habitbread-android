@@ -23,21 +23,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initViewPager()
-        initBottomNavigation()
         initDestination()
         if (BaseApplication.preferences.isTokenRegistered) {
             PushUtils().register()
         }
-    }
-
-    private fun initViewPager() {
-        val pagerAdapter = MainViewPager(this)
-        pagerAdapter.addFragment(MyHabits())
-        pagerAdapter.addFragment(Ranking())
-        pagerAdapter.addFragment(Account())
-        main_viewPager.adapter = pagerAdapter
-        main_viewPager.registerOnPageChangeCallback(PageChangeCallback())
     }
 
     private fun initDestination() {
@@ -46,56 +35,14 @@ class MainActivity : AppCompatActivity() {
             if (isOnBottomNavigation(destination.id)) {
                 main_bottom_navigation.visibility = View.VISIBLE
                 main_bottom_navigation.setupWithNavController(navController)
+                navController.popBackStack()
             } else {
-                main_bottom_navigation.visibility = View.INVISIBLE
+                main_bottom_navigation.visibility = View.GONE
             }
         }
     }
 
     private fun isOnBottomNavigation(destinationId: Int) : Boolean{
         return destinationId == R.id.myHabits || destinationId == R.id.ranking || destinationId == R.id.account;
-    }
-
-    private fun initBottomNavigation() {
-        main_bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.ranking -> setPageIndex(1)
-                R.id.account -> setPageIndex(2)
-                else -> setPageIndex(0)
-            }
-            return@setOnNavigationItemSelectedListener true
-        }
-    }
-
-    private fun setPageIndex(index: Int) {
-        main_viewPager.currentItem = index
-    }
-
-    private inner class MainViewPager(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        private var fragmentList: ArrayList<Fragment> = arrayListOf()
-
-        fun addFragment(fragment: Fragment) {
-            fragmentList.add(fragment)
-        }
-
-        override fun getItemCount(): Int {
-            return fragmentList.size
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return fragmentList[position]
-        }
-    }
-
-
-    private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-            main_bottom_navigation.selectedItemId = when (position) {
-                1 -> R.id.ranking
-                2 -> R.id.account
-                else -> R.id.myHabits
-            }
-        }
     }
 }

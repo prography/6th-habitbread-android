@@ -6,22 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.habitbread.main.ui.activity.MainActivity">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/main_viewPager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layoutDirection="inherit"
-        app:layout_constraintBottom_toTopOf="@id/main_bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <fragment
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/main_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,6 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_items"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
