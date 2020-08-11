@@ -12,7 +12,7 @@ object ServerImpl {
     val interceptor: AccessTokenInterceptor = AccessTokenInterceptor()
     val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
-    private const val BASE_URL = "https://habitbread.com"
+    private const val BASE_URL = "http://dev.habitbread.com"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

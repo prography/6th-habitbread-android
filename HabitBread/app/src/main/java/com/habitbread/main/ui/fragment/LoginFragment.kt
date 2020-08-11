@@ -22,8 +22,7 @@ import com.habitbread.main.base.BaseApplication
 import com.habitbread.main.data.GoogleOAuthRequest
 import com.habitbread.main.data.GoogleOAuthResponse
 import com.habitbread.main.util.AccountUtils
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,7 +59,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    public override fun onActivityResult(
+    override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
         data: Intent?

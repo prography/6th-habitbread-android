@@ -21,4 +21,12 @@
         android:name="com.habitbread.main.ui.fragment.MyHabits"
         tools:layout="@layout/fragment_my_habits"
         android:label="MyHabits" />
+    <fragment
+        android:id="@+id/account"
+        android:name="com.habitbread.main.ui.fragment.Account"
+        android:label="Account" />
+    <fragment
+        android:id="@+id/ranking"
+        android:name="com.habitbread.main.ui.fragment.Ranking"
+        android:label="Ranking" />
 </navigation>

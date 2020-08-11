@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.habitbread.main.R
 import com.habitbread.main.ui.fragment.Account
 import com.habitbread.main.ui.fragment.MyHabits
@@ -39,13 +41,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initDestination() {
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener{controller, destination, arguments ->
-            if (destination.id == R.id.myHabits) {
+        val navController = findNavController(R.id.nav_host_fragment)
+        navController.addOnDestinationChangedListener{controller, destination, arguments ->
+            if (isOnBottomNavigation(destination.id)) {
                 main_bottom_navigation.visibility = View.VISIBLE
+                main_bottom_navigation.setupWithNavController(navController)
             } else {
                 main_bottom_navigation.visibility = View.INVISIBLE
             }
         }
+    }
+
+    private fun isOnBottomNavigation(destinationId: Int) : Boolean{
+        return destinationId == R.id.myHabits || destinationId == R.id.ranking || destinationId == R.id.account;
     }
 
     private fun initBottomNavigation() {
