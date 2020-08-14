@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.habitbread.main.R
 import com.habitbread.main.data.Habits
-import com.habitbread.main.ui.activity.DetailActivity
 import com.habitbread.main.util.DateCalculation
 import kotlinx.android.synthetic.main.item_habit.view.*
 
@@ -84,11 +85,8 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             }
 
             itemView.button_habit.setOnClickListener {
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("habitId", data.habitId)
-                intent.putExtra("habitName", data.habitName)
-                intent.putExtra("habitDescription", data.description)
-                context?.startActivity(intent)
+                val bundle = bundleOf("habitId" to data.habitId, "habitName" to data.habitName, "habitDescription" to data.description)
+                it.findNavController().navigate(R.id.action_viewPager_to_detail, bundle)
             }
         }
     }

@@ -40,11 +40,46 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_viewPager_to_detail"
+            app:destination="@id/detail" >
+            <argument
+                android:name="habitId"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+            <argument
+                android:name="habitName"
+                app:argType="string"
+                android:defaultValue=""/>
+            <argument
+                android:name="habitDescription"
+                app:argType="string"
+                app:nullable="true"/>
+        </action>
+        <action
+            android:id="@+id/action_viewPager_to_registrationBottomSheet"
+            app:destination="@id/registrationBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/bakery"
         android:name="com.habitbread.main.ui.fragment.Bakery"
         android:label="fragment_bakery"
         tools:layout="@layout/fragment_bakery" />
+    <fragment
+        android:id="@+id/detail"
+        android:name="com.habitbread.main.ui.fragment.Detail"
+        tools:layout="@layout/fragment_detail"
+        android:label="Detail" />
+    <fragment
+        android:id="@+id/registrationBottomSheet"
+        android:name="com.habitbread.main.ui.fragment.RegistrationBottomSheet"
+        tools:layout="@layout/fragment_registraion"
+        android:label="RegistrationBottomSheet" >
+        <action
+            android:id="@+id/action_registrationBottomSheet_to_detail"
+            app:destination="@id/detail"
+            app:popUpTo="@layout/fragment_registraion"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 </navigation>
