@@ -129,7 +129,6 @@ class Account : Fragment() {
                 PushUtils().unregister()
                 accountViewModel.deleteAccount()
                 AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
-                    BaseApplication.preferences.clearPreferences()
                     backToLogin()
                 }
             }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
@@ -145,7 +144,6 @@ class Account : Fragment() {
                 PushUtils().unregister()
                 AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
                     backToLogin()
-                    BaseApplication.preferences.clearPreferences()
                 }
             }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
                 dialogInterface.dismiss()
