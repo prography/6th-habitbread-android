@@ -22,7 +22,7 @@ class ViewPager : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_viewpager, container, false)
 
-        val fragmentList = arrayListOf<Fragment>(
+        val fragmentList = arrayListOf(
             MyHabits(),
             Ranking(),
             Account()

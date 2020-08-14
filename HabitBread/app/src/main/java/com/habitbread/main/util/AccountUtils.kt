@@ -8,13 +8,14 @@ import com.google.android.gms.tasks.Task
 import com.habitbread.main.base.BaseApplication
 
 class AccountUtils(context: Context) {
-    lateinit var googleSignInClient : GoogleSignInClient
+    private val googleIdTokenAddress = "191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com"
+    var googleSignInClient : GoogleSignInClient
     init {
         val gso = GoogleSignInOptions.Builder()
-            .requestIdToken("191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com")
+            .requestIdToken(googleIdTokenAddress)
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(context, gso);
+        googleSignInClient = GoogleSignIn.getClient(context, gso)
     }
 
     fun signOut() : Task<Void> {

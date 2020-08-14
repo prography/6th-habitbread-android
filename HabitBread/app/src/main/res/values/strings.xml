@@ -48,4 +48,10 @@
 
     <!-- fcm strings -->
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+    <!-- account stringSet -->
+    <string name="percentage">%d%%</string>
+
+    <!-- detail stringSet -->
+    <string name="count">%d회</string>
 </resources>

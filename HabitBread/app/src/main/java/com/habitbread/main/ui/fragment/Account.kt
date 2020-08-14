@@ -21,16 +21,15 @@ import com.habitbread.main.util.PushUtils
 import kotlinx.android.synthetic.main.fragment_account.*
 
 class Account : Fragment() {
-    val accountViewModel : AccountViewModel by viewModels()
-    var userNickname: String = ""
+    private val accountViewModel : AccountViewModel by viewModels()
+    private var userNickname: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_account, container, false);
-        return view
+        return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,18 +38,18 @@ class Account : Fragment() {
             userNickname = it.accountName
             textview_profile_nickname.text = userNickname
             progress_exp.progress = it.percent
-            textview_progress_exp.text = it.percent.toString() + "%"
+            textview_progress_exp.text = getString(R.string.percentage, it.percent)
             textview_account_exp.text = it.userExp.toString()
             textview_bread_num.text = it.totalItemCount.toString()
-            textview_current_bread_num.text = String.format(getString(R.string.currentBreadNum), it.totalItemCount);
+            textview_current_bread_num.text = getString(R.string.currentBreadNum, it.totalItemCount)
         })
-        setOnClickListener();
-        setOnToggleListener();
+        setOnClickListener()
+        setOnToggleListener()
         switch_alarm.isChecked = BaseApplication.preferences.isTokenRegistered
     }
 
     private fun setOnToggleListener() {
-        switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
+        switch_alarm.setOnCheckedChangeListener { _, isChecked ->
             BaseApplication.preferences.isTokenRegistered = isChecked
             if (isChecked) {
                 PushUtils().register()
@@ -70,17 +69,17 @@ class Account : Fragment() {
             val dialog = AlertDialog.Builder(requireContext())
                 .setTitle("닉네임을 변경합니다")
                 .setView(dialogEditText)
-                .setPositiveButton("변경!") { dialogInterface: DialogInterface, i: Int ->
+                .setPositiveButton("변경!") { _: DialogInterface, _: Int ->
                     if (dialogEditText.length() < 0) {
                         Toast.makeText(requireContext(), "닉네임 길이는 1글자 이상이여야 합니다~", Toast.LENGTH_SHORT).show()
                     } else {
                         accountViewModel.updateUserNickname(dialogEditText.text.toString())
                         accountViewModel.userInfoData.observe(viewLifecycleOwner, Observer {
-                            textview_profile_nickname.text = it.userName;
+                            textview_profile_nickname.text = it.userName
                         })
                     }
                 }.setNegativeButton("취소!") {
-                    dialogInterface, i -> dialogInterface.cancel()
+                        dialogInterface, _ -> dialogInterface.cancel()
                 }
             dialog.create().show()
         }
@@ -109,40 +108,40 @@ class Account : Fragment() {
     }
 
     private fun showNotReadyToast() {
-        Toast.makeText(this.context, "아직 준비중인 기능입니다.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, "아직 준비중인 기능입니다.", Toast.LENGTH_SHORT).show()
     }
 
     private fun deleteAccount() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage("정말 탈퇴 하시겠습니까??")
-            .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
+            .setPositiveButton("네") { _, _->
                 PushUtils().unregister()
                 accountViewModel.deleteAccount()
                 AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
                     backToLogin()
                 }
-            }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
+            }.setNegativeButton("아니요") { dialogInterface , _->
                 dialogInterface.dismiss()
-            };
-        dialog.create().show();
+            }
+        dialog.create().show()
     }
 
     private fun signOut() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage("정말 로그아웃 하시겠습니까??")
-            .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
+            .setPositiveButton("네") { _,_->
                 PushUtils().unregister()
                 AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
                     backToLogin()
                 }
-            }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
+            }.setNegativeButton("아니요") { dialogInterface, _->
                 dialogInterface.dismiss()
-            };
-        dialog.create().show();
+            }
+        dialog.create().show()
     }
 
     private fun backToLogin() {
-        Log.d("HabitBread", "Back To Login");
+        Log.d("HabitBread", "Back To Login")
         findNavController().navigate(R.id.action_viewPager_to_login)
     }
 }

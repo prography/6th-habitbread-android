@@ -9,8 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServerImpl {
 
-    val interceptor: AccessTokenInterceptor = AccessTokenInterceptor()
-    val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+    private val interceptor: AccessTokenInterceptor = AccessTokenInterceptor()
+    private val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
     private const val BASE_URL = "http://dev.habitbread.com"
 
@@ -26,7 +26,7 @@ object ServerImpl {
 class AccessTokenInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val token = BaseApplication.preferences.googleIdToken
-        val builder = chain.request().newBuilder().addHeader("Authorization", "Bearer " + token).build()
+        val builder = chain.request().newBuilder().addHeader("Authorization", "Bearer $token").build()
         return chain.proceed(builder)
     }
 }

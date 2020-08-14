@@ -26,8 +26,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Login : Fragment() {
-    private val TAG = "HabitBread"
-    lateinit var client: GoogleSignInClient
+    private val loginTag = "HabitBread"
+    private lateinit var client: GoogleSignInClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,14 +72,14 @@ class Login : Fragment() {
             if (task.isSuccessful) {
                 handleSignInResult(task)
             } else {
-                Log.d(TAG, task.exception.toString());
-                Log.d(TAG, task.result.toString());
+                Log.d(loginTag, task.exception.toString())
+                Log.d(loginTag, task.result.toString())
             }
         }
     }
 
     private fun signIn() {
-        val signInIntent = client!!.signInIntent
+        val signInIntent = client.signInIntent
         startActivityForResult(signInIntent, 9001)
     }
 
@@ -87,10 +87,10 @@ class Login : Fragment() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             if (account != null) {
-                Log.d(TAG, "handleSignInResult: " + account.idToken)
+                Log.d(loginTag, "handleSignInResult: " + account.idToken)
                 sendGoogleOauth(account.idToken)
             } else {
-                Log.d(TAG, "handleSignInResult: " + " no Account")
+                Log.d(loginTag, "handleSignInResult: " + " no Account")
             }
 
             // Signed in successfully, show authenticated UI.
@@ -102,24 +102,24 @@ class Login : Fragment() {
     }
 
     private fun sendGoogleOauth(idToken: String?) {
-        val tempRequest = GoogleOAuthRequest(idToken!!);
-        val call = ServerImpl.APIService.serverLoginWithGoogle(tempRequest);
+        val tempRequest = GoogleOAuthRequest(idToken!!)
+        val call = ServerImpl.APIService.serverLoginWithGoogle(tempRequest)
         call.enqueue(object : Callback<GoogleOAuthResponse?> {
             override fun onResponse(
                 call: Call<GoogleOAuthResponse?>,
                 response: Response<GoogleOAuthResponse?>
             ) {
-                Log.d(TAG, "onResponse: ${response.body()}")
-                val googleOauthResponse = response.body();
+                Log.d(loginTag, "onResponse: ${response.body()}")
+                val googleOauthResponse = response.body()
                 if (googleOauthResponse?.idToken != null) {
-                    Log.d(TAG, googleOauthResponse.idToken)
+                    Log.d(loginTag, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
                     // Navigation Control
                     findNavController().navigate(R.id.action_login_to_viewPager)
                 } else {
-                    Log.d(TAG, googleOauthResponse.toString());
+                    Log.d(loginTag, googleOauthResponse.toString())
                     Toast.makeText(requireContext(), "Google Oauth Failed", Toast.LENGTH_SHORT)
-                        .show();
+                        .show()
                 }
 
             }

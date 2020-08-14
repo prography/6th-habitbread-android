@@ -38,7 +38,7 @@ class Bakery : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_bakery, container, false)
         initRecyclerView(view)
         view.imageVew_back_button.setOnClickListener {
-            findNavController().navigateUp();
+            findNavController().navigateUp()
         }
         return view
     }
@@ -90,7 +90,7 @@ class Bakery : Fragment() {
                 rvBakeryAdapterLevel3.setAdapterData(breadsData.level3, level3ItemIds)
                 rvBakeryAdapterLevel4.setAdapterData(breadsData.level4, level4ItemIds)
             }else {
-                for(i in 0..it.size-1) {
+                for(i in it.indices) {
                     if(breadsData.level1Ids.contains(it[i].item.itemId)) {
                         level1ItemIds.add(it[i].item.itemId)
                     }
