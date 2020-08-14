@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.habitbread.main.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -164,8 +165,8 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             // call create habit api
             if(isDoneReady == true) {
                 EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmDay, getHabitAlarmTime))
-                dismiss()
-            }else {
+                findNavController().navigateUp()
+            } else {
                 Toast.makeText(context, "습관빵 이름과 빵 굽는 날은 반드시 입력해주세요!", Toast.LENGTH_LONG).show()
             }
         }
@@ -173,7 +174,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
     fun onRegisterCancle(){
         imageView_close.setOnClickListener {
-            dismiss()
+            findNavController().navigateUp()
         }
     }
 }

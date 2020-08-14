@@ -69,17 +69,41 @@
         android:id="@+id/detail"
         android:name="com.habitbread.main.ui.fragment.Detail"
         tools:layout="@layout/fragment_detail"
-        android:label="Detail" />
+        android:label="Detail" >
+        <action
+            android:id="@+id/action_detail_to_modificationBottomSheet"
+            app:destination="@id/modificationBottomSheet">
+            <argument
+                android:name="habitId"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue=""/>
+            <argument
+                android:name="description"
+                app:argType="string"
+                app:nullable="true"/>
+            <argument
+                android:name="dayOfWeek"
+                app:argType="string"
+                android:defaultValue=""/>
+            <argument
+                android:name="alarmTime"
+                app:argType="string"
+                app:nullable="true"/>
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/registrationBottomSheet"
         android:name="com.habitbread.main.ui.fragment.RegistrationBottomSheet"
         tools:layout="@layout/fragment_registraion"
-        android:label="RegistrationBottomSheet" >
-        <action
-            android:id="@+id/action_registrationBottomSheet_to_detail"
-            app:destination="@id/detail"
-            app:popUpTo="@layout/fragment_registraion"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        android:label="RegistrationBottomSheet" />
+    <fragment
+        android:id="@+id/modificationBottomSheet"
+        android:name="com.habitbread.main.ui.fragment.ModificationBottomSheet"
+        android:label="ModificationBottomSheet"
+        tools:layout="@layout/fragment_modification"/>
 
 </navigation>

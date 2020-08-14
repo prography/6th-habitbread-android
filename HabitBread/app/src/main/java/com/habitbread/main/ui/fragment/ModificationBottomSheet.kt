@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.habitbread.main.R
 import com.habitbread.main.ui.viewModel.DetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -24,8 +25,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.habitbread.main.base.BaseApplication
-import com.habitbread.main.util.AccountUtils
 import kotlinx.android.synthetic.main.fragment_modification.*
 import ru.ifr0z.timepickercompact.TimePickerCompact
 
@@ -69,7 +68,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         super.onActivityCreated(savedInstanceState)
         onClickDayOfWeekChips()
         onCheckAlarmSwith()
-        onModifyCancle()
+        onModifyCancel()
         onModifyDone()
         onClickDelete()
     }
@@ -186,7 +185,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
             }
 
             setNewDataOnHabitListener.setNewDataOnHabit(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmTime)
-            dismiss()
+            findNavController().navigateUp()
         }
     }
 
@@ -194,9 +193,9 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         fun setNewDataOnHabit(newTitle: String, newCategory: String, newDescription: String?, newAlarmTime: String?)
     }
 
-    fun onModifyCancle(){
+    private fun onModifyCancel(){
         imageView_close.setOnClickListener {
-            dismiss()
+            findNavController().navigateUp()
         }
     }
 

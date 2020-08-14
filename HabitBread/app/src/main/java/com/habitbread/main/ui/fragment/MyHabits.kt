@@ -71,8 +71,7 @@ class MyHabits : Fragment() {
 
     private fun onClickNewHabit(){
         button_add.setOnClickListener {
-            val registrationBottomSheet = RegistrationBottomSheet()
-            registrationBottomSheet.show(parentFragmentManager, "showBottomSheet")
+            findNavController().navigate(R.id.action_viewPager_to_registrationBottomSheet)
         }
     }
 
