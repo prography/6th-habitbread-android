@@ -2,6 +2,7 @@ package com.habitbread.main.ui.fragment
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,11 @@ class Account : Fragment() {
             textview_profile_nickname.text = userNickname
             progress_exp.progress = it.percent
             textview_progress_exp.text = it.percent.toString() + "%"
+            if (it.percent <= 55) {
+                textview_progress_exp.setTextColor(Color.parseColor("#80553615"))
+            } else {
+                textview_progress_exp.setTextColor(Color.parseColor("#FFFFFF"))
+            }
             textview_account_exp.text = it.userExp.toString()
             textview_bread_num.text = it.totalItemCount.toString()
             textview_current_bread_num.text = String.format(getString(R.string.currentBreadNum), it.totalItemCount);
@@ -120,7 +126,6 @@ class Account : Fragment() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage("정말 탈퇴 하시겠습니까??")
             .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
-                BaseApplication.preferences.clearPreferences()
                 PushUtils().unregister()
                 accountViewModel.deleteAccount()
                 AccountUtils(this.requireContext()).revokeAccess().addOnCompleteListener {
@@ -136,7 +141,6 @@ class Account : Fragment() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage("정말 로그아웃 하시겠습니까??")
             .setPositiveButton("네") { dialogInterface: DialogInterface, i: Int ->
-                BaseApplication.preferences.clearPreferences()
                 PushUtils().unregister()
                 AccountUtils(this.requireContext()).signOut().addOnCompleteListener {
                     backToLogin()

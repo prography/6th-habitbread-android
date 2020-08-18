@@ -8,7 +8,7 @@ import com.google.android.gms.tasks.Task
 import com.habitbread.main.base.BaseApplication
 
 class AccountUtils(context: Context) {
-    lateinit var googleSignInClient : GoogleSignInClient
+    var googleSignInClient : GoogleSignInClient
     init {
         val gso = GoogleSignInOptions.Builder()
             .requestIdToken("191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com")
@@ -18,10 +18,12 @@ class AccountUtils(context: Context) {
     }
 
     fun signOut() : Task<Void> {
+        BaseApplication.preferences.clearPreferences()
         return googleSignInClient.signOut()
     }
 
     fun revokeAccess() : Task<Void> {
+        BaseApplication.preferences.clearPreferences()
         return googleSignInClient.revokeAccess()
     }
 

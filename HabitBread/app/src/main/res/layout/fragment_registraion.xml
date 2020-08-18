@@ -60,7 +60,9 @@
         android:layout_height="wrap_content"
         app:boxBackgroundColor="#ffffff"
         app:counterEnabled="true"
-        app:counterMaxLength="10">
+        app:counterMaxLength="10"
+        app:boxStrokeColor="@color/checkedTrue"
+        app:hintTextColor="@color/checkedTrue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_title"
@@ -70,7 +72,8 @@
             android:textColorHint="#D2CEC9"
             android:textColor="#000000"
             android:textSize="20sp"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/edittext_cursor"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,7 +100,9 @@
         android:layout_height="wrap_content"
         app:boxBackgroundColor="#ffffff"
         app:counterEnabled="true"
-        app:counterMaxLength="10">
+        app:counterMaxLength="10"
+        app:boxStrokeColor="@color/checkedTrue"
+        app:hintTextColor="@color/checkedTrue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_description"
@@ -107,7 +112,8 @@
             android:textColorHint="#D2CEC9"
             android:textColor="#000000"
             android:textSize="20sp"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/edittext_cursor"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
