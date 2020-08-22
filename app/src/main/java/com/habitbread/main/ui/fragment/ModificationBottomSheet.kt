@@ -2,7 +2,6 @@ package com.habitbread.main.ui.fragment
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
@@ -17,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.habitbread.main.R
 import com.habitbread.main.ui.viewModel.DetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -24,27 +24,25 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.habitbread.main.base.BaseApplication
-import com.habitbread.main.util.AccountUtils
 import kotlinx.android.synthetic.main.fragment_modification.*
 import ru.ifr0z.timepickercompact.TimePickerCompact
 
 class ModificationBottomSheet : BottomSheetDialogFragment() {
 
-    private val TAG: String = "ModificationBottomSheet"
-    var getHabitId: Int = -1
-    var getHabitTitle: String = ""
-    var getHabitCategory: String = "기타"
-    var getHabitDescription: String? = ""
-    var getHabitAlarmDay: String = ""
-    var getHabitAlarmTime: String? = ""
-    private lateinit var timepicker_alarm_time: TimePickerCompact
-    private lateinit var editText_title: EditText
-    private lateinit var editText_description: EditText
-    private lateinit var textView_isAlarmChecked: TextView
-    private lateinit var switch_alarm: SwitchMaterial
+    private val modificationTag: String = "ModificationBottomSheet"
+    private var getHabitId: Int = -1
+    private var getHabitTitle: String = ""
+    private var getHabitCategory: String = "기타"
+    private var getHabitDescription: String? = ""
+    private var getHabitAlarmDay: String = ""
+    private var getHabitAlarmTime: String? = ""
+    private lateinit var timePickerAlarmTime: TimePickerCompact
+    private lateinit var editTextTitle: EditText
+    private lateinit var editTextDescription: EditText
+    private lateinit var textViewIsAlarmChecked: TextView
+    private lateinit var switchAlarm: SwitchMaterial
     private lateinit var setNewDataOnHabitListener: SetNewDataOnHabitListener
-    val detailViewModel: DetailViewModel by viewModels()
+    private val detailViewModel: DetailViewModel by viewModels()
 
     override fun getTheme(): Int {
         return R.style.bottomSheetDialogTheme
@@ -56,11 +54,11 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_modification, container, false)
-        timepicker_alarm_time = view.findViewById(R.id.timepicker_alarm_time)
-        editText_title = view.findViewById(R.id.editText_title)
-        editText_description = view.findViewById(R.id.editText_description)
-        textView_isAlarmChecked = view.findViewById(R.id.textView_isAlarmChecked)
-        switch_alarm = view.findViewById(R.id.switch_alarm)
+        timePickerAlarmTime = view.findViewById(R.id.timepicker_alarm_time)
+        editTextTitle = view.findViewById(R.id.editText_title)
+        editTextDescription = view.findViewById(R.id.editText_description)
+        textViewIsAlarmChecked = view.findViewById(R.id.textView_isAlarmChecked)
+        switchAlarm = view.findViewById(R.id.switch_alarm)
         setPreviousDetailData(view)
         return view
     }
@@ -69,7 +67,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         super.onActivityCreated(savedInstanceState)
         onClickDayOfWeekChips()
         onCheckAlarmSwith()
-        onModifyCancle()
+        onModifyCancel()
         onModifyDone()
         onClickDelete()
     }
@@ -79,7 +77,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         try {
             setNewDataOnHabitListener = context as SetNewDataOnHabitListener
         }catch (e: ClassCastException) {
-            Log.e(TAG, "onAttach Error")
+            Log.e(modificationTag, "onAttach Error")
         }
     }
 
@@ -103,16 +101,16 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         getHabitAlarmTime = this.requireArguments().getString("alarmTime")
 
         // set previous detail data
-        editText_title.hint = getHabitTitle
-        editText_title.setHintTextColor(Color.parseColor("#000000"))
+        editTextTitle.hint = getHabitTitle
+        editTextTitle.setHintTextColor(Color.parseColor("#000000"))
         if(getHabitDescription == null) {
-            editText_description.hint = "내용을 적어주세요"
+            editTextDescription.hint = "내용을 적어주세요"
         }else {
-            editText_description.hint = getHabitDescription
-            editText_description.setHintTextColor(Color.parseColor("#000000"))
+            editTextDescription.hint = getHabitDescription
+            editTextDescription.setHintTextColor(Color.parseColor("#000000"))
         }
         for(i in 0..6) {
-            if(getHabitAlarmDay?.get(i) == '1') {
+            if(getHabitAlarmDay[i] == '1') {
                 view.findViewWithTag<Chip>(i.toString()).isCheckable = true
                 view.findViewWithTag<Chip>(i.toString()).isChecked = true
                 view.findViewWithTag<Chip>(i.toString()).setTextColor(Color.parseColor("#FFFFFF"))
@@ -122,16 +120,16 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         if(getHabitAlarmTime != null) {
             val previousAlarmHour: Int = getHabitAlarmTime!!.substring(0, 2).toInt()
             val previousAlarmMinute: Int = getHabitAlarmTime!!.substring(3, 5).toInt()
-            timepicker_alarm_time.hour = previousAlarmHour
-            timepicker_alarm_time.minute = previousAlarmMinute
+            timePickerAlarmTime.hour = previousAlarmHour
+            timePickerAlarmTime.minute = previousAlarmMinute
         }else {
-            timepicker_alarm_time.visibility = View.INVISIBLE
-            textView_isAlarmChecked.visibility = View.VISIBLE
-            switch_alarm.isChecked = false
+            timePickerAlarmTime.visibility = View.INVISIBLE
+            textViewIsAlarmChecked.visibility = View.VISIBLE
+            switchAlarm.isChecked = false
         }
     }
 
-    fun onClickDayOfWeekChips(){
+    private fun onClickDayOfWeekChips(){
         chip_mon.setOnClickListener {
             Toast.makeText(context, "죄송합니다. 요일은 수정할 수 없습니다.", Toast.LENGTH_SHORT).show()
         }
@@ -155,38 +153,38 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    fun onCheckAlarmSwith() {
-        switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
-                timepicker_alarm_time.visibility = View.VISIBLE
-                textView_isAlarmChecked.visibility = View.INVISIBLE
+    private fun onCheckAlarmSwith() {
+        switchAlarm.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                timePickerAlarmTime.visibility = View.VISIBLE
+                textViewIsAlarmChecked.visibility = View.INVISIBLE
             }else {
-                timepicker_alarm_time.visibility = View.INVISIBLE
-                textView_isAlarmChecked.visibility = View.VISIBLE
+                timePickerAlarmTime.visibility = View.INVISIBLE
+                textViewIsAlarmChecked.visibility = View.VISIBLE
             }
         }
     }
 
-    fun onModifyDone(){
+    private fun onModifyDone(){
         imageView_done.setOnClickListener {
-            val getChangedTitle = editText_title.text.toString()
-            val getChangedDescription = editText_description.text.toString()
+            val getChangedTitle = editTextTitle.text.toString()
+            val getChangedDescription = editTextDescription.text.toString()
 
             // check all is entered
-            if(getChangedTitle.length != 0) {
+            if(getChangedTitle.isNotEmpty()) {
                 getHabitTitle = getChangedTitle
             }
-            if(getChangedDescription.length != 0) {
+            if(getChangedDescription.isNotEmpty()) {
                 getHabitDescription = getChangedDescription
             }
-            if(switch_alarm.isChecked == true) {
-                getHabitAlarmTime = timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
-            }else {
-                getHabitAlarmTime = ""
+            getHabitAlarmTime = if(switchAlarm.isChecked) {
+                timePickerAlarmTime.hour.toString() + ":" + timePickerAlarmTime.minute.toString()
+            } else {
+                ""
             }
 
             setNewDataOnHabitListener.setNewDataOnHabit(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmTime)
-            dismiss()
+            findNavController().navigateUp()
         }
     }
 
@@ -194,9 +192,9 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         fun setNewDataOnHabit(newTitle: String, newCategory: String, newDescription: String?, newAlarmTime: String?)
     }
 
-    fun onModifyCancle(){
+    private fun onModifyCancel(){
         imageView_close.setOnClickListener {
-            dismiss()
+            findNavController().navigateUp()
         }
     }
 
@@ -204,7 +202,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
         textView_modify_delete.setOnClickListener {
             val dialog = AlertDialog.Builder(requireContext())
                 .setMessage("정말 삭제 하시겠습니까?")
-                .setPositiveButton("예") { dialogInterface: DialogInterface, i: Int ->
+                .setPositiveButton("예") { _, _->
                     detailViewModel.deleteHabit(getHabitId)
                     detailViewModel.deleteData.observe(this, Observer {
                         if(it.message == "success") {
@@ -214,7 +212,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
                             Toast.makeText(context, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
                         }
                     })
-                }.setNegativeButton("아니요") { dialogInterface: DialogInterface, i: Int ->
+                }.setNegativeButton("아니요") { dialogInterface, _ ->
                     dialogInterface.dismiss()
                 }
             dialog.create().show()

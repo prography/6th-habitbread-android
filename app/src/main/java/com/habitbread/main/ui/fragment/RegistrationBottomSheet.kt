@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.habitbread.main.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -18,13 +19,12 @@ import org.greenrobot.eventbus.EventBus
 
 class RegistrationBottomSheet : BottomSheetDialogFragment() {
 
-    private val TAG: String = "RegistrationBottomSheet"
-    var getHabitTitle: String = ""
-    var getHabitCategory: String = "기타"
-    var getHabitDescription: String? = ""
-    var getHabitAlarmDay: String = ""
-    var getHabitAlarmTime: String = ""
-    var days: MutableList<String> = mutableListOf("0", "0", "0", "0", "0", "0", "0")
+    private var getHabitTitle: String = ""
+    private var getHabitCategory: String = "기타"
+    private var getHabitDescription: String? = ""
+    private var getHabitAlarmDay: String = ""
+    private var getHabitAlarmTime: String = ""
+    private var days: MutableList<String> = mutableListOf("0", "0", "0", "0", "0", "0", "0")
 
     override fun getTheme(): Int {
         return R.style.bottomSheetDialogTheme
@@ -35,15 +35,14 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_registraion, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_registraion, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         onClickDayOfWeekChips()
         onCheckAlarmSwith()
-        onRegisterCancle()
+        onRegisterCancel()
         onRegisterDone()
     }
 
@@ -58,9 +57,9 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         return bottomSheetDialog
     }
 
-    fun onClickDayOfWeekChips(){
+    private fun onClickDayOfWeekChips(){
         chip_mon.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[1] = "1"
             }else {
@@ -69,7 +68,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chip_tue.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[2] = "1"
             }else {
@@ -78,7 +77,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chip_wed.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[3] = "1"
             }else {
@@ -87,7 +86,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chip_thu.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[4] = "1"
             }else {
@@ -96,7 +95,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chip_fri.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[5] = "1"
             }else {
@@ -105,7 +104,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chip_sat.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[6] = "1"
             }else {
@@ -114,7 +113,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
         }
         chip_sun.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+            if(isChecked) {
                 buttonView.setTextColor(Color.parseColor("#FFFFFF"))
                 days[0] = "1"
             }else {
@@ -124,9 +123,9 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    fun onCheckAlarmSwith() {
-        switch_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked == true) {
+    private fun onCheckAlarmSwith() {
+        switch_alarm.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
                 timepicker_alarm_time.visibility = View.VISIBLE
                 textView_isAlarmChecked.visibility = View.INVISIBLE
             }else {
@@ -136,7 +135,7 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    fun onRegisterDone(){
+    private fun onRegisterDone(){
         imageView_done.setOnClickListener {
             val getNewTitle = editText_title.text.toString()
             getHabitDescription = editText_description.text.toString()
@@ -144,15 +143,15 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             for(i in 0..6) {
                 getHabitAlarmDay += days[i]
             }
-            if(switch_alarm.isChecked == true) {
-                getHabitAlarmTime = timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
+            getHabitAlarmTime = if(switch_alarm.isChecked) {
+                timepicker_alarm_time.hour.toString() + ":" + timepicker_alarm_time.minute.toString()
             }else {
-                getHabitAlarmTime = ""
+                ""
             }
 
             // check all data is entered
-            var isDoneReady: Boolean = true
-            if(getNewTitle.length == 0) {
+            var isDoneReady = true
+            if(getNewTitle.isEmpty()) {
                 isDoneReady = false
             }else {
                 getHabitTitle = getNewTitle
@@ -162,18 +161,18 @@ class RegistrationBottomSheet : BottomSheetDialogFragment() {
             }
 
             // call create habit api
-            if(isDoneReady == true) {
+            if(isDoneReady) {
                 EventBus.getDefault().post(ModalPost(getHabitTitle, getHabitCategory, getHabitDescription, getHabitAlarmDay, getHabitAlarmTime))
-                dismiss()
-            }else {
+                findNavController().navigateUp()
+            } else {
                 Toast.makeText(context, "습관빵 이름과 빵 굽는 날은 반드시 입력해주세요!", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    fun onRegisterCancle(){
+    private fun onRegisterCancel(){
         imageView_close.setOnClickListener {
-            dismiss()
+            findNavController().navigateUp()
         }
     }
 }

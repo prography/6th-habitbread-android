@@ -1,22 +1,22 @@
 package com.habitbread.main.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.habitbread.main.R
 import com.habitbread.main.data.Habits
-import com.habitbread.main.ui.activity.DetailActivity
 import com.habitbread.main.util.DateCalculation
 import kotlinx.android.synthetic.main.item_habit.view.*
 
 class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<HabitListAdapter.HabitListViewHolder>() {
 
-    var habits : List<Habits>? = null
+    private var habits : List<Habits>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitListViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_habit, parent, false)
@@ -24,8 +24,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
     }
 
     override fun getItemCount(): Int {
-        if(habits === null) return 0
-        else return habits!!.size
+        return if (habits == null) 0 else habits!!.size
     }
 
     override fun onBindViewHolder(holder: HabitListViewHolder, position: Int) {
@@ -33,26 +32,30 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
     }
 
     inner class HabitListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val tv_habitName: TextView = itemView.textView_habitName
-        val tv_description: TextView = itemView.textView_description
+        private val tvHabitName: TextView = itemView.textView_habitName
+        private val tvDescription: TextView = itemView.textView_description
 
         fun bind(data: Habits){
-            tv_habitName.text = data.habitName
-            tv_description.text = data.description
-            var shoudCommitToday: Boolean = false
-            if(data.dayOfWeek[DateCalculation().today] == '1') {
-                itemView.textView_isToday.text = "오늘"
-                shoudCommitToday = true
-            }else if(data.dayOfWeek[DateCalculation().tomorrow] == '1'){
-                itemView.textView_isToday.text = "내일"
-                itemView.imageView_dot.visibility = View.INVISIBLE
-                itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
-                itemView.button_habit.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
-            }else {
-                itemView.textView_isToday.visibility = View.INVISIBLE
-                itemView.imageView_dot.visibility = View.INVISIBLE
-                itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
-                itemView.button_habit.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+            tvHabitName.text = data.habitName
+            tvDescription.text = data.description
+            var shouldCommitToday = false
+            when {
+                data.dayOfWeek[DateCalculation().today] == '1' -> {
+                    itemView.textView_isToday.text = "오늘"
+                    shouldCommitToday = true
+                }
+                data.dayOfWeek[DateCalculation().tomorrow] == '1' -> {
+                    itemView.textView_isToday.text = "내일"
+                    itemView.imageView_dot.visibility = View.INVISIBLE
+                    itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+                    itemView.button_habit.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+                }
+                else -> {
+                    itemView.textView_isToday.visibility = View.INVISIBLE
+                    itemView.imageView_dot.visibility = View.INVISIBLE
+                    itemView.textView_isToday.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+                    itemView.button_habit.setBackgroundColor(Color.parseColor("#CCFFFFFF"))
+                }
             }
 
             // 습관 등록 요일만 표시하기
@@ -66,8 +69,8 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
 
             // 커밋한 날짜 초록색 표시하기
             val isCommitList: MutableList<Int> = mutableListOf()
-            for(i in 0..data.commitHistory.size-1) {
-                val inputDate: String = DateCalculation().convertUTCtoSeoulTime(data.commitHistory[i].createdAt).substring(0, 10)
+            for(element in data.commitHistory) {
+                val inputDate: String = DateCalculation().convertUTCtoSeoulTime(element.createdAt).substring(0, 10)
                 val index = DateCalculation().getTodayOfWeekWithDate(inputDate)
                 itemView.findViewWithTag<TextView>(index.toString()).setBackgroundResource(R.drawable.background_dayofweek)
                 itemView.findViewWithTag<TextView>(index.toString()).setTextColor(Color.parseColor("#FFFFFF"))
@@ -75,7 +78,7 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             }
 
             // 빨간 점 표시하기
-            if(shoudCommitToday == true) {
+            if(shouldCommitToday) {
                 if(isCommitList.contains(DateCalculation().getTodayOfWeek())) {
                     itemView.imageView_dot.visibility = View.INVISIBLE
                 }else {
@@ -84,11 +87,8 @@ class HabitListAdapter(private val context: Context?) : RecyclerView.Adapter<Hab
             }
 
             itemView.button_habit.setOnClickListener {
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("habitId", data.habitId)
-                intent.putExtra("habitName", data.habitName)
-                intent.putExtra("habitDescription", data.description)
-                context?.startActivity(intent)
+                val bundle = bundleOf("habitId" to data.habitId, "habitName" to data.habitName, "habitDescription" to data.description)
+                it.findNavController().navigate(R.id.action_viewPager_to_detail, bundle)
             }
         }
     }

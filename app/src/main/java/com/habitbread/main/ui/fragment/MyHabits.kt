@@ -1,6 +1,5 @@
 package com.habitbread.main.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.habitbread.main.R
 import com.habitbread.main.adapter.HabitListAdapter
 import com.habitbread.main.data.NewHabitReq
-import com.habitbread.main.ui.activity.BakeryActivity
 import com.habitbread.main.ui.viewModel.HabitViewModel
 import com.habitbread.main.util.DateCalculation
 import kotlinx.android.synthetic.main.fragment_my_habits.*
@@ -24,9 +23,9 @@ import org.greenrobot.eventbus.ThreadMode
 
 class MyHabits : Fragment() {
 
-    private lateinit var recyclerview_habitList: RecyclerView
-    private lateinit var recyclerview_adapter: HabitListAdapter
-    val habitViewModel: HabitViewModel by viewModels()
+    private lateinit var recyclerviewHabitList: RecyclerView
+    private lateinit var recyclerviewAdapter: HabitListAdapter
+    private val habitViewModel: HabitViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +33,7 @@ class MyHabits : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view= inflater.inflate(R.layout.fragment_my_habits, container, false)
-        recyclerview_habitList = view.findViewById(R.id.recyclerView_habitlist)
+        recyclerviewHabitList = view.findViewById(R.id.recyclerView_habitlist)
         return view
     }
 
@@ -45,7 +44,7 @@ class MyHabits : Fragment() {
         habitViewModel.rvData.observe(viewLifecycleOwner, Observer {
             textView_announcement.text = it.comment
             val sortedList = DateCalculation().habitListSorting(it.habits)
-            recyclerview_adapter.setAdapterData(sortedList)
+            recyclerviewAdapter.setAdapterData(sortedList)
         })
         onClickNewHabit()
         onClickBakery()
@@ -63,28 +62,26 @@ class MyHabits : Fragment() {
     }
 
     private fun initRecyclerView() {
-        recyclerview_adapter = HabitListAdapter(context)
-        recyclerview_habitList.adapter = recyclerview_adapter
-        recyclerview_habitList.layoutManager = LinearLayoutManager(context)
+        recyclerviewAdapter = HabitListAdapter(context)
+        recyclerviewHabitList.adapter = recyclerviewAdapter
+        recyclerviewHabitList.layoutManager = LinearLayoutManager(context)
     }
 
     private fun onClickNewHabit(){
         button_add.setOnClickListener {
-            val registrationBottomSheet = RegistrationBottomSheet()
-            registrationBottomSheet.show(parentFragmentManager, "showBottomSheet")
+            findNavController().navigate(R.id.action_viewPager_to_registrationBottomSheet)
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onBottomSheetDoneEvent(modalPost: ModalPost){
-        val body: NewHabitReq = NewHabitReq(title = modalPost.title, category = modalPost.category, description = modalPost.description, dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
+        val body = NewHabitReq(title = modalPost.title, category = modalPost.category, description = modalPost.description, dayOfWeek = modalPost.dayOfWeek, alarmTime = modalPost.alarmTime)
         habitViewModel.postHabit(body)
     }
 
     private fun onClickBakery() {
         imageView_bakery_circle.setOnClickListener {
-            val intent = Intent(context, BakeryActivity::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.action_viewPager_to_bakery)
         }
     }
 }

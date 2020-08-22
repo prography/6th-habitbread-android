@@ -1,36 +1,50 @@
-package com.habitbread.main.ui.activity
-
-import com.habitbread.main.data.GoogleOAuthRequest
-import retrofit2.*
+package com.habitbread.main.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.habitbread.main.R
-import com.habitbread.main.api.ServerImpl
-import com.habitbread.main.base.BaseApplication
-import com.habitbread.main.data.GoogleOAuthResponse
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.habitbread.main.R
+import com.habitbread.main.api.ServerImpl
+import com.habitbread.main.base.BaseApplication
+import com.habitbread.main.data.GoogleOAuthRequest
+import com.habitbread.main.data.GoogleOAuthResponse
 import com.habitbread.main.util.AccountUtils
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.fragment_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+class Login : Fragment() {
+    private val loginTag = "HabitBread"
+    private lateinit var client: GoogleSignInClient
 
-class LoginActivity : AppCompatActivity() {
-    private val TAG = "HabitBread"
-    lateinit var client: GoogleSignInClient
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        button_google_sign_in.setOnClickListener(View.OnClickListener { signIn() })
-        client = AccountUtils(this@LoginActivity).googleSignInClient
-        if (AccountUtils(this@LoginActivity).isAlreadyLoggedIn()) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        button_google_sign_in.setOnClickListener {
+//            Toast.makeText(requireContext(), "Hello, World", Toast.LENGTH_SHORT).show()
+            signIn()
+        }
+        client = AccountUtils(requireContext()).googleSignInClient
+        if (AccountUtils(requireContext()).isAlreadyLoggedIn()) {
             client.silentSignIn().addOnCompleteListener {
                 if (it.isSuccessful) {
                     handleSignInResult(it)
@@ -39,11 +53,11 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         } else {
-           button_google_sign_in.visibility = View.VISIBLE
+            button_google_sign_in.visibility = View.VISIBLE
         }
     }
 
-    public override fun onActivityResult(
+    override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
         data: Intent?
@@ -58,14 +72,14 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 handleSignInResult(task)
             } else {
-                Log.d(TAG, task.exception.toString());
-                Log.d(TAG, task.result.toString());
+                Log.d(loginTag, task.exception.toString())
+                Log.d(loginTag, task.result.toString())
             }
         }
     }
 
     private fun signIn() {
-        val signInIntent = client!!.signInIntent
+        val signInIntent = client.signInIntent
         startActivityForResult(signInIntent, 9001)
     }
 
@@ -73,10 +87,10 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             if (account != null) {
-                Log.d(TAG, "handleSignInResult: " + account.idToken)
+                Log.d(loginTag, "handleSignInResult: " + account.idToken)
                 sendGoogleOauth(account.idToken)
             } else {
-                Log.d(TAG, "handleSignInResult: " + " no Account")
+                Log.d(loginTag, "handleSignInResult: " + " no Account")
             }
 
             // Signed in successfully, show authenticated UI.
@@ -88,25 +102,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun sendGoogleOauth(idToken: String?) {
-        val tempRequest = GoogleOAuthRequest(idToken!!);
-        val call = ServerImpl.APIService.serverLoginWithGoogle(tempRequest);
+        val tempRequest = GoogleOAuthRequest(idToken!!)
+        val call = ServerImpl.APIService.serverLoginWithGoogle(tempRequest)
         call.enqueue(object : Callback<GoogleOAuthResponse?> {
             override fun onResponse(
                 call: Call<GoogleOAuthResponse?>,
                 response: Response<GoogleOAuthResponse?>
             ) {
-                Log.d(TAG, "onResponse: ${response.body()}")
-                val googleOauthResponse = response.body();
+                Log.d(loginTag, "onResponse: ${response.body()}")
+                val googleOauthResponse = response.body()
                 if (googleOauthResponse?.idToken != null) {
-                    Log.d(TAG, googleOauthResponse.idToken)
+                    Log.d(loginTag, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
-                    val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    // Navigation Control
+                    findNavController().navigate(R.id.action_login_to_viewPager)
                 } else {
-                    Log.d(TAG, googleOauthResponse.toString());
-                    Toast.makeText(this@LoginActivity, "Google Oauth Failed", Toast.LENGTH_SHORT)
-                        .show();
+                    Log.d(loginTag, googleOauthResponse.toString())
+                    Toast.makeText(requireContext(), "Google Oauth Failed", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             }

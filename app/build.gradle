@@ -119,4 +119,9 @@ dependencies {
     //time picker dependencies
     implementation 'com.github.ifr0z:timepickercompact:1.0'
     implementation 'org.conscrypt:conscrypt-android:2.2.1'
+
+    //android navigation dependencies
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.0'
 }
