@@ -9,6 +9,7 @@ import com.habitbread.main.base.BaseApplication
 
 class AccountUtils(context: Context) {
     private val googleIdTokenAddress = "191839451290-81q6qni5lt1s5nad9lfrhahabjtrp2pa.apps.googleusercontent.com"
+
     var googleSignInClient : GoogleSignInClient
     init {
         val gso = GoogleSignInOptions.Builder()

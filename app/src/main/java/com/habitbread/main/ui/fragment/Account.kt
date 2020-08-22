@@ -1,6 +1,7 @@
 package com.habitbread.main.ui.fragment
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,7 +39,12 @@ class Account : Fragment() {
             userNickname = it.accountName
             textview_profile_nickname.text = userNickname
             progress_exp.progress = it.percent
-            textview_progress_exp.text = getString(R.string.percentage, it.percent)
+            textview_progress_exp.text = getString(R.string.percentage, it.percent);
+            if (it.percent <= 55) {
+                textview_progress_exp.setTextColor(Color.parseColor("#80553615"))
+            } else {
+                textview_progress_exp.setTextColor(Color.parseColor("#FFFFFF"))
+            }
             textview_account_exp.text = it.userExp.toString()
             textview_bread_num.text = it.totalItemCount.toString()
             textview_current_bread_num.text = getString(R.string.currentBreadNum, it.totalItemCount)
