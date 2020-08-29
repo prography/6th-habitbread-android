@@ -14,6 +14,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.habitbread.main.R
 import com.habitbread.main.api.ServerImpl
 import com.habitbread.main.base.BaseApplication
@@ -114,7 +116,9 @@ class Login : Fragment() {
                 if (googleOauthResponse?.idToken != null) {
                     Log.d(loginTag, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
-                    // Navigation Control
+                    BaseApplication.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN) {
+                        param(FirebaseAnalytics.Param.ITEM_ID, BaseApplication.preferences.googleIdToken!!)
+                    }
                     findNavController().navigate(R.id.action_login_to_viewPager)
                 } else {
                     Log.d(loginTag, googleOauthResponse.toString())
