@@ -44,6 +44,9 @@ class MyHabits : Fragment() {
         habitViewModel.rvData.observe(viewLifecycleOwner, Observer {
             textView_announcement.text = it.comment
             val sortedList = DateCalculation().habitListSorting(it.habits)
+            if (it.habits.size >= 10) {
+                layout_create_habit.visibility = View.GONE
+            }
             recyclerviewAdapter.setAdapterData(sortedList)
         })
         onClickNewHabit()
