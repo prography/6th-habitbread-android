@@ -49,71 +49,71 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //kotlin dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.core:core-ktx:1.3.0"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
+    implementation "androidx.core:core-ktx:${rootProject.ext.coreKtxVersion}"
 
     //android view dependencies
-    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
-    implementation "com.google.android.material:material:1.3.0-alpha01"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVersion}"
+    implementation "com.google.android.material:material:${rootProject.ext.materialDesignVersion}"
+    implementation "androidx.legacy:legacy-support-v4:${rootProject.ext.legacySupportV4Version}"
 
     //android lifecycle dependencies
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-runtime:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-core:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.lifecycleExtensionsVersion}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${rootProject.ext.lifecycleViewModelVersion}"
+    implementation "androidx.lifecycle:lifecycle-runtime:${rootProject.ext.lifecycleRunTimeVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata-core:${rootProject.ext.lifecycleLivedataCore}"
 
     //retrofit dependencies
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.google.code.gson:gson:2.8.6"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit2Version}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofit2ConverterGsonVersion}"
+    implementation "com.google.code.gson:gson:${rootProject.ext.GsonVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttp3LoggingInterceptorVersion}"
 
     //glide dependencies
-    implementation "com.github.bumptech.glide:glide:4.11.0"
-    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+    implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.glideCompilerVersion}"
 
     //databinding dependencies
-    implementation "com.orhanobut:hawk:2.0.1"
-    kapt "androidx.databinding:databinding-compiler-common:4.0.1"
+    implementation "com.orhanobut:hawk:${rootProject.ext.hawkVersion}"
+    kapt "androidx.databinding:databinding-compiler-common:${rootProject.ext.databindingCompilerCommonVersion}"
 
     //android test dependencies
-    testImplementation "junit:junit:4.13"
-    androidTestImplementation "com.android.support.test:runner:1.0.2"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.runnerVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoCoreVersion}"
 
     //android recyclerview dependencies
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerviewVersion}"
 
     //firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    implementation "com.google.firebase:firebase-analytics-ktx:${rootProject.ext.firebaseAnalyticsKtxVersion}"
+    implementation "com.google.firebase:firebase-messaging:${rootProject.ext.firebaseMessagingVersion}"
 
     //calendar library dependencies
-    implementation "com.github.prolificinteractive:material-calendarview:2.0.1"
+    implementation "com.github.prolificinteractive:material-calendarview:${rootProject.ext.materialCalendarviewVersion}"
 
     //fragment dependencies
-    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation "androidx.fragment:fragment-ktx:${rootProject.ext.fragmentKtxVersion}"
 
     //viewpager2 dependency
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:${rootProject.ext.viewpager2Version}"
 
     //coroutine dependencies
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.ext.kotlinxCoroutinesCoreVersion}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${rootProject.ext.kotlinxCoroutinesAndroidVersion}"
 
     //event bus dependencies
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation "org.greenrobot:eventbus:${rootProject.ext.eventbusVersion}"
 
     //google gsm dependencies
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation "com.google.android.gms:play-services-auth:${rootProject.ext.playServicesAuthVersion}"
 
     //time picker dependencies
-    implementation 'com.github.ifr0z:timepickercompact:1.0'
-    implementation 'org.conscrypt:conscrypt-android:2.2.1'
+    implementation "com.github.ifr0z:timepickercompact:${rootProject.ext.timepickercompactVersion}"
+    implementation "org.conscrypt:conscrypt-android:${rootProject.ext.conscryptAndroidVersion}"
 
     //android navigation dependencies
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
-    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:${rootProject.ext.navigationFragmentKtxVersion}"
+    implementation "androidx.navigation:navigation-ui-ktx:${rootProject.ext.navigationUiKtxVersion}"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:${rootProject.ext.navigationDynamicFeaturesFragmentVersion}"
 }
