@@ -36,10 +36,10 @@
         <action
             android:id="@+id/action_viewPager_to_bakery"
             app:destination="@id/bakery"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_viewPager_to_detail"
             app:destination="@id/detail" >
@@ -58,7 +58,11 @@
         </action>
         <action
             android:id="@+id/action_viewPager_to_registrationBottomSheet"
-            app:destination="@id/registrationBottomSheet" />
+            app:destination="@id/registrationBottomSheet"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/bakery"
