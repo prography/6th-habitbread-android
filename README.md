@@ -16,41 +16,38 @@
 
 ## 프로젝트 구조
 
-MVVM 같은 거 서술하면 될듯..(보류, draw.io 사용해서 만들기)
-
+<img width="318" alt="프로젝트구조도" src="https://user-images.githubusercontent.com/31889335/97069447-819e0400-160b-11eb-9370-800e2fe54190.png">
 
 ## 사용된 라이브러리
 
 * Foundation
-  * Appcompat
-  * Android KTX
+  * [Appcompat](https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat)
+  * [Android KTX](https://developer.android.com/kotlin/ktx)
 * Architecture
-  * Lifecycles
-  * LiveData
-  * Navigation
-  * ViewModel
+  * [Lifecycles](https://developer.android.com/topic/libraries/architecture/lifecycle)
+  * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+  * [Navigation](https://developer.android.com/guide/navigation)
+  * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 * UI
-  * constraintLayout
-  * MaterialDesign
-  * Recylerview
-  * Calendarview
-  * Fragment
-  * Viewpager2
-  * Time picker
+  * [ConstraintLayout](https://developer.android.com/training/constraint-layout?hl=ko)
+  * [MaterialDesign](https://material.io/design)
+  * [RecylerView](https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=ko)
+  * [CalendarView](https://github.com/prolificinteractive/material-calendarview)
+  * [Fragment](https://developer.android.com/guide/components/fragments)
+  * [ViewPager2](https://developer.android.com/guide/navigation/navigation-swipe-view-2?hl=ko)
+  * [Time picker](https://github.com/iFr0z/TimePickerCompact)
 * Third Party
-  * Glide
-  * Kotlin Coroutine
-  * Legacy
-  * Retrofit2
-  * Okhttp logging - intercepter 
-  * Gson
-  * Googls Gsm
+  * [Glide](https://bumptech.github.io/glide/)
+  * [Kotlin Coroutine](https://developer.android.com/kotlin/coroutines?hl=ko)
+  * [Legacy](https://developer.android.com/jetpack/androidx/releases/legacy?hl=ko)
+  * [Retrofit2](https://github.com/square/retrofit)
+  * [OkHttp logging - interceptor](https://github.com/square/okhttp)
+  * [Gson](https://github.com/google/gson)
+  * [Google GMS](https://www.android.com/gms/)
 
 ## 개발 예정 기능
 
-[노션 링크](https://www.notion.so/4c0e5083ab13472da0a57107ba27be22)
-
-확인 필요
+[여기](https://www.notion.so/4c0e5083ab13472da0a57107ba27be22) 에서 확인해주세요.
 
 ## Third Party Contents
 
@@ -66,12 +63,12 @@ MVVM 같은 거 서술하면 될듯..(보류, draw.io 사용해서 만들기)
 
 ## Contact Us
 
-* 염준우
+* __염준우__
   * E-mail : yjw00521@gmail.com
   * [LinkedIn](https://www.linkedin.com/in/capri-yeom-68484218a/)
   * [FaceBook](https://www.facebook.com/profile.php?id=100009348608111)
   * [GitHub](https://github.com/capriYeom)
-* 김초희
+* __김초희__
   * E-mail : chchgml10@gmail.com
   * [GitHub](https://github.com/choheeis)
   * [Blog](https://choheeis.github.io/newblog//)
