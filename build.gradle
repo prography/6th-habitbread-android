@@ -64,8 +64,8 @@ ext {
     recyclerviewVersion = "1.1.0"
 
     //firebase dependencies
-    firebaseAnalyticsKtxVersion = "17.5.0"
-    firebaseMessagingVersion = "20.2.4"
+    firebaseAnalyticsKtxVersion = "17.6.0"
+    firebaseMessagingVersion = "20.3.0"
 
     //calendar library dependencies
     materialCalendarviewVersion = "2.0.1"
@@ -94,6 +94,9 @@ ext {
     navigationFragmentKtxVersion = "2.3.0"
     navigationUiKtxVersion = "2.3.0"
     navigationDynamicFeaturesFragmentVersion = "2.3.0"
+
+    //android animation interpolator dependencies
+    interpolatorVersion = "1.0.0"
 }
 
 task clean(type: Delete) {

@@ -56,6 +56,10 @@ class MyHabits : Fragment() {
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
         habitViewModel.getAllList()
     }
 

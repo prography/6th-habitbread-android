@@ -206,7 +206,7 @@ class ModificationBottomSheet : BottomSheetDialogFragment() {
                     detailViewModel.deleteHabit(getHabitId)
                     detailViewModel.deleteData.observe(this, Observer {
                         if(it.message == "success") {
-                            activity?.finish()
+                            findNavController().navigate(R.id.action_modificationBottomSheet_to_viewPager)
                             Toast.makeText(context, "습관빵이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
                         }else {
                             Toast.makeText(context, "죄송합니다. 오류로 인해 습관빵이 삭제되지 않았습니다.", Toast.LENGTH_SHORT).show()
