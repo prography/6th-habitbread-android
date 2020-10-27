@@ -116,4 +116,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${rootProject.ext.navigationFragmentKtxVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${rootProject.ext.navigationUiKtxVersion}"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:${rootProject.ext.navigationDynamicFeaturesFragmentVersion}"
+
+    // android animation interpolator dependencies
+    implementation "androidx.interpolator:interpolator:${rootProject.ext.interpolatorVersion}"
+
 }
