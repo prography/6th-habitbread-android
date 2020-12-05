@@ -81,36 +81,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_commit">
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/calendarView_habit_detail"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_margin="30dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView_habit_detail"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_margin="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+<!--            app:layout_constraintBottom_toTopOf="@+id/view_bar"-->
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:mcv_selectionColor="#99754F44"
             app:mcv_selectionMode="none"
             app:mcv_showOtherDates="all"
-            app:mcv_tileSize="match_parent"
-            />
-
+            app:mcv_tileSize="match_parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
             android:id="@+id/linearLayout_compare"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
             <TextView
                 android:id="@+id/textView_detail_compare_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="저번달보다 빵 구운 횟수가 "
                 android:textColor="@android:color/black"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView_detail_compare"
@@ -118,8 +126,8 @@
                 android:layout_height="wrap_content"
                 android:text="10회"
                 android:textColor="@color/appGreenColor"
-                android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView_detail_compare_right"
@@ -127,71 +135,76 @@
                 android:layout_height="wrap_content"
                 android:text=" 적어요"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
 
 
         <TextView
             android:id="@+id/textView_continue_value"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_compare"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="32회"
+            android:textColor="@android:color/black"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout_compare"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView_total_value"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_compare"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="3회"
+            android:textColor="@android:color/black"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout_compare"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView_continue_title"
-            app:layout_constraintBottom_toTopOf="@+id/textView_continue_value"
-            app:layout_constraintStart_toStartOf="@+id/textView_continue_value"
-            app:layout_constraintEnd_toEndOf="@+id/textView_continue_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="연속횟수"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintBottom_toTopOf="@+id/textView_continue_value"
+            app:layout_constraintEnd_toEndOf="@+id/textView_continue_value"
+            app:layout_constraintStart_toStartOf="@+id/textView_continue_value"
+            app:layout_constraintTop_toBottomOf="@+id/view_bar"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView_total_title"
-            app:layout_constraintBottom_toTopOf="@+id/textView_total_value"
-            app:layout_constraintStart_toStartOf="@+id/textView_total_value"
-            app:layout_constraintEnd_toEndOf="@id/textView_total_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="총 횟수"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintBottom_toTopOf="@+id/textView_total_value"
+            app:layout_constraintEnd_toEndOf="@id/textView_total_value"
+            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintStart_toStartOf="@+id/textView_total_value"
+            app:layout_constraintTop_toTopOf="@+id/view_bar"
+            app:layout_constraintVertical_bias="1.0" />
 
         <View
             android:id="@+id/view_bar"
-            app:layout_constraintBottom_toTopOf="@+id/textView_continue_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/barGrayColor"/>
+            android:background="@color/barGrayColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="358dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
