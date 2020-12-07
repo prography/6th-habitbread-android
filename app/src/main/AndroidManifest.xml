@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.habitbread.main">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        tools:replace="label"
         android:name="com.habitbread.main.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="${appName}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <!--Set custom default icon for FCM notification-->
+        <!-- Set FCM notification icon drawable -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/icon_fcm_push" />
+
+        <!-- Set FCM notification color -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/appBackground" />
-        <meta-data
-            android:name="firebase_messaging_auto_init_enabled"
-            android:value="true" />
-        <meta-data
-            android:name="firebase_analytics_collection_enabled"
-            android:value="true" />
 
+        <!-- Set FCM notification channel id -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
@@ -40,6 +39,7 @@
             </intent-filter>
         </activity>
 
+        <!-- Set FCM service -->
         <service
             android:name="com.habitbread.main.api.FirebaseAPI"
             android:exported="false">

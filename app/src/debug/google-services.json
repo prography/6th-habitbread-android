@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:721656071466:android:40c9992116f1385bcd8a53",
         "android_client_info": {
-          "package_name": "com.habitbread.main"
+          "package_name": "com.habitbread.main.dev"
         }
       },
       "oauth_client": [

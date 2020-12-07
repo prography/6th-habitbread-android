@@ -1,5 +1,7 @@
 <resources>
+    <!-- app name strings -->
     <string name="app_name">습관빵</string>
+    <string name="app_name_dev">습관빵개발</string>
 
     <!-- login strings -->
     <string name="appTitle">습관빵</string>
