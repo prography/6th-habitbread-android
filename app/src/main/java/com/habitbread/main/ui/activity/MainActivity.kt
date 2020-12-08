@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
         if (BaseApplication.preferences.isTokenRegistered) {
             PushUtils().register()
         }
-        //FirebaseAPI().getCurrentFCMToken()
+        //FirebaseAPI().sendRegistrationToServer(FirebaseAPI().getCurrentFCMToken().toString())
+        FirebaseAPI().getCurrentFCMToken()
     }
 
     override fun onResume() {
