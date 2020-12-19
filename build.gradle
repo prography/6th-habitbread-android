@@ -63,10 +63,6 @@ ext {
     //android recyclerview dependencies
     recyclerviewVersion = "1.1.0"
 
-    //firebase dependencies
-    firebaseAnalyticsKtxVersion = "17.6.0"
-    firebaseMessagingVersion = "20.3.0"
-
     //calendar library dependencies
     materialCalendarviewVersion = "2.0.1"
 

@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.2"
 
     compileOptions {
@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "com.habitbread.main"
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 3
         versionName "1.1.0"
 
@@ -27,6 +27,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            manifestPlaceholders = [
+                    appName : "@string/app_name"
+            ]
+        }
+
+        debug {
+            applicationIdSuffix '.dev'
+            manifestPlaceholders = [
+                    appName : "@string/app_name_dev"
+            ]
         }
     }
 
@@ -86,8 +96,9 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerviewVersion}"
 
     //firebase dependencies
-    implementation "com.google.firebase:firebase-analytics-ktx:${rootProject.ext.firebaseAnalyticsKtxVersion}"
-    implementation "com.google.firebase:firebase-messaging:${rootProject.ext.firebaseMessagingVersion}"
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     //calendar library dependencies
     implementation "com.github.prolificinteractive:material-calendarview:${rootProject.ext.materialCalendarviewVersion}"

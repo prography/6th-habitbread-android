@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.habitbread.main.R
+import com.habitbread.main.api.FirebaseAPI
 import com.habitbread.main.api.ServerImpl
 import com.habitbread.main.base.BaseApplication
 import com.habitbread.main.data.GoogleOAuthRequest
@@ -116,6 +117,10 @@ class Login : Fragment() {
                 if (googleOauthResponse?.idToken != null) {
                     Log.d(loginTag, googleOauthResponse.idToken)
                     BaseApplication.preferences.googleIdToken = googleOauthResponse.idToken
+
+                    // Patch FCM New token
+                    FirebaseAPI().sendRegistrationToServer(BaseApplication.preferences.FCMToken.toString())
+
                     BaseApplication.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN) {
                         param(FirebaseAnalytics.Param.ITEM_ID, BaseApplication.preferences.googleIdToken!!)
                     }
